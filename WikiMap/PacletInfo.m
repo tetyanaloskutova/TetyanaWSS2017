@@ -1,12 +1,14 @@
+(* ::Package:: *)
+
 Paclet[
-	Name -> "Project",
+	Name -> "WikiMap",
 	Version -> "0.0.1",
 	MathematicaVersion -> "11+",
 	Description -> "Project Library",
-	Creator -> "Riccardo Di Virgilio <riccardod@wolfram.com>",
+	Creator -> "Tetyana Loskutova <tetyana.loskutova@gmail.com>",
 	Loading -> Automatic,
 	Extensions -> {
-		{"Kernel", Context -> {"Project`"}, Symbols -> {}},
+		{"Kernel", Context -> {"WikiMap`"}, Symbols -> {}},
 		{"Resource", Root -> ".", Resources -> {"Assets"}}
 	}
 ]

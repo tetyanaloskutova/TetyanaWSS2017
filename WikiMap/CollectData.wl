@@ -1,4 +1,6 @@
-Package["Project`"]
+(* ::Package:: *)
+
+Package["WikiMap`"]
 
 (* this is declaring that a certain simbol can be used OUTSIDE the paclet *)
 PackageExport[CollectData]

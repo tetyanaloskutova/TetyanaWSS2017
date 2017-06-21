@@ -1,4 +1,6 @@
-BeginPackage["Project`"]
+(* ::Package:: *)
+
+BeginPackage["WikiMap`"]
 EndPackage[]
 
 (* All loading of the paclet's Wolfram Language code should go through this file. *)
