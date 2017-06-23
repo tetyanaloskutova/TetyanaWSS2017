@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    115618,       2392]
-NotebookOptionsPosition[     99734,       2040]
-NotebookOutlinePosition[    106047,       2179]
-CellTagsIndexPosition[    106004,       2176]
+NotebookDataLength[    117215,       2412]
+NotebookOptionsPosition[    101225,       2058]
+NotebookOutlinePosition[    107538,       2197]
+CellTagsIndexPosition[    107495,       2194]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -68,18 +68,19 @@ Cell["The history of backpropagation algorithm", "Section",
 
 Cell["\<\
 Backpropagation is a training algorithm for Neural Networks (NN), which \
-allows the training to progress through multiple layers. The basic idea of a \
-neural net computing is to adjust the weights of neurons based on the \
-difference between the result produced by the neuron and the required result. \
-However, in multi-layer NN the problem is that the required result is known \
-only for the output layer. For some time, this problem slowed the development \
-of machine learning field. The breakthrough came with the formulation of \
-backpropagation algorithm. The basic idea of backpropagation is to use \
-calculus to assign some of the blame for any training set mistakes in the \
-output layer to each neuron in the previous hidden layer, and then to further \
-split up blame if there is another hidden layer, and so on, thus, \
-backpropagating the error.
-\
+allows the training to progress through multiple layers. The basic idea \
+behind neural network computing is the adjustment of neuron weights  based on \
+the difference between the result produced by the neuron and the required \
+result. However, the required result is known only for the output layer, \
+which creates a problem for adjusting the weights of hidden layers. For some \
+time, this problem stalled the development of machine learning field. The \
+breakthrough came with the formulation of backpropagation algorithm. The \
+basic idea of backpropagation is 1) to use calculus to assign some of the \
+blame for any training set mistake in the output layer to each neuron in the \
+previous hidden layer; 2) to further split up the blame for the previous \
+hidden layers (if such exist) until the input layer is reached. This method \
+of splitting and assigning the blame is essentially backpropagation of the \
+error.\
 \>", "Text",
  CellChangeTimes->{{3.700774312865305*^9, 3.700774350341485*^9}, {
    3.7051042689957237`*^9, 3.7051043842073135`*^9}, {3.705105072313671*^9, 
@@ -91,7 +92,9 @@ backpropagating the error.
    3.707201784054183*^9, 3.707201816552094*^9}, {3.7072025877757745`*^9, 
    3.707202606110168*^9}, {3.7072026851745625`*^9, 3.7072028311389747`*^9}, {
    3.7072030995787573`*^9, 3.707203258489585*^9}, {3.707204412939555*^9, 
-   3.707204417561956*^9}},ExpressionUUID->"e52c4547-a257-420d-bb0e-\
+   3.707204417561956*^9}, {3.707225777364998*^9, 3.707225919651045*^9}, {
+   3.707225956561525*^9, 3.7072260079892893`*^9}, {3.7072260422884483`*^9, 
+   3.707226196624984*^9}},ExpressionUUID->"e52c4547-a257-420d-bb0e-\
 8365e9d9a820"]
 }, Open  ]],
 
@@ -108,17 +111,18 @@ a2e6be3994dd"],
 
 Cell["\<\
 As it is clear from the history, backpropagation requires a network with at \
-least one hidden layer. In this example, we will explore the work of the \
-algorithm in a three-layer network.
+least one hidden layer. In this example, a three-layer network will be used \
+for a demonstration of the algorithm.
 Backpropagating NNs learn by example, that is they require a set of inputs \
 and associated outputs. \
 \>", "Text",
  CellChangeTimes->{{3.7072018283060713`*^9, 3.707201995865178*^9}, {
   3.7072020409235067`*^9, 3.7072020743730927`*^9}, {3.7072033929056664`*^9, 
-  3.7072035021460075`*^9}},ExpressionUUID->"2c99d421-41a2-4b94-af88-\
+  3.7072035021460075`*^9}, {3.707226248104336*^9, 
+  3.7072262647154865`*^9}},ExpressionUUID->"2c99d421-41a2-4b94-af88-\
 e2219d25cca6"],
 
-Cell["Input matrix:", "Direction",
+Cell["Initialize an input matrix:", "Direction",
  CellChangeTimes->{{3.700774271565714*^9, 3.70077428101515*^9}, {
   3.70510436631329*^9, 3.705104402940385*^9}, {3.7051044918334694`*^9, 
   3.705104547547656*^9}, {3.705104583096689*^9, 3.7051045898510756`*^9}, {
@@ -126,8 +130,8 @@ Cell["Input matrix:", "Direction",
   3.7051052440884957`*^9}, {3.707123825468051*^9, 3.707123837139597*^9}, {
   3.7071271352505493`*^9, 3.7071271610147457`*^9}, {3.707127218621023*^9, 
   3.7071272189862566`*^9}, {3.707127271799097*^9, 3.707127286391225*^9}, {
-  3.7071273949248767`*^9, 
-  3.7071274036001077`*^9}},ExpressionUUID->"bf62fc91-842f-4e53-876f-\
+  3.7071273949248767`*^9, 3.7071274036001077`*^9}, {3.707226289277309*^9, 
+  3.707226300836467*^9}},ExpressionUUID->"bf62fc91-842f-4e53-876f-\
 9bfe7fa9d84b"],
 
 Cell[BoxData[
@@ -157,14 +161,15 @@ Cell[BoxData[
    3.70720469308267*^9, 3.70720469714706*^9}},
  CellLabel->"In[55]:=",ExpressionUUID->"dfbb8b15-d726-4ef0-aeb6-d4fdac7b9799"],
 
-Cell["and output:", "Direction",
+Cell["Initialize an output matrix:", "Direction",
  CellChangeTimes->{{3.700774271565714*^9, 3.70077428101515*^9}, {
    3.70510436631329*^9, 3.705104402940385*^9}, {3.7051044918334694`*^9, 
    3.705104547547656*^9}, {3.705104583096689*^9, 3.7051045898510756`*^9}, {
    3.705105030495279*^9, 3.70510503226538*^9}, {3.7051051046345196`*^9, 
    3.7051052440884957`*^9}, {3.707123825468051*^9, 3.707123837139597*^9}, {
-   3.70712546447829*^9, 3.7071254663485384`*^9}, 
-   3.7071271133482885`*^9},ExpressionUUID->"0c0e5c67-8a73-4137-89da-\
+   3.70712546447829*^9, 3.7071254663485384`*^9}, 3.7071271133482885`*^9, {
+   3.707226304911413*^9, 
+   3.70722631518854*^9}},ExpressionUUID->"0c0e5c67-8a73-4137-89da-\
 3be562d50412"],
 
 Cell[BoxData[
@@ -260,12 +265,12 @@ Cell[TextData[StyleBox["Neural network model", "Subsection"]], "Chapter",
 72bc360897f6"],
 
 Cell[TextData[{
- "Based on the inputs and output, the network that we will be using has three \
-input neurons and one output neuron. Generally, the amount of neurons in the \
-hidden layer in this case can be two. However, we will use four neurons in \
-the hidden layer. With so many hidden neurons, the network will work a bit \
-like a memory bank and should be able to produce XOR output disregarding the \
-value of the third input.\n\n",
+ "Based on the inputs and output, the network has three input neurons and one \
+output neuron. Generally, the amount of neurons in the hidden layer in this \
+case can be two. However, using four neurons in the hidden layer will allow \
+the network to function almost like a memory bank. This is useful in this \
+example as it will allow to produce XOR output regardless of the value of the \
+third input.\n\n",
  Cell[BoxData[
   GraphicsBox[
    TagBox[RasterBox[CompressedData["
@@ -1034,8 +1039,9 @@ t27dunXr1q1bt27dunXr1u2q/f8mtsiN
   "1a4081ec-1a90-4994-b20d-3e2e182b9fdf"]
 }], "Text",
  CellChangeTimes->{{3.707161874698124*^9, 3.7071618759142466`*^9}, 
-   3.707162366609639*^9, {3.7072038401687236`*^9, 
-   3.7072040719981613`*^9}},ExpressionUUID->"06f08672-8519-4714-a48d-\
+   3.707162366609639*^9, {3.7072038401687236`*^9, 3.7072040719981613`*^9}, {
+   3.707226350788983*^9, 
+   3.7072264400013933`*^9}},ExpressionUUID->"06f08672-8519-4714-a48d-\
 0a6bd6d8331d"],
 
 Cell["", "Text",ExpressionUUID->"c4ce3a7f-37e3-428b-ab3d-74372b19a1f7"]
@@ -1049,11 +1055,13 @@ Cell[TextData[StyleBox["Forward propagation", "Subsection"]], "Chapter",
 e8f67fcf8429"],
 
 Cell["\<\
-To demonstrate backpropagation, we will first need to code the forward \
-propagation and estimate the output.\
+To demonstrate backpropagation, the network should first complete a first \
+forward propagation and estimate the output.\
 \>", "Text",
- CellChangeTimes->{{3.707204158251934*^9, 
-  3.707204257793313*^9}},ExpressionUUID->"ade6b720-03f1-4cf0-9edb-\
+ CellChangeTimes->{{3.707204158251934*^9, 3.707204257793313*^9}, {
+  3.7072264654222803`*^9, 3.707226483626194*^9}, {3.70722653697493*^9, 
+  3.7072265452144537`*^9}, {3.7072265802852945`*^9, 
+  3.707226584088765*^9}},ExpressionUUID->"ade6b720-03f1-4cf0-9edb-\
 ddd594b503ed"],
 
 Cell["\<\
@@ -1148,26 +1156,26 @@ Cell[BoxData[
   3.707205364141919*^9, 3.7072053671444254`*^9}},
  CellLabel->"In[81]:=",ExpressionUUID->"4bf4804c-88e1-4791-9980-55e9bc3d648b"],
 
-Cell["\<\
-The basic formula for feed-forward pass contains two steps. 
-1) Find the input to the next layer neuron as a sum of the outputs of the \
-previous layer neurons multiplied by weights, in other words a dot-product of \
-the previous layer outputs and weights;
-2) Apply the activation function. In this example, we will use logistic \
-sigmoid function. Other activation functions also exist, such as TangH, \
-ArcTan, ReLU, etc.\
-\>", "Direction",
+Cell[TextData[StyleBox["The basic formula for feed-forward pass contains two \
+steps. \n1) Find the input to the next layer neuron as a sum of the outputs \
+of the previous layer neurons multiplied by weights, in other words a \
+dot-product of the previous layer outputs and weights;\n2) Apply the \
+activation function. In this example, logistic sigmoid function is used. \
+Other activation functions also exist, such as TangH, ArcTan, ReLU, etc.", \
+"Text"]], "Text",
  CellChangeTimes->{{3.7072067463341737`*^9, 3.7072067727985926`*^9}, {
    3.7072068473320403`*^9, 3.7072068503012314`*^9}, {3.7072068815815735`*^9, 
    3.7072069183444757`*^9}, {3.7072069609466534`*^9, 3.707207032723898*^9}, {
    3.7072070657605495`*^9, 3.7072071497014384`*^9}, {3.7072071996353226`*^9, 
    3.7072072202673044`*^9}, {3.7072072708454723`*^9, 3.707207312577564*^9}, 
-   3.7072073929205036`*^9},ExpressionUUID->"84f39bb7-c1ff-4ce7-a5eb-\
+   3.7072073929205036`*^9, {3.707226775790423*^9, 
+   3.7072267806245823`*^9}},ExpressionUUID->"84f39bb7-c1ff-4ce7-a5eb-\
 719164e162e7"],
 
-Cell["Input layer is equal to the inputs:", "Direction",
- CellChangeTimes->{{3.707207401422205*^9, 
-  3.7072074157118473`*^9}},ExpressionUUID->"da53fe2c-64de-4342-9231-\
+Cell["Input layer is equal to the input matrix:", "Direction",
+ CellChangeTimes->{{3.707207401422205*^9, 3.7072074157118473`*^9}, {
+  3.7072266937566357`*^9, 
+  3.707226695589216*^9}},ExpressionUUID->"da53fe2c-64de-4342-9231-\
 f84104c1daee"],
 
 Cell[BoxData[
@@ -1190,12 +1198,12 @@ Cell[BoxData[
  CellLabel->"In[83]:=",ExpressionUUID->"ce279919-0edc-47e6-b7f7-bdfda83bc70d"],
 
 Cell["\<\
-Compute output layer - this is our first and very inaccurate approximation of \
+Compute output layer - this is the first and very inaccurate approximation of \
 the output: \
 \>", "Direction",
  CellChangeTimes->{{3.7072074320938654`*^9, 3.7072074652875223`*^9}, {
-  3.7072077175276995`*^9, 
-  3.7072077217151065`*^9}},ExpressionUUID->"a7edcad7-d4f0-4d91-8c68-\
+  3.7072077175276995`*^9, 3.7072077217151065`*^9}, {3.7072267076061735`*^9, 
+  3.707226707953124*^9}},ExpressionUUID->"a7edcad7-d4f0-4d91-8c68-\
 22d5e300818f"],
 
 Cell[CellGroupData[{
@@ -1225,10 +1233,10 @@ Cell["Backpropagation", "Subsection",
   3.7072077514219832`*^9}},ExpressionUUID->"05d2066d-186c-4f6c-a5b1-\
 23e8bf17a87c"],
 
-Cell[TextData[StyleBox["The first step in backpropagation is quite obvious: \
-to calculate the errors:", "Direction"]], "Direction",
- CellChangeTimes->{
-  3.707207917013151*^9},ExpressionUUID->"f10f7fd2-9978-4107-a044-\
+Cell[TextData[StyleBox["The first step in backpropagation is to calculate the \
+errors:", "Direction"]], "Direction",
+ CellChangeTimes->{3.707207917013151*^9, 
+  3.7072267275980744`*^9},ExpressionUUID->"f10f7fd2-9978-4107-a044-\
 4d732b5b4581"],
 
 Cell[CellGroupData[{
@@ -1261,12 +1269,12 @@ Cell["Logistic sigmoid", "Subsubsection",
 
 Cell["\<\
 The next step demonstrates the magic of backpropagation and explains the need \
-for the activation function. Let\[CloseCurlyQuote]s have a look at the \
-activation function first:\
+for the activation function, which is plotted below:\
 \>", "Direction",
  CellChangeTimes->{{3.707208064135315*^9, 3.707208142567287*^9}, {
-  3.70720819587366*^9, 
-  3.707208272847872*^9}},ExpressionUUID->"7398fb3a-fcac-43ab-be88-\
+  3.70720819587366*^9, 3.707208272847872*^9}, {3.7072267450460296`*^9, 
+  3.707226754501552*^9}, {3.7072267959096828`*^9, 
+  3.7072268016617436`*^9}},ExpressionUUID->"7398fb3a-fcac-43ab-be88-\
 f7ad972bfa22"],
 
 Cell[CellGroupData[{
@@ -1355,27 +1363,27 @@ VoTG2vQqHfD2KIs9j6E3/bxzdj4k/P9fKDg2fPtzpf8Fy2xjaQ==
 }, Open  ]],
 
 Cell["\<\
-In the forward propagation pass, we applied the values of sigmoid to the sum \
-of the inputs to the neuron layers. From the plot above, we can see that left \
-and right sides of the graph give us rather confident value (y) of 1 or 0. \
-However, the values near x = 0, are not confident either way. Therefore, we \
-are most interested in updating these not-confident values. To make such an \
-update, we use a derivative of the sigmoid or the slope of the function thus \
-updating the not-confident values a lot, and updating very confident very \
-little.\
+In the forward propagation pass, the values of sigmoid function were applied \
+to the sum of the inputs to the neuron layers. The plot above shows that \
+higher absolute values of x are characterized by sufficiently confident value \
+of y close to 1 or 0. However, the values near x = 0 are close to 0.5 and do \
+not allow a confident prediction. Therefore, these not-confident values must \
+be updated by a higher value. To make such an update, the derivative of the \
+sigmoid function is used (pictured below). The derivative produces higher \
+values of the update coefficient in the area near x = 0 while higher absolute \
+values of x are associated with very small update coefficients.\
 \>", "Text",
  CellChangeTimes->{{3.70720849413124*^9, 3.707208687521289*^9}, {
   3.707208826028126*^9, 3.707208953385734*^9}, {3.707208999255187*^9, 
   3.707209024268843*^9}, {3.707209058062592*^9, 3.707209100996209*^9}, {
-  3.707211988301865*^9, 
-  3.7072120259813*^9}},ExpressionUUID->"6dfe21be-d838-4fec-9654-26b7a3b1794a"],
+  3.707211988301865*^9, 3.7072120259813*^9}, {3.707226816745141*^9, 
+  3.707227156621472*^9}},ExpressionUUID->"6dfe21be-d838-4fec-9654-\
+26b7a3b1794a"],
 
-Cell["\<\
-The values of the derivative of the sigmoid function. These values are high \
-around x = 0 and low on left and right sides of the plot:\
-\>", "Direction",
- CellChangeTimes->{{3.707212053602692*^9, 
-  3.707212103889346*^9}},ExpressionUUID->"ca256c4e-1979-4b1a-be9b-\
+Cell["The values of the derivative of the sigmoid function:", "Direction",
+ CellChangeTimes->{{3.707212053602692*^9, 3.707212103889346*^9}, {
+  3.707227170383794*^9, 
+  3.7072271808810177`*^9}},ExpressionUUID->"ca256c4e-1979-4b1a-be9b-\
 96e0a68e828e"],
 
 Cell[CellGroupData[{
@@ -1548,14 +1556,14 @@ Cell[BoxData[
 c9a50cb8ce3b"],
 
 Cell["\<\
-For the hidden layer, we cannot calculate errors precisely because we do not \
-know what the values of the neurons in this layer should be. Instead, we are \
-using our estimate of the update required between the output and the hidden \
-layer:\
+For the hidden layer, the errors cannot be calculated because there is no \
+information about what the values of the neurons in this layer should be. \
+Instead, these errors are estimated based on the values of the required \
+update between the output and the hidden layer:\
 \>", "Direction",
  CellChangeTimes->{{3.707209248011036*^9, 3.7072092484640465`*^9}, {
-  3.707209300444704*^9, 
-  3.7072094379932547`*^9}},ExpressionUUID->"ae6de7ed-007c-4677-a0bc-\
+  3.707209300444704*^9, 3.7072094379932547`*^9}, {3.7072272088513913`*^9, 
+  3.707227300676523*^9}},ExpressionUUID->"ae6de7ed-007c-4677-a0bc-\
 65713e2362a3"],
 
 Cell[BoxData[
@@ -1569,10 +1577,11 @@ Cell[BoxData[
 
 Cell["\<\
 The update for the weights in the hidden layer is also estimated using the \
-slope of the sigmoid function:\
+derivative of the sigmoid function:\
 \>", "Direction",
- CellChangeTimes->{{3.707209451381157*^9, 
-  3.7072094912714877`*^9}},ExpressionUUID->"6b3a856a-d706-48a4-9f49-\
+ CellChangeTimes->{{3.707209451381157*^9, 3.7072094912714877`*^9}, {
+  3.707227310225875*^9, 
+  3.7072273130450673`*^9}},ExpressionUUID->"6b3a856a-d706-48a4-9f49-\
 1f767fe62aaf"],
 
 Cell[BoxData[
@@ -1587,12 +1596,12 @@ Cell[BoxData[
 aa161169264b"],
 
 Cell["\<\
-Now, we can update the weights themselves based on the values of the previous \
-layer and the update values that we\[CloseCurlyQuote]ve calculated:\
+Finally, the weights are updated based on the values of the previous layer \
+and the update values:\
 \>", "Direction",
  CellChangeTimes->{{3.7072095515609202`*^9, 3.707209562934561*^9}, {
-  3.7072096208561172`*^9, 
-  3.7072096449726677`*^9}},ExpressionUUID->"9c5ed379-4712-4e8c-baf8-\
+  3.7072096208561172`*^9, 3.7072096449726677`*^9}, {3.707227331702042*^9, 
+  3.70722736561919*^9}},ExpressionUUID->"9c5ed379-4712-4e8c-baf8-\
 07d800c199d5"],
 
 Cell[BoxData[{
@@ -1611,16 +1620,17 @@ Cell[BoxData[{
 3c2210290d67"],
 
 Cell["\<\
-In this subsection, we\[CloseCurlyQuote]ve learned how to backpropagate \
-errors from the known errors at the output through the previous layers based \
-on the slope of sigmoid (this is also known as a gradient descent algorithm). \
-Since the updates to the weights are relatively small, it requires many \
-iterations to find the optimum weights. In the next section, we will run the \
-update cycle for 10000 iterations and track the progress of this optimization.\
+The recalculated weights are used again to calculate the next forward \
+propagation step. The process is repeated until the error in the output layer \
+is sufficiently small or until the allowed number of iterations has been \
+reached (the latter may be necessary for the problems that do not arrive at a \
+high precision solution.\
 \>", "Text",
  CellChangeTimes->{{3.707209707536601*^9, 3.707209792795495*^9}, {
-   3.7072098621190777`*^9, 3.7072099625297856`*^9}, 
-   3.7072101172256145`*^9},ExpressionUUID->"2edd2945-e956-41fa-8482-\
+   3.7072098621190777`*^9, 3.7072099625297856`*^9}, 3.7072101172256145`*^9, {
+   3.707227383310752*^9, 3.707227421741976*^9}, {3.7072274756920767`*^9, 
+   3.707227614127322*^9}, {3.7072276485800724`*^9, 
+   3.7072276812827387`*^9}},ExpressionUUID->"2edd2945-e956-41fa-8482-\
 22b43e0775bd"]
 }, Open  ]]
 }, Open  ]],
@@ -1870,6 +1880,14 @@ Cell[BoxData[
 In[73]:=",ExpressionUUID->"4bf1e69a-7090-4408-8a11-771d403333e8"]
 }, Open  ]]
 }, Open  ]],
+
+Cell["\<\
+The last output produces a fairly good estimate of the desired XOR output. \
+This result is achieved with the following weights:  \
+\>", "Direction",
+ CellChangeTimes->{{3.707227715180809*^9, 
+  3.7072278213123093`*^9}},ExpressionUUID->"c499748f-5e47-40a5-8ad1-\
+cd1c528d8200"],
 
 Cell[CellGroupData[{
 
@@ -2180,7 +2198,7 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 366, 6, 95, "Title", "ExpressionUUID" -> \
-"23f05184-3ca4-4626-a255-7c4854358ea4"],
+"c4a024b7-4929-4e4b-9561-0c8cb0a4cf48"],
 Cell[949, 30, 547, 10, 33, "Abstract", "ExpressionUUID" -> \
 "deef3f86-3f39-478f-bb47-03f93189ef90"],
 Cell[CellGroupData[{
@@ -2192,204 +2210,206 @@ Cell[1690, 49, 191, 6, 49, "Text", "ExpressionUUID" -> \
 Cell[CellGroupData[{
 Cell[1918, 60, 438, 6, 62, "Section", "ExpressionUUID" -> \
 "f33ab63e-6abd-4578-8117-85bbed113a97"],
-Cell[2359, 68, 1709, 26, 182, "Text", "ExpressionUUID" -> \
+Cell[2359, 68, 1997, 29, 201, "Text", "ExpressionUUID" -> \
 "e52c4547-a257-420d-bb0e-8365e9d9a820"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4105, 99, 474, 7, 62, "Section", "ExpressionUUID" -> \
+Cell[4393, 102, 474, 7, 62, "Section", "ExpressionUUID" -> \
 "f2c02f8c-a138-446d-8472-a2e6be3994dd"],
-Cell[4582, 108, 545, 10, 68, "Text", "ExpressionUUID" -> \
+Cell[4870, 111, 601, 11, 68, "Text", "ExpressionUUID" -> \
 "2c99d421-41a2-4b94-af88-e2219d25cca6"],
-Cell[5130, 120, 656, 10, 30, "Direction", "ExpressionUUID" -> \
+Cell[5474, 124, 716, 10, 30, "Direction", "ExpressionUUID" -> \
 "bf62fc91-842f-4e53-876f-9bfe7fa9d84b"],
-Cell[5789, 132, 1227, 25, 30, "Input", "ExpressionUUID" -> \
+Cell[6193, 136, 1227, 25, 30, "Input", "ExpressionUUID" -> \
 "dfbb8b15-d726-4ef0-aeb6-d4fdac7b9799"],
-Cell[7019, 159, 531, 8, 30, "Direction", "ExpressionUUID" -> \
-"4ed2824c-bc6e-4a16-a24c-98dc60607b2b"],
-Cell[7553, 169, 531, 13, 30, "Input", "ExpressionUUID" -> \
+Cell[7423, 163, 597, 9, 30, "Direction", "ExpressionUUID" -> \
+"0c0e5c67-8a73-4137-89da-3be562d50412"],
+Cell[8023, 174, 531, 13, 30, "Input", "ExpressionUUID" -> \
 "dc157e68-c7f6-4f97-b037-39cfb1ff55b1"],
 Cell[CellGroupData[{
-Cell[8109, 186, 331, 7, 30, "Input", "ExpressionUUID" -> \
+Cell[8579, 191, 331, 7, 30, "Input", "ExpressionUUID" -> \
 "301495fc-aa89-4116-97a8-7000970894ca"],
-Cell[8443, 195, 1546, 43, 80, "Output", "ExpressionUUID" -> \
+Cell[8913, 200, 1546, 43, 80, "Output", "ExpressionUUID" -> \
 "a76074c6-da99-464e-8673-8eaab4e9c60f"]
 }, Open  ]],
-Cell[10004, 241, 546, 9, 68, "Text", "ExpressionUUID" -> \
+Cell[10474, 246, 546, 9, 68, "Text", "ExpressionUUID" -> \
 "b3d73f8c-0507-49fc-8f96-e15e4f74da0e"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[10587, 255, 302, 4, 54, "Chapter", "ExpressionUUID" -> \
+Cell[11057, 260, 302, 4, 54, "Chapter", "ExpressionUUID" -> \
 "bf7a0ebe-4b0e-434f-b58b-72bc360897f6"],
-Cell[10892, 261, 47093, 777, 450, "Text", "ExpressionUUID" -> \
+Cell[11362, 266, 47132, 778, 450, "Text", "ExpressionUUID" -> \
 "06f08672-8519-4714-a48d-0a6bd6d8331d"],
-Cell[57988, 1040, 71, 0, 30, "Text", "ExpressionUUID" -> \
-"48464007-79d8-4e6e-93dd-7cdb26094c35"]
+Cell[58497, 1046, 71, 0, 30, "Text", "ExpressionUUID" -> \
+"c4ce3a7f-37e3-428b-ab3d-74372b19a1f7"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[58096, 1045, 200, 3, 54, "Chapter", "ExpressionUUID" -> \
+Cell[58605, 1051, 200, 3, 54, "Chapter", "ExpressionUUID" -> \
 "fd476e5a-a727-4a92-acb1-e8f67fcf8429"],
-Cell[58299, 1050, 259, 6, 30, "Text", "ExpressionUUID" -> \
+Cell[58808, 1056, 419, 8, 49, "Text", "ExpressionUUID" -> \
 "ade6b720-03f1-4cf0-9edb-ddd594b503ed"],
-Cell[58561, 1058, 461, 9, 30, "Direction", "ExpressionUUID" -> \
+Cell[59230, 1066, 461, 9, 30, "Direction", "ExpressionUUID" -> \
 "88b22b81-e1d0-4a72-b99d-127ce75fb17a"],
-Cell[59025, 1069, 249, 5, 30, "Input", "ExpressionUUID" -> \
+Cell[59694, 1077, 249, 5, 30, "Input", "ExpressionUUID" -> \
 "f7030872-7c24-4579-abe2-dfa97392d34d"],
-Cell[59277, 1076, 668, 13, 67, "Direction", "ExpressionUUID" -> \
+Cell[59946, 1084, 668, 13, 67, "Direction", "ExpressionUUID" -> \
 "dbfb1fba-923a-4b64-9f30-bcf9b63e5470"],
-Cell[59948, 1091, 1363, 24, 30, "Input", "ExpressionUUID" -> \
+Cell[60617, 1099, 1363, 24, 30, "Input", "ExpressionUUID" -> \
 "acba8a8b-a141-4f62-8f0a-2194144c75b9"],
-Cell[61314, 1117, 250, 6, 30, "Direction", "ExpressionUUID" -> \
+Cell[61983, 1125, 250, 6, 30, "Direction", "ExpressionUUID" -> \
 "f193d437-3126-4176-8f68-d2bccaf98eec"],
-Cell[61567, 1125, 1248, 23, 30, "Input", "ExpressionUUID" -> \
+Cell[62236, 1133, 1248, 23, 30, "Input", "ExpressionUUID" -> \
 "4bf4804c-88e1-4791-9980-55e9bc3d648b"],
-Cell[62818, 1150, 919, 15, 105, "Direction", "ExpressionUUID" -> \
+Cell[63487, 1158, 988, 14, 106, "Text", "ExpressionUUID" -> \
 "84f39bb7-c1ff-4ce7-a5eb-719164e162e7"],
-Cell[63740, 1167, 184, 3, 30, "Direction", "ExpressionUUID" -> \
+Cell[64478, 1174, 241, 4, 30, "Direction", "ExpressionUUID" -> \
 "da53fe2c-64de-4342-9231-f84104c1daee"],
-Cell[63927, 1172, 195, 4, 30, "Input", "ExpressionUUID" -> \
+Cell[64722, 1180, 195, 4, 30, "Input", "ExpressionUUID" -> \
 "7f0935d7-db7b-42a5-96f6-b1e0371fc472"],
-Cell[64125, 1178, 168, 3, 30, "Direction", "ExpressionUUID" -> \
+Cell[64920, 1186, 168, 3, 30, "Direction", "ExpressionUUID" -> \
 "6a1b99d1-b8d9-4d25-9baa-720e37f911b5"],
-Cell[64296, 1183, 272, 6, 30, "Input", "ExpressionUUID" -> \
+Cell[65091, 1191, 272, 6, 30, "Input", "ExpressionUUID" -> \
 "ce279919-0edc-47e6-b7f7-bdfda83bc70d"],
-Cell[64571, 1191, 304, 7, 30, "Direction", "ExpressionUUID" -> \
+Cell[65366, 1199, 352, 7, 30, "Direction", "ExpressionUUID" -> \
 "a7edcad7-d4f0-4d91-8c68-22d5e300818f"],
 Cell[CellGroupData[{
-Cell[64900, 1202, 257, 5, 30, "Input", "ExpressionUUID" -> \
+Cell[65743, 1210, 257, 5, 30, "Input", "ExpressionUUID" -> \
 "ed952c2f-1fa0-46b5-980e-96e05e90881c"],
-Cell[65160, 1209, 406, 8, 30, "Output", "ExpressionUUID" -> \
+Cell[66003, 1217, 406, 8, 30, "Output", "ExpressionUUID" -> \
 "346d076e-ba52-451c-84b4-eb267d90a3f0"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[65603, 1222, 167, 3, 49, "Subsection", "ExpressionUUID" -> \
+Cell[66446, 1230, 167, 3, 49, "Subsection", "ExpressionUUID" -> \
 "05d2066d-186c-4f6c-a5b1-23e8bf17a87c"],
-Cell[65773, 1227, 234, 4, 30, "Direction", "ExpressionUUID" -> \
+Cell[66616, 1235, 243, 4, 30, "Direction", "ExpressionUUID" -> \
 "f10f7fd2-9978-4107-a044-4d732b5b4581"],
 Cell[CellGroupData[{
-Cell[66032, 1235, 241, 4, 30, "Input", "ExpressionUUID" -> \
+Cell[66884, 1243, 241, 4, 30, "Input", "ExpressionUUID" -> \
 "4a4fbb30-8c44-4faf-bff0-40c1bede422a"],
-Cell[66276, 1241, 425, 10, 30, "Output", "ExpressionUUID" -> \
+Cell[67128, 1249, 425, 10, 30, "Output", "ExpressionUUID" -> \
 "17897eb6-c908-4de0-92b4-f0a6e2bf55ee"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[66738, 1256, 171, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+Cell[67590, 1264, 171, 3, 39, "Subsubsection", "ExpressionUUID" -> \
 "6d80b2cb-0666-4d8f-aee1-1e43335ee8b8"],
-Cell[66912, 1261, 382, 8, 48, "Direction", "ExpressionUUID" -> \
+Cell[67764, 1269, 436, 8, 48, "Direction", "ExpressionUUID" -> \
 "7398fb3a-fcac-43ab-be88-f7ad972bfa22"],
 Cell[CellGroupData[{
-Cell[67319, 1273, 350, 8, 30, "Input", "ExpressionUUID" -> \
+Cell[68225, 1281, 350, 8, 30, "Input", "ExpressionUUID" -> \
 "5c45934c-8c51-402b-8705-5587e38833b0"],
-Cell[67672, 1283, 3222, 70, 243, "Output", "ExpressionUUID" -> \
+Cell[68578, 1291, 3222, 70, 243, "Output", "ExpressionUUID" -> \
 "562178a1-bc8d-4894-80ab-b579a13949c2"]
 }, Open  ]],
-Cell[70909, 1356, 892, 14, 125, "Text", "ExpressionUUID" -> \
+Cell[71815, 1364, 1075, 16, 144, "Text", "ExpressionUUID" -> \
 "6dfe21be-d838-4fec-9654-26b7a3b1794a"],
-Cell[71804, 1372, 290, 6, 48, "Direction", "ExpressionUUID" -> \
+Cell[72893, 1382, 251, 4, 30, "Direction", "ExpressionUUID" -> \
 "ca256c4e-1979-4b1a-be9b-96e0a68e828e"],
 Cell[CellGroupData[{
-Cell[72119, 1382, 346, 9, 30, "Input", "ExpressionUUID" -> \
+Cell[73169, 1390, 346, 9, 30, "Input", "ExpressionUUID" -> \
 "e43a327f-a625-4505-ad2b-0c6b67e394eb"],
-Cell[72468, 1393, 6458, 123, 243, "Output", "ExpressionUUID" -> \
+Cell[73518, 1401, 6458, 123, 243, "Output", "ExpressionUUID" -> \
 "3ac0c4ac-b6f9-48dd-be45-696fab21b138"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[78975, 1522, 175, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+Cell[80025, 1530, 175, 3, 39, "Subsubsection", "ExpressionUUID" -> \
 "abbac8d4-198f-4d21-a19c-4d3447c238cb"],
-Cell[79153, 1527, 461, 9, 48, "Direction", "ExpressionUUID" -> \
+Cell[80203, 1535, 461, 9, 48, "Direction", "ExpressionUUID" -> \
 "80b9f036-13d3-4f7d-bfaf-0e74f8cbdeed"],
-Cell[79617, 1538, 301, 9, 30, "Input", "ExpressionUUID" -> \
+Cell[80667, 1546, 301, 9, 30, "Input", "ExpressionUUID" -> \
 "b3893db9-9fff-467e-9ce7-c9a50cb8ce3b"],
-Cell[79921, 1549, 450, 9, 67, "Direction", "ExpressionUUID" -> \
+Cell[80971, 1557, 529, 9, 67, "Direction", "ExpressionUUID" -> \
 "ae6de7ed-007c-4677-a0bc-65713e2362a3"],
-Cell[80374, 1560, 296, 7, 30, "Input", "ExpressionUUID" -> \
+Cell[81503, 1568, 296, 7, 30, "Input", "ExpressionUUID" -> \
 "8fd1d449-cd4c-4a0f-9baf-3654d2bf999f"],
-Cell[80673, 1569, 264, 6, 30, "Direction", "ExpressionUUID" -> \
+Cell[81802, 1577, 320, 7, 48, "Direction", "ExpressionUUID" -> \
 "6b3a856a-d706-48a4-9f49-1f767fe62aaf"],
-Cell[80940, 1577, 308, 9, 30, "Input", "ExpressionUUID" -> \
+Cell[82125, 1586, 308, 9, 30, "Input", "ExpressionUUID" -> \
 "fc59db95-c8c7-4f5a-aec1-aa161169264b"],
-Cell[81251, 1588, 357, 7, 48, "Direction", "ExpressionUUID" -> \
+Cell[82436, 1597, 354, 7, 30, "Direction", "ExpressionUUID" -> \
 "9c5ed379-4712-4e8c-baf8-07d800c199d5"],
-Cell[81611, 1597, 464, 13, 50, "Input", "ExpressionUUID" -> \
+Cell[82793, 1606, 464, 13, 50, "Input", "ExpressionUUID" -> \
 "ee03d950-8a09-4758-9602-3c2210290d67"],
-Cell[82078, 1612, 693, 11, 106, "Text", "ExpressionUUID" -> \
+Cell[83260, 1621, 712, 12, 68, "Text", "ExpressionUUID" -> \
 "2edd2945-e956-41fa-8482-22b43e0775bd"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[82820, 1629, 215, 4, 62, "Section", "ExpressionUUID" -> \
+Cell[84021, 1639, 215, 4, 62, "Section", "ExpressionUUID" -> \
 "a4f1ef1e-70ec-4ba9-a11e-39e0c4900571"],
-Cell[83038, 1635, 747, 12, 48, "Direction", "ExpressionUUID" -> \
+Cell[84239, 1645, 747, 12, 48, "Direction", "ExpressionUUID" -> \
 "3812f972-898e-4d9b-9000-be7baaf2f69f"],
 Cell[CellGroupData[{
-Cell[83810, 1651, 3283, 66, 221, "Input", "ExpressionUUID" -> \
+Cell[85011, 1661, 3283, 66, 221, "Input", "ExpressionUUID" -> \
 "0e3fafcb-6d1c-4b1b-9dcc-abde6f63872b"],
 Cell[CellGroupData[{
-Cell[87118, 1721, 595, 13, 22, "Print", "ExpressionUUID" -> \
+Cell[88319, 1731, 595, 13, 22, "Print", "ExpressionUUID" -> \
 "d8b51668-5bad-4e70-8d73-5e70c501ad17"],
-Cell[87716, 1736, 588, 13, 22, "Print", "ExpressionUUID" -> \
+Cell[88917, 1746, 588, 13, 22, "Print", "ExpressionUUID" -> \
 "36a974c0-56e3-496b-97d3-3754cb122452"],
-Cell[88307, 1751, 590, 13, 22, "Print", "ExpressionUUID" -> \
+Cell[89508, 1761, 590, 13, 22, "Print", "ExpressionUUID" -> \
 "58bf6efc-7d43-4a25-af2b-bb2c6ff686e5"],
-Cell[88900, 1766, 594, 13, 22, "Print", "ExpressionUUID" -> \
+Cell[90101, 1776, 594, 13, 22, "Print", "ExpressionUUID" -> \
 "f58a5bd4-a18b-410e-a25e-7b6702393183"],
-Cell[89497, 1781, 592, 13, 22, "Print", "ExpressionUUID" -> \
+Cell[90698, 1791, 592, 13, 22, "Print", "ExpressionUUID" -> \
 "cd1dbae5-8615-480b-b4b8-3c314f60ebac"],
-Cell[90092, 1796, 588, 13, 22, "Print", "ExpressionUUID" -> \
+Cell[91293, 1806, 588, 13, 22, "Print", "ExpressionUUID" -> \
 "9bc5456a-5e32-4b6b-9ba4-22b40d03f97a"],
-Cell[90683, 1811, 588, 13, 22, "Print", "ExpressionUUID" -> \
+Cell[91884, 1821, 588, 13, 22, "Print", "ExpressionUUID" -> \
 "0e8d1ec4-df0c-43f9-8ec6-cf727f248cb2"],
-Cell[91274, 1826, 591, 13, 22, "Print", "ExpressionUUID" -> \
+Cell[92475, 1836, 591, 13, 22, "Print", "ExpressionUUID" -> \
 "04e35d05-5ff0-4a62-ac64-540d3bd23754"],
-Cell[91868, 1841, 592, 13, 22, "Print", "ExpressionUUID" -> \
+Cell[93069, 1851, 592, 13, 22, "Print", "ExpressionUUID" -> \
 "57921cf3-fed8-49f7-b124-e7aa6b9d12cd"],
-Cell[92463, 1856, 592, 13, 22, "Print", "ExpressionUUID" -> \
+Cell[93664, 1866, 592, 13, 22, "Print", "ExpressionUUID" -> \
 "4bf1e69a-7090-4408-8a11-771d403333e8"]
 }, Open  ]]
 }, Open  ]],
+Cell[94283, 1883, 287, 6, 48, "Direction", "ExpressionUUID" -> \
+"c499748f-5e47-40a5-8ad1-cd1c528d8200"],
 Cell[CellGroupData[{
-Cell[93104, 1875, 266, 3, 50, "Input", "ExpressionUUID" -> \
+Cell[94595, 1893, 266, 3, 50, "Input", "ExpressionUUID" -> \
 "12d86e50-3efa-44c7-b999-b1862572a358"],
-Cell[93373, 1880, 519, 11, 30, "Output", "ExpressionUUID" -> \
+Cell[94864, 1898, 519, 11, 30, "Output", "ExpressionUUID" -> \
 "4644a167-60cd-4bff-96ab-0dcb56e7962f"],
-Cell[93895, 1893, 789, 18, 50, "Output", "ExpressionUUID" -> \
+Cell[95386, 1911, 789, 18, 50, "Output", "ExpressionUUID" -> \
 "7a083717-e09d-4b87-bf95-86fbcc3db895"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[94721, 1916, 281, 4, 49, "Subsection", "ExpressionUUID" -> \
+Cell[96212, 1934, 281, 4, 49, "Subsection", "ExpressionUUID" -> \
 "cd4e382c-823b-4f1e-a266-4138d1ef9201"],
-Cell[95005, 1922, 336, 7, 48, "Direction", "ExpressionUUID" -> \
+Cell[96496, 1940, 336, 7, 48, "Direction", "ExpressionUUID" -> \
 "60dd84c1-4d44-45ca-81d0-0d1db0c256ec"],
-Cell[95344, 1931, 564, 13, 30, "Input", "ExpressionUUID" -> \
+Cell[96835, 1949, 564, 13, 30, "Input", "ExpressionUUID" -> \
 "71304eaa-beaa-48d9-9677-496d8127be99"],
-Cell[95911, 1946, 210, 4, 30, "Direction", "ExpressionUUID" -> \
+Cell[97402, 1964, 210, 4, 30, "Direction", "ExpressionUUID" -> \
 "2240ca8e-142f-407c-90fb-780da0bf4a15"],
 Cell[CellGroupData[{
-Cell[96146, 1954, 493, 8, 30, "Input", "ExpressionUUID" -> \
+Cell[97637, 1972, 493, 8, 30, "Input", "ExpressionUUID" -> \
 "ca5d1039-23ee-4450-aa8d-855d7efafe6c"],
-Cell[96642, 1964, 421, 6, 30, "Output", "ExpressionUUID" -> \
+Cell[98133, 1982, 421, 6, 30, "Output", "ExpressionUUID" -> \
 "db521033-f9c1-4a58-be92-84c18270311c"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[97124, 1977, 234, 4, 58, "FurtherExplorationSection", "ExpressionUUID" \
+Cell[98615, 1995, 234, 4, 58, "FurtherExplorationSection", "ExpressionUUID" \
 -> "ec8277f9-79da-48c2-bd1a-c8b0f720d446"],
-Cell[97361, 1983, 458, 7, 26, "FurtherExploration", "ExpressionUUID" -> \
+Cell[98852, 2001, 458, 7, 26, "FurtherExploration", "ExpressionUUID" -> \
 "30970826-c506-493b-b195-6d19a0eaba20"],
-Cell[97822, 1992, 468, 7, 26, "FurtherExploration", "ExpressionUUID" -> \
+Cell[99313, 2010, 468, 7, 26, "FurtherExploration", "ExpressionUUID" -> \
 "3d19c3b0-3ee7-4718-9b8e-2c532199f825"],
-Cell[98293, 2001, 518, 8, 26, "FurtherExploration", "ExpressionUUID" -> \
+Cell[99784, 2019, 518, 8, 26, "FurtherExploration", "ExpressionUUID" -> \
 "e3d6b0b7-8e9b-440b-8a11-d0d1c197b166"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[98848, 2014, 179, 3, 58, "AuthorshipSection", "ExpressionUUID" -> \
+Cell[100339, 2032, 179, 3, 58, "AuthorshipSection", "ExpressionUUID" -> \
 "5e801160-3e19-4d49-a2ea-f24d76f5e7ae"],
-Cell[99030, 2019, 220, 4, 24, "Authorship", "ExpressionUUID" -> \
+Cell[100521, 2037, 220, 4, 24, "Authorship", "ExpressionUUID" -> \
 "33b1829e-c8d6-4590-9885-eda2f9ab0ded"],
-Cell[99253, 2025, 210, 4, 24, "Authorship", "ExpressionUUID" -> \
+Cell[100744, 2043, 210, 4, 24, "Authorship", "ExpressionUUID" -> \
 "1f7b33fb-1f4f-4cf0-9593-6e6fa651fd21"],
-Cell[99466, 2031, 228, 4, 24, "Authorship", "ExpressionUUID" -> \
+Cell[100957, 2049, 228, 4, 24, "Authorship", "ExpressionUUID" -> \
 "1074fef8-73fb-48f6-9456-6ffdad271d1a"]
 }, Open  ]]
 }, Open  ]]
