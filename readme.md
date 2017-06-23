@@ -1,22 +1,19 @@
-﻿# WSS2017 WikiMap Project by Tetyana Loskutova
+﻿# WikiMap 
 
-(*what your project is about*)
-Semantic maps are maps or webs of words. The purpose of creating a map is to visually display the meaning-based connections between a word or phrase and a set of related words or concepts.
+Project by Tetyana Loskutova
 
-## WikMap Project Goals
-a nice cheatsheet can be found here: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
- 
-
-## (* how to run your code *)
-## (* examples, code documentation, etc *)
-
-## Organize your code
-in this repository you will find 2 different ways to organize your code, the simple way and the programmer way.
+WikiMap project is a Wolfram Language implementation of  a semantic topic map for Wikipedia. 
 
 
-### The programmer way
-I prepared a very simple project paclet you can use, it provides a way to organize your code and your data
+## Statement of the problem
+Wikipedia contains a large amount of knowledge, which can be associated with different domains. Given the amount of data, it is impossible to grasp the scope of the knowledge coverage without some kind of automation. The goal of this project is to group the articles by subject domains and display them on a topic map, which will allow to estimate meaning-based connections between domains.
 
-1. the code is in paclet in `starthere/Project` folder
-2. raw source data can be put in `starthere/Project/Assets/` folder
-3. the notebook used for visualization is in `starthere/advanced.nb`
+## Solution outline
+The core of the solution is a zoomable graph with the main nodes corresponding to the knowledge domains (TODO: what are knowledge domains? Can they be approximated by wikipedia portals or categories? Perhaps, classification by article title and category).
+The main nodes are interlinked and the strength of the link is proportional to the number of cross-references between domains.
+Within main nodes, further zoom is permitted to open topic maps of the node (same structure as the top level).
+     
+
+## TODO: (* how to run your code *)
+## TODO: (* examples, code documentation, etc *)
+
