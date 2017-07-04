@@ -1,0 +1,1435 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     69768,       1427]
+NotebookOptionsPosition[     65700,       1325]
+NotebookOutlinePosition[     66044,       1340]
+CellTagsIndexPosition[     66001,       1337]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"getText", "[", 
+    RowBox[{"url_String:", "\"\<None\>\""}], "]"}], " ", ":=", " ", 
+   RowBox[{"(", "\n", "\t", 
+    RowBox[{
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"url", "\[Equal]", "\"\<None\>\""}], ",", " ", 
+       RowBox[{"url", " ", "=", " ", 
+        RowBox[{
+         RowBox[{"WikipediaData", "[", "\"\<RandomArticle\>\"", "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}]}], "]"}], ";", "\n", "\t", 
+     RowBox[{
+      RowBox[{"Print", "[", "url", "]"}], "\n", "\t", 
+      RowBox[{"Import", "[", "url", "]"}]}], ";"}], ")"}]}], "\n", 
+  "\t"}], "\n", 
+ RowBox[{
+  RowBox[{
+  "getText", "[", "\"\<https://en.wikipedia.org/wiki/Category:Activism\>\"", 
+   "]"}], "\t"}]}], "Code",
+ CellChangeTimes->{{3.7075824393569508`*^9, 3.7075824428270407`*^9}, {
+  3.7075824915453653`*^9, 3.707582577380348*^9}, {3.7075867960992236`*^9, 
+  3.707586843329836*^9}, {3.7075868839200754`*^9, 3.7075868876262045`*^9}, {
+  3.7075869676143465`*^9, 3.7075870218097563`*^9}, {3.7075892057879157`*^9, 
+  3.707589207891537*^9}, {3.707589634937049*^9, 3.707589637998369*^9}, {
+  3.707589741523696*^9, 
+  3.7075898253973484`*^9}},ExpressionUUID->"30f58fd7-f991-49ae-ba61-\
+023216863806"],
+
+Cell["\"https://en.wikipedia.org/wiki/Category:Activism\"", "Text",
+ CellChangeTimes->{{3.7075898054860783`*^9, 3.707589825959476*^9}, 
+   3.70763802675745*^9},ExpressionUUID->"a3aad4e3-55df-4701-bdeb-\
+2e6a98bb831f"],
+
+Cell[TextData[StyleBox["Get the links", "Section"]], "Text",ExpressionUUID->"ecf6fcdb-0d81-463a-ab8a-7b8a7c09786b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"list", " ", "=", 
+   RowBox[{"StringCases", "[", 
+    RowBox[{"linkText", ",", 
+     RowBox[{
+      RowBox[{"Shortest", "[", 
+       RowBox[{"\"\<[[\>\"", "~~", "x__", "~~", "\"\<]]\>\""}], "]"}], 
+      "\[RuleDelayed]", 
+      RowBox[{"ToString", "[", "x", "]"}]}]}], "]"}]}], ";", 
+  RowBox[{"list1", " ", "=", " ", 
+   RowBox[{"DeleteCases", "[", 
+    RowBox[{"list", ",", 
+     RowBox[{"_", "?", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringTake", "[", 
+          RowBox[{"#", ",", "4"}], "]"}], "\[Equal]", "\"\<File\>\""}], "&"}],
+        ")"}]}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Clear", "[", "strListClear", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"strListClear", " ", ":=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"If", " ", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"StringPosition", "[", 
+        RowBox[{"#", ",", "\"\<|\>\""}], "]"}], "\[NotEqual]", " ", 
+       RowBox[{"{", "}"}]}], ",", " ", 
+      RowBox[{
+       RowBox[{"pos", " ", "=", " ", 
+        RowBox[{
+         RowBox[{"StringPosition", "[", 
+          RowBox[{"#", ",", "\"\<|\>\""}], "]"}], "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "1"}], "]"}], "]"}]}], ";", 
+       RowBox[{"StringTake", "[", 
+        RowBox[{"#", ",", 
+         RowBox[{"pos", "-", "1"}]}], "]"}]}], ",", "#"}], "]"}], ")"}], 
+   "&"}]}], "\[IndentingNewLine]", 
+ RowBox[{"listOfLinks", " ", "=", " ", 
+  RowBox[{"Map", "[", 
+   RowBox[{"strListClear", ",", " ", "list1"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "listOfLinks", "]"}]}], "Input",ExpressionUUID->\
+"b93944cf-13ce-4602-bc03-34f0d7aaa728"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"Paris Commune\"\>", ",", "\<\"Civil Rights Movement\"\>", 
+   ",", "\<\"social change\"\>", ",", "\<\"political campaign\"\>", 
+   ",", "\<\"economics\"\>", ",", "\<\"Natural environment\"\>", 
+   ",", "\<\"economic activism\"\>", ",", "\<\"boycott\"\>", 
+   ",", "\<\"Demonstration (protest)\"\>", 
+   ",", "\<\"Demonstration (people)\"\>", ",", "\<\"strike action\"\>", 
+   ",", "\<\"sit-in\"\>", ",", "\<\"hunger strike\"\>", 
+   ",", "\<\"artivism\"\>", ",", "\<\"Exploitation of labour\"\>", 
+   ",", "\<\"social media\"\>", ",", "\<\"civic engagement\"\>", 
+   ",", "\<\"Online Etymology Dictionary\"\>", 
+   ",", "\<\"judicial activism\"\>", ",", "\<\"Arthur Schlesinger, Jr.\"\>", 
+   ",", "\<\"Fortune (magazine)\"\>", ",", "\<\"Consumer organization\"\>", 
+   ",", "\<\"whistle blower\"\>", ",", "\<\"cooperative movement\"\>", 
+   ",", "\<\"Global Witness\"\>", ",", "\<\"The Guardian\"\>", 
+   ",", "\<\"Internet\"\>", ",", "\<\"MoveOn.org\"\>", ",", "\<\"Seattle\"\>",
+    ",", "\<\"protests\"\>", ",", "\<\"Ministerial Conference\"\>", 
+   ",", "\<\"Internet Activism\"\>", ",", "\<\"Arab Spring\"\>", 
+   ",", "\<\"political persecution\"\>", ",", "\<\"Tor Browser\"\>", 
+   ",", "\<\"Community of practice\"\>", ",", "\<\"Transition town\"\>", 
+   ",", "\<\"core business\"\>", ",", "\<\"non profit\"\>", 
+   ",", "\<\"non-governmental organization\"\>", ",", "\<\"fundraising\"\>", 
+   ",", "\<\"The American Prospect\"\>", ",", "\<\"Lobbying\"\>", 
+   ",", "\<\"income tax\"\>", ",", "\<\"charitable organization\"\>", 
+   ",", "\<\"Thomas (activist)\"\>", ",", "\<\"Agitator\"\>", 
+   ",", "\<\"Artivism\"\>", ",", "\<\"Civil disobedience\"\>", 
+   ",", "\<\"Community building\"\>", ",", "\<\"Conflict transformation\"\>", 
+   ",", "\<\"Cooperative\"\>", ",", "\<\"Craftivism\"\>", 
+   ",", "\<\"Grassroots\"\>", ",", "\<\"Guerrilla gardening\"\>", 
+   ",", "\<\"Voluntary simplicity\"\>", 
+   ",", "\<\"Demonstration (protest)\"\>", ",", "\<\"Dissident\"\>", 
+   ",", "\<\"Economic activism\"\>", ",", "\<\"Boycott\"\>", 
+   ",", "\<\"Freeganism\"\>", ",", "\<\"Veganism\"\>", 
+   ",", "\<\"Vegetarianism\"\>", ",", "\<\"Consumer activism\"\>", 
+   ",", "\<\"Disinvestment\"\>", ",", "\<\"Simple living\"\>", 
+   ",", "\<\"Tax resistance\"\>", ",", "\<\"Franchise activism\"\>", 
+   ",", "\<\"Lobbying\"\>", ",", "\<\"Media activism\"\>", 
+   ",", "\<\"Culture jamming\"\>", ",", "\<\"Hacktivism\"\>", 
+   ",", "\<\"Internet activism\"\>", ",", "\<\"Nonviolence\"\>", 
+   ",", "\<\"Peace activist\"\>", ",", "\<\"Peace movement\"\>", 
+   ",", "\<\"Political campaign\"\>", ",", "\<\"Propaganda\"\>", 
+   ",", "\<\"Guerrilla communication\"\>", ",", "\<\"Protest\"\>", 
+   ",", "\<\"Demonstration (people)\"\>", ",", "\<\"Direct action\"\>", 
+   ",", "\<\"Protest songs\"\>", ",", "\<\"Theater for Social Change\"\>", 
+   ",", "\<\"Strike action\"\>", ",", "\<\"Youth activism\"\>", 
+   ",", "\<\"Student activism\"\>", ",", "\<\"Youth-led media\"\>", 
+   ",", "\<\"Atheism#Atheism, religion, and morality\"\>", 
+   ",", "\<\"List of activists\"\>", ",", "\<\"Advocacy Evaluation\"\>", 
+   ",", "\<\"Advocacy group\"\>", ",", "\<\"Agitator\"\>", 
+   ",", "\<\"Counterculture of the 1960s\"\>", 
+   ",", "\<\"Community leader\"\>", ",", "\<\"Human rights activists\"\>", 
+   ",", "\<\"Media manipulation\"\>", ",", "\<\"Restorationism\"\>", 
+   ",", "\<\"Saul Alinsky\"\>", ",", "\<\"Slacktivism\"\>", 
+   ",", "\<\"Social engineering (political science)\"\>", 
+   ",", "\<\"Social movement\"\>", 
+   ",", "\<\"Yogyakarta Principles in Action\"\>", 
+   ",", "\<\"Paul Rogat Loeb\"\>", ",", "\<\"St Martin's Press\"\>", 
+   ",", "\<\"Brian Martin (social scientist)\"\>", ",", "\<\"Randy Shaw\"\>", 
+   ",", "\<\"University of California Press\"\>", 
+   ",", "\<\"David Walls (academic)\"\>", 
+   ",", "\<\"Victor Gold (journalist)\"\>", ",", "\<\"Category:Activism\"\>", 
+   ",", "\<\"Category:Community organizing\"\>", 
+   ",", "\<\"Category:Counterculture of the 1960s\"\>"}], "}"}]], "Output",Exp\
+ressionUUID->"bd3a46ee-70ef-4965-ba7c-5a177bbe943b"],
+
+Cell[BoxData["113"], "Output",ExpressionUUID->"4274366d-421e-4548-be94-feb5add6e710"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"linkText", " ", "=", " ", 
+  RowBox[{"WikipediaData", "[", 
+   RowBox[{"\"\<Activism\>\"", ",", " ", "\"\<ArticleWikicode\>\""}], 
+   "]"}]}]], "Input",ExpressionUUID->"89619c82-e9b4-4914-9165-c0e879682fb0"],
+
+Cell[BoxData["\<\"{{About-distinguish|political activism|ethical \
+activism}}\\n{{Use dmy dates|date=July \
+2012}}\\n[[File:Barricade18March1871.jpg|thumb|right|[[Barricade]] at the \
+[[Paris Commune]], 1871]]\\n[[File:1963 march on \
+washington.jpg|thumb|right|Civil rights activists at the [[March on \
+Washington for Jobs and Freedom]] during the [[Civil Rights Movement]] in \
+1963]]\\n[[File:Leffler - WomensLib1970 WashingtonDC.jpg|thumb|right|A \
+[[Feminist movement|Women's Liberation]] march in Washington, D.C., 1970]]\\n\
+\\n'''Activism''' consists of efforts to promote, impede, or direct [[social \
+change|social]], [[political campaign|political]], [[economics|economic]], \
+and/or [[Natural environment|environmental]] reform or stasis with the desire \
+to make improvements in society. Forms of activism range from writing letters \
+to newspapers or to politicians, political campaigning, [[economic activism]] \
+such as [[boycott]]s or preferentially patronizing businesses, \
+[[Demonstration (protest)|rallies]], [[Demonstration (people)|street \
+marches]], [[strike action|strikes]], [[sit-in]]s, and [[hunger strike]]s.\\n\
+\\nOne can also express activism through different forms of art \
+([[artivism]]). Daily acts of protest such as not buying clothes from a \
+certain clothing company because they [[Exploitation of labour|exploit \
+workers]] is another form of activism. One view holds that acknowledging \
+privileges and oppressions on a daily basis ranks as a form of \
+activism.<ref>{{Cite web|title = Inspired Voices: 5 Unconventional forms of \
+Activism.|url = \
+http://www.elephantjournal.com/2015/04/beautiful-trouble-5-unconventional-\
+forms-of-activism/|website = Elephant Journal |accessdate = \
+2015-12-09}}</ref> Research has begun to explore how activist groups use \
+[[social media]] to facilitate [[civic engagement]] and collective \
+action.<ref name=\\\"Advocacy 2.0\\\">{{cite journal|last= Obar|first= \
+Jonathan|title= Advocacy 2.0: An Analysis of How Advocacy Groups in the \
+United States Perceive and Use Social Media as Tools for Facilitating Civic \
+Engagement and Collective Action|journal= Journal of Information Policy|year= \
+2012|ssrn= 1956352|display-authors=etal}}</ref><ref name=\\\"Obar\\\">{{cite \
+web|last= Obar|first= Jonathan|title= Canadian Advocacy 2.0: A Study of \
+Social Media Use by Social Movement Groups and Activists in Canada|journal= \
+Canadian Journal of Communication|year= 2014|ssrn= 2254742|accessdate= 27 \
+April 2013}}\\n</ref>\\n\\nThe ''[[Online Etymology Dictionary]]'' records \
+the English words \\\"activism\\\" and \\\"activist\\\" (in the political \
+sense) from 1920<ref>{{OEtymD| activism| accessdate=17 December 2015}}</ref> \
+and from 1915<ref>{{OEtymD| activist| accessdate=17 December 2015}}</ref> \
+respectively.\\n\\n==Types==\\nActivists can function in roles as public \
+officials, as in [[judicial activism]]. [[Arthur Schlesinger, Jr.]], \
+introduced the term \\\"judicial activism\\\" in a January 1946 [[Fortune \
+(magazine)|''Fortune'' magazine]] article titled \\\"The Supreme Court: \
+1947\\\".<ref>Keenan Kmiec in a 2004 ''California Law Review'' article</ref> \
+Activists are also public [[Consumer organization|watchdogs]] and [[whistle \
+blower]]s, attempting to understand all the actions of every form of \
+government that acts in the name of the people: all government must be \
+accountable to oversight and transparency. Activism is an engaged \
+citizenry.<ref name=\\\"pat\\\">{{cite web \
+|url=http://health.usnews.com/health-care/for-better/articles/2017-02-27/\
+politically-active-4-tips-for-incorporating-self-care |title=Politically \
+Active? 4 Tips for Incorporating Self-Care, US News |date=27 February 2017 \
+|work=US News |accessdate=5 March 2017 }}</ref>\\n\\nSome activists try to \
+persuade people to change their behavior directly, rather than to persuade \
+governments to change or not to change laws. Other activists try to persuade \
+people to remain the same, in an effort to counter change.  The [[cooperative \
+movement]] seeks to build new institutions which conform to cooperative \
+principles, and generally does not lobby or protest politically.\\n\\nIn his \
+2008 book, ''Liberating Voices: A Pattern Language for Communication \
+Revolution'',<ref>{{cite book|last1=Schuler|first1=Douglas|title=Liberating \
+Voices: A Pattern Language for Communication \
+Revolution|date=2008|publisher=MIT Press|location=Cambridge, \
+Massachusetts|isbn=9780262693660}}</ref> Douglas Schuler suggests something \
+he calls an activist road trip, whereby activism and road trips are merged \
+into an activity that can be pursued on geographical levels that range from \
+neighborhood to international.<ref>{{cite web|title=Activist Road \
+Trip|url=http://www.publicsphereproject.org/content/activist-road-trip|\
+website=Public Sphere Project|accessdate=1 November 2015|date=2008}}</ref>\\n\
+\\nAs with those who engage in other activities such as singing or running, \
+the term may apply broadly to anyone who engages in it even briefly, or be \
+more narrowly limited to those for whom it is a vocation, habit, or \
+characteristic practice. Activism is not always an action by \
+Activists.<ref>{{cite web|title=Introduction to \
+Activism|url=http://www.permanentculturenow.com/what-is-activism/|work=\
+Permanent Culture Now|publisher=Permanent Culture Now|accessdate=20 December \
+2011}}</ref>\\n\\n=== Environmental activists ===\\n{{See \
+also|Environmentalism|List of environmental activists \
+assassinated}}\\n\\nEnvironmental activists, in the narrower sense, align \
+themselves with Earth First or Road Protestors and would commonly be labeled \
+activists, while a local community fighting to stop their park or green being \
+sold off or built on would fit the broader application, due to their using \
+similar means to similarly conservative ends. Every year more than 100 \
+environmental activists are killed: a [[Global Witness]] \
+report<ref>[https://www.globalwitness.org/en/campaigns/environmental-\
+activists/how-many-more/ \\\"Report | How Many More?\\\"], Global Witness, 20 \
+April 2015.</ref> found that in 2014 at least 116 environmental activists \
+were assassinated,<ref>Cronin, Melissa, \
+[http://grist.org/news/map-116-environmental-activists-were-killed-in-just-\
+one-year/ \\\"Map: 116 environmental activists were killed in just one year\\\
+\"], Grist.org, 4 March 2016.</ref> and in 2015 at least 185 activists were \
+killed around this planet.<ref>Holmes, Oliver, \
+[https://www.theguardian.com/environment/2016/jun/20/environmental-activist-\
+murders-global-witness-report \\\"Environmental activist murders set record \
+as 2015 became deadliest year\\\"], ''[[The Guardian]]'', 20 June 2016.</ref>\
+\\n\\n===Internet activism===\\n{{Further|Internet activism|Hacktivism|Online \
+social movement|Anonymous (group)|Category:Internet activism}}\\nSince the \
+1990s, the [[Internet]] has been a tool used by activists for mobilization \
+and communication of causes. Specific platforms like [[MoveOn.org]], founded \
+in 1998, allow individuals to establish petitions and movements for social \
+change. Protesters in [[Seattle]] in 1999 used email to organize [[protests]] \
+against the WTO [[Ministerial Conference]]. Throughout the 2000s, protesters \
+continued to use social media platforms to generate interest.\\n\\nThe power \
+of [[Internet Activism]] came into a global lens with the [[Arab Spring]] \
+protests. People living in the Middle East and North African countries that \
+were experiencing revolutions used social networking to communicate protests, \
+which put the issues in front of an international audience.<ref>{{Cite \
+web\\n| url = \
+http://lawstreetmedia.com/issues/politics/evolution-activism-streets-social-\
+media/\\n| title = The Evolution of Activism: From the Streets to Social \
+Media\\n| last = Sliwinski\\n| first = Michael\\n| date = 21 January 2016\\n| \
+website = Law Street\\n| publisher = \\n| access-date = 6 February \
+2016\\n}}</ref>\\n\\nThey use different means to avoid [[political \
+persecution]], such as [[Tor Browser]] (a browser that uses Tor network to \
+protect users' identity, IP address, network or location), and encryption \
+data tools and encrypted mails to prevent governments or anyone else \
+intercepting their communications.\\n\\n=== Design activism ===\\n'Design \
+activism' is a conceptualization that occurs across various [[Community of \
+practice|communities of practice]] and can be associated with diverse \
+initiatives such as [[Transition town|transition movement]], speculative \
+design,<ref>{{cite book |last1=Dunne |last2=Raby |first1=Anthony \
+|first2=Fiona |year=2013 |title=Speculative Everything: Design, Fiction, and \
+Social Dreaming |location=Cambridge, MA |publisher=MIT Press}}</ref> design \
+futuring,<ref>{{cite book |last1=Fry|first1=Tony|year=2008 |title=Design \
+Futuring: Sustainability, Ethics and New Practice |location=Oxford \
+|publisher=Berg}}</ref> activist systems,<ref>{{cite journal |last=Roudavski \
+|first=Stanislav |last2=Jahn |first2=Gwyllim |year=2016 |title=Activist \
+Systems: Futuring with Living Models \
+|url=https://www.academia.edu/26321020/Activist_Systems_Futuring_with_Living_\
+Models |journal=International Journal of Architectural Computing |volume=16 \
+|issue=2 |pages=182\[Dash]196 |doi=10.1177/1478077116638946}}</ref> \
+biopolitics<ref>{{cite book |last1=Da Costa |last2=Kavita |first1=Philip \
+|first2=Fiona |year=2008 |title=Tactical Biopolitics: Art, Activism, and \
+Technoscience |location=Cambridge, MA |publisher=MIT Press}}</ref> and \
+others. One working definition of design activism describes it as \\\"design \
+thinking, imagination and practice applied knowingly or unknowingly to create \
+a counter-narrative aimed at generating and balancing positive social, \
+institutional, environmental and/or economic change.\\\"<ref>{{cite book \
+|last1=Fuad-Luke |last2=Alastair |year=2009 |title=Design Activism: Beautiful \
+Strangeness for a Sustainable World |location=Sterling |publisher=Earthscan \
+|at=27}}</ref>\\n\\n==Activism industry==\\nThe activism industry consists of \
+organizations and individuals engaged in activism. Activism is often done \
+full-time, as part of an organization's [[core business]]. Many organizations \
+in the activism industry are either [[non profit|non-profit organizations]] \
+or [[non-governmental organization]]s. Most activist organizations do not \
+manufacture goods.{{Citation needed|date=January 2009}}\\n\\nThe term \
+''activism industry'' has often been used to refer to outsourced \
+[[fundraising]] operations. However, activist organizations engage in other \
+activities as well.<ref>Dana R. Fisher, \
+\\\"[http://prospect.org/cs/articles?articleId=11993 The Activism Industry: \
+The Problem with the Left's Model of Outsourced Grassroots Canvassing] \
+{{webarchive \
+|url=https://web.archive.org/web/20101205162211/http://prospect.org/cs/\
+articles?articleId=11993 |date=5 December 2010 }}\\\", ''[[The American \
+Prospect]]'', 14 September 2006</ref> [[Lobbying]], or the influencing of \
+decisions made by government, is another activist tactic. Many groups, \
+including law firms, have designated staff assigned specifically for lobbying \
+purposes. In the United States, lobbying is regulated by the federal \
+government.<ref>[https://web.archive.org/web/20110711095632/http://www.gklaw.\
+com/publication.cfm?publication_id=724 New Federal Lobbying Law Reporting \
+Periods Begin]</ref>\\n\\nMany government systems encourage public support of \
+non-profit organizations by granting various forms of [[income tax|tax]] \
+relief for donations to [[charitable organization]]s. Governments may attempt \
+to deny these benefits to activists by restricting the political activity of \
+tax-exempt organizations.\\n\\n==Methods==\\n{{prose|date=February \
+2012}}\\n[[File:PeacePark.jpg|thumb|right|The longest running [[White House \
+Peace Vigil|peace vigil]] in U.S. history, started by activist [[Thomas \
+(activist)|Thomas]] in 1981.]]\\n* [[Agitator|Agitation]]\\n* \
+[[Artivism|Art]]\\n* [[Civil disobedience]]\\n* [[Community building]]\\n** \
+[[Conflict transformation]]\\n** [[Cooperative]] movement\\n** [[Craftivism]]\
+\\n** [[Grassroots]]\\n**[[Guerrilla gardening]] \\n** [[Voluntary \
+simplicity]]\\n* [[Demonstration (protest)|Demonstration]]\\n* \
+[[Dissident]]\\n* [[Economic activism]]\\n** [[Boycott]]\\n*** [[Freeganism]]\
+\\n***[[Veganism]] (boycott of animal usage)\\n***[[Vegetarianism]] (boycott \
+of animal meat usage)\\n** [[Consumer activism]]\\n** \
+[[Disinvestment|Divestment (a.k.a. Disinvestment)]]\\n** [[Simple \
+living]]\\n** [[Tax resistance]]\\n* [[Franchise activism]]\\n* \
+[[Lobbying]]\\n* [[Media activism]]\\n** [[Culture jamming]]\\n** \
+[[Hacktivism]]\\n** [[Internet activism]]\\n* [[Nonviolence]]\\n* [[Peace \
+activist]] and [[Peace movement]]\\n* [[Political campaign]]ing\\n* \
+[[Propaganda]]\\n** [[Guerrilla communication]]\\n* [[Protest]]\\n** \
+[[Demonstration (people)|Demonstration]]\\n** [[Direct action]]\\n** \
+[[Protest songs]]\\n** [[Theater for Social Change]]\\n* [[Strike \
+action]]\\n* [[Youth activism]]\\n** [[Student activism]]\\n** [[Youth-led \
+media]]\\n* [[Atheism#Atheism, religion, and morality|Atheist \
+activism]]\\n\\n==See also==\\n* [[List of activists]]\\n* [[Advocacy \
+Evaluation]]\\n* [[Advocacy group]]\\n* [[Agitator]]\\n* [[Counterculture of \
+the 1960s]]\\n* [[Community leader]]\\n* [[Human rights activists]]\\n* \
+[[Media manipulation]]\\n* [[Restorationism]]\\n* [[Saul Alinsky]]\\n* \
+[[Slacktivism]] \\n* [[Social engineering (political science)]]\\n* [[Social \
+movement]]\\n* [[Yogyakarta Principles in \
+Action]]\\n\\n==References==\\n{{reflist|2}}\\n\\n==Further \
+reading==\\n{{wikiquote}}\\n* [[Paul Rogat Loeb]], ''Soul of a Citizen: \
+Living With Conviction in a Cynical Time'' ([[St Martin's Press]], 2010).  \
+{{ISBN|978-0-312-59537-1}}.\\n*[[Brian Martin (social scientist)|Brian \
+Martin]] with Wendy Varney. \
+[https://books.google.com.au/books?id=jarZAAAAMAAJ ''Nonviolence Speaks: \
+Communicating against Repression''], (Cresskill, NJ: Hampton Press, \
+2003).\\n* [[Randy Shaw]], ''The Activist's Handbook: A Primer for the 1990s \
+and Beyond'' ([[University of California Press]], 1996).  \
+{{ISBN|0-520-20317-8}}.\\n* [[David Walls (academic)|David Walls]], ''The \
+Activist's Almanac: The Concerned Citizen's Guide to the Leading Advocacy \
+Organizations in America'' (Simon & Schuster/Fireside, 1993).  \
+{{ISBN|0-671-74634-0}}.\\n* [[Victor Gold (journalist)|Victor Gold]], \
+''Liberwocky'' (Thomas Nelson, 2004). \
+{{ISBN|978-0-7852-6057-8}}.\\n\\n{{Media manipulation}}\\n{{Portal \
+bar|Politics|Social movements}}\\n\\n[[Category:Activism| \
+]]\\n[[Category:Community organizing]]\\n[[Category:Counterculture of the \
+1960s]]\"\>"], "Output",ExpressionUUID->"d44b09d9-34b6-4256-8219-\
+376510ed6368"]
+}, Open  ]],
+
+Cell[TextData[StyleBox["Get the keywords", "Title"]], "Text",ExpressionUUID->"479c0ba3-5e2d-41ed-a5da-e4ffbfa8ece7"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"text", " ", "=", " ", 
+   RowBox[{"WikipediaData", "[", 
+    RowBox[{"\"\<Activism\>\"", ",", " ", "\"\<ArticlePlaintext\>\""}], 
+    "]"}]}], "\n"}]], "Code",
+ InitializationCell->False,
+ CellChangeTimes->{
+  3.70749480219106*^9, 3.707581541131687*^9, {3.707587053381291*^9, 
+   3.707587066295224*^9}, {3.7075871234370804`*^9, 3.707587145499507*^9}, {
+   3.7075892138813753`*^9, 3.7075892262802544`*^9}, {3.7075899341591053`*^9, 
+   3.707590003449057*^9}, {3.707590084562235*^9, 3.70759011753446*^9}, {
+   3.7075905379386826`*^9, 3.707590540554914*^9}, {3.707593565514041*^9, 
+   3.70759357447947*^9}, {3.7075937647302494`*^9, 3.7075937682682314`*^9}, {
+   3.7075951667376146`*^9, 3.7075952002398405`*^9}, {3.7076464027452726`*^9, 
+   3.7076464255078382`*^9}},ExpressionUUID->"3d9f48e0-370a-4fc2-80ff-\
+b1b5da1a2a5c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"text", " ", "=", " ", 
+   RowBox[{"ToString", "[", "text", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{
+  3.7076464106170063`*^9, {3.7076464719075108`*^9, 
+   3.707646500359585*^9}},ExpressionUUID->"10daa24b-fae2-43f8-9da7-\
+a65170f645c0"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"topicCheck", " ", "=", " ", 
+  RowBox[{"Classify", "[", "\"\<FacebookTopic\>\"", "]"}]}]], "Input",
+ CellChangeTimes->{{3.707640962785619*^9, 3.7076409688488636`*^9}, {
+  3.7076449134214544`*^9, 3.7076449465578628`*^9}, {3.7076451027788024`*^9, 
+  3.7076451108356524`*^9}},ExpressionUUID->"8f1eb797-690d-4512-9cca-\
+3a17080745a4"],
+
+Cell[BoxData[
+ TagBox[
+  TemplateBox[{RowBox[{
+      StyleBox[
+       TagBox["ClassifierFunction", "SummaryHead"], 
+       "NonInterpretableSummary"], 
+      StyleBox["[", "NonInterpretableSummary"], 
+      DynamicModuleBox[{Typeset`open$$ = False}, 
+       PanelBox[
+        PaneSelectorBox[{False -> GridBox[{{
+              PaneBox[
+               ButtonBox[
+                DynamicBox[
+                 FEPrivate`FrontEndResource[
+                 "FEBitmaps", "SquarePlusIconMedium"], 
+                 ImageSizeCache -> {12., {0., 12.}}], Appearance -> None, 
+                ButtonFunction :> (Typeset`open$$ = True), Evaluator -> 
+                Automatic, Method -> "Preemptive"], 
+               Alignment -> {Center, Center}, ImageSize -> 
+               Dynamic[{
+                 Automatic, 
+                  3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                   Magnification])}]], 
+              GraphicsBox[{{{
+                  GrayLevel[0.45], 
+                  PointSize[0.13], 
+                  
+                  PointBox[{{0.9821769431797024, -0.440194219686987}, {
+                   1.1339776261519132`, 0.8056918676854272}, {
+                   0.5279892326667741, 0.6574306661126254}, {
+                   0.022147046479890797`, 1.4937877187998898`}}], {
+                   GrayLevel[0.7], 
+                   
+                   PointBox[{{-0.9815166384819979, 
+                    0.15045697525228735`}, {-0.5923526886966953, \
+-0.33441771553094035`}, {-0.005656646679640442, -1.462421365651345}, \
+{-1.0734370436522753`, -1.3729645043477454`}}]}}}, {{
+                  GrayLevel[0.55], 
+                  AbsoluteThickness[1.5], 
+                  LineBox[{{-1., 1.5}, {1, -1.6}}]}}}, AspectRatio -> 1, 
+               Axes -> {False, False}, AxesLabel -> {None, None}, 
+               AxesOrigin -> {0, 0}, Background -> GrayLevel[0.94], 
+               BaseStyle -> {FontFamily -> "Arial", 
+                 AbsoluteThickness[1.5]}, DisplayFunction -> Identity, 
+               Frame -> {{True, True}, {True, True}}, 
+               FrameLabel -> {{None, None}, {None, None}}, FrameStyle -> 
+               Directive[
+                 Thickness[Tiny], 
+                 GrayLevel[0.7]], FrameTicks -> {{None, None}, {None, None}}, 
+               GridLines -> {None, None}, ImageSize -> 
+               Dynamic[{
+                 Automatic, 
+                  3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                   Magnification])}], LabelStyle -> {FontFamily -> "Arial"}, 
+               Method -> {"ScalingFunctions" -> None}, 
+               PlotRange -> {{-1., 1}, {-1.3, 1.1}}, PlotRangeClipping -> 
+               True, PlotRangePadding -> {{0.7, 0.7}, {0.7, 0.7}}, 
+               Ticks -> {None, None}], 
+              GridBox[{{
+                 RowBox[{
+                   TagBox["\"Input type: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["\"Text\"", "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox["\"Number of classes: \"", "SummaryItemAnnotation"],
+                    "\[InvisibleSpace]", 
+                   TagBox[
+                    TagBox[
+                    TooltipBox["25", 
+                    TagBox[
+                    
+                    TemplateBox[{
+                    ",", "\",\"", "\"Books\"", "\"CareerAndMoney\"", 
+                    "\"SocialMedia\"", "\"FamilyAndFriends\"", "\"Fashion\"", 
+                    "\"Fitness\"", "\"FoodAndDrink\"", "\"Health\"", 
+                    "\"Technology\"", "\"Leisure\"", 
+                    "\"QuotesAndLifePhilosophy\"", "\"Relationships\"", 
+                    "\"Movies\"", "\"Music\"", "\"PersonalMood\"", 
+                    "\"PetsAndAnimals\"", "\"Politics\"", 
+                    "\"SchoolAndUniversity\"", "\"SpecialOccasions\"", 
+                    "\"Sports\"", "\"Television\"", "\"Transport\"", 
+                    "\"Travel\"", "\"VideoGames\"", "\"Weather\""}, 
+                    "RowWithSeparators"], Short[#, 20]& ]], Annotation[#, 
+                    Short[
+                    
+                    Row[{"Books", "CareerAndMoney", "SocialMedia", 
+                    "FamilyAndFriends", "Fashion", "Fitness", "FoodAndDrink", 
+                    "Health", "Technology", "Leisure", 
+                    "QuotesAndLifePhilosophy", "Relationships", "Movies", 
+                    "Music", "PersonalMood", "PetsAndAnimals", "Politics", 
+                    "SchoolAndUniversity", "SpecialOccasions", "Sports", 
+                    "Television", "Transport", "Travel", "VideoGames", 
+                    "Weather"}, ","], 20], "Tooltip"]& ], "SummaryItem"]}]}}, 
+               AutoDelete -> False, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+               GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+               GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+            False, BaselinePosition -> {1, 1}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], True -> 
+          GridBox[{{
+              PaneBox[
+               ButtonBox[
+                DynamicBox[
+                 FEPrivate`FrontEndResource[
+                 "FEBitmaps", "SquareMinusIconMedium"], 
+                 ImageSizeCache -> {12., {0., 12.}}], Appearance -> None, 
+                ButtonFunction :> (Typeset`open$$ = False), Evaluator -> 
+                Automatic, Method -> "Preemptive"], 
+               Alignment -> {Center, Center}, ImageSize -> 
+               Dynamic[{
+                 Automatic, 
+                  3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                   Magnification])}]], 
+              GraphicsBox[{{{
+                  GrayLevel[0.45], 
+                  PointSize[0.13], 
+                  
+                  PointBox[{{0.9821769431797024, -0.440194219686987}, {
+                   1.1339776261519132`, 0.8056918676854272}, {
+                   0.5279892326667741, 0.6574306661126254}, {
+                   0.022147046479890797`, 1.4937877187998898`}}], {
+                   GrayLevel[0.7], 
+                   
+                   PointBox[{{-0.9815166384819979, 
+                    0.15045697525228735`}, {-0.5923526886966953, \
+-0.33441771553094035`}, {-0.005656646679640442, -1.462421365651345}, \
+{-1.0734370436522753`, -1.3729645043477454`}}]}}}, {{
+                  GrayLevel[0.55], 
+                  AbsoluteThickness[1.5], 
+                  LineBox[{{-1., 1.5}, {1, -1.6}}]}}}, AspectRatio -> 1, 
+               Axes -> {False, False}, AxesLabel -> {None, None}, 
+               AxesOrigin -> {0, 0}, Background -> GrayLevel[0.94], 
+               BaseStyle -> {FontFamily -> "Arial", 
+                 AbsoluteThickness[1.5]}, DisplayFunction -> Identity, 
+               Frame -> {{True, True}, {True, True}}, 
+               FrameLabel -> {{None, None}, {None, None}}, FrameStyle -> 
+               Directive[
+                 Thickness[Tiny], 
+                 GrayLevel[0.7]], FrameTicks -> {{None, None}, {None, None}}, 
+               GridLines -> {None, None}, ImageSize -> 
+               Dynamic[{
+                 Automatic, 
+                  3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                   Magnification])}], LabelStyle -> {FontFamily -> "Arial"}, 
+               Method -> {"ScalingFunctions" -> None}, 
+               PlotRange -> {{-1., 1}, {-1.3, 1.1}}, PlotRangeClipping -> 
+               True, PlotRangePadding -> {{0.7, 0.7}, {0.7, 0.7}}, 
+               Ticks -> {None, None}], 
+              GridBox[{{
+                 RowBox[{
+                   TagBox["\"Input type: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["\"Text\"", "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox["\"Number of classes: \"", "SummaryItemAnnotation"],
+                    "\[InvisibleSpace]", 
+                   TagBox[
+                    TagBox[
+                    TooltipBox["25", 
+                    TagBox[
+                    
+                    TemplateBox[{
+                    ",", "\",\"", "\"Books\"", "\"CareerAndMoney\"", 
+                    "\"SocialMedia\"", "\"FamilyAndFriends\"", "\"Fashion\"", 
+                    "\"Fitness\"", "\"FoodAndDrink\"", "\"Health\"", 
+                    "\"Technology\"", "\"Leisure\"", 
+                    "\"QuotesAndLifePhilosophy\"", "\"Relationships\"", 
+                    "\"Movies\"", "\"Music\"", "\"PersonalMood\"", 
+                    "\"PetsAndAnimals\"", "\"Politics\"", 
+                    "\"SchoolAndUniversity\"", "\"SpecialOccasions\"", 
+                    "\"Sports\"", "\"Television\"", "\"Transport\"", 
+                    "\"Travel\"", "\"VideoGames\"", "\"Weather\""}, 
+                    "RowWithSeparators"], Short[#, 20]& ]], Annotation[#, 
+                    Short[
+                    
+                    Row[{"Books", "CareerAndMoney", "SocialMedia", 
+                    "FamilyAndFriends", "Fashion", "Fitness", "FoodAndDrink", 
+                    "Health", "Technology", "Leisure", 
+                    "QuotesAndLifePhilosophy", "Relationships", "Movies", 
+                    "Music", "PersonalMood", "PetsAndAnimals", "Politics", 
+                    "SchoolAndUniversity", "SpecialOccasions", "Sports", 
+                    "Television", "Transport", "Travel", "VideoGames", 
+                    "Weather"}, ","], 20], "Tooltip"]& ], "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox["\"Method: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["\"Markov\"", "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox[
+                   "\"Number of training examples: \"", 
+                    "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                   TagBox[
+                    RowBox[{"Missing", "[", "]"}], "SummaryItem"]}]}}, 
+               AutoDelete -> False, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+               GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+               GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+            False, BaselinePosition -> {1, 1}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]}, 
+         Dynamic[Typeset`open$$], ImageSize -> Automatic], BaselinePosition -> 
+        Baseline], DynamicModuleValues :> {}], 
+      StyleBox["]", "NonInterpretableSummary"]}]},
+   "CopyTag",
+   DisplayFunction->(#& ),
+   InterpretationFunction->("ClassifierFunction[\[Ellipsis]]"& )],
+  False,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{3.7076449546723003`*^9, 
+  3.707645113940982*^9},ExpressionUUID->"637520f6-17c1-4d38-bea1-\
+d0cd9123eb3a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"topicCheck", "[", "text", "]"}]], "Input",
+ CellChangeTimes->{{3.707645125494192*^9, 
+  3.707645134592516*^9}},ExpressionUUID->"9b0407ce-c4b7-4f27-a02a-\
+6f920208dbf6"],
+
+Cell[BoxData["\<\"Politics\"\>"], "Output",
+ CellChangeTimes->{3.707645136122545*^9, 
+  3.70764650416016*^9},ExpressionUUID->"33c59747-e2ac-45ee-81fe-080ee97473c5"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"nouns", " ", "=", " ", 
+   RowBox[{"TextCases", "[", 
+    RowBox[{"text", ",", " ", "\"\<Noun\>\""}], "]"}]}], ";"}]], "Code",
+ InitializationCell->False,
+ CellChangeTimes->{
+  3.70749480219106*^9, 3.707581541131687*^9, {3.707587053381291*^9, 
+   3.707587066295224*^9}, {3.7075871234370804`*^9, 3.707587145499507*^9}, {
+   3.7075892138813753`*^9, 3.7075892262802544`*^9}, {3.7075899341591053`*^9, 
+   3.707590003449057*^9}, {3.707590084562235*^9, 3.70759011753446*^9}, {
+   3.7075905379386826`*^9, 3.707590540554914*^9}, {3.707593565514041*^9, 
+   3.70759357447947*^9}, 3.7075937647302494`*^9, {3.7075952225089903`*^9, 
+   3.7075952265957093`*^9}, {3.707639952825844*^9, 
+   3.7076399584463477`*^9}},ExpressionUUID->"dc12864c-4c5e-48bb-83c9-\
+d3378ef925cc"],
+
+Cell[BoxData["nouns"], "Input",
+ CellChangeTimes->{{3.7076465386881638`*^9, 
+  3.7076465400151663`*^9}},ExpressionUUID->"4e508f00-4a9e-4e48-adbd-\
+51fb07d04de0"],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"wordPredictor", "=", 
+   RowBox[{"SequencePredict", "[", 
+    RowBox[{
+     RowBox[{"{", "nouns", "}"}], ",", 
+     RowBox[{"Method", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Markov\>\"", ",", 
+        RowBox[{"\"\<Order\>\"", "\[Rule]", " ", "5"}]}], "}"}]}], ",", 
+     RowBox[{"FeatureExtractor", "\[Rule]", "\"\<SegmentedWords\>\""}]}], 
+    "]"}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.707638875305623*^9, 3.707638885747937*^9}, {
+  3.7076394394587374`*^9, 
+  3.7076394429671483`*^9}},ExpressionUUID->"c5be451a-7fa2-47e8-9048-\
+e05498c95382"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"nouns", " ", "=", " ", 
+   RowBox[{"DeleteStopwords", "[", 
+    RowBox[{"ToLowerCase", "[", "nouns", "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Counts", "[", 
+  RowBox[{"nouns", "[", 
+   RowBox[{"[", 
+    RowBox[{"1", ";;", "10"}], "]"}], "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.707595236498971*^9, 3.707595237439972*^9}, {
+   3.7075955129100933`*^9, 3.7075955836955824`*^9}, {3.70763764943286*^9, 
+   3.70763766595226*^9}, {3.707637759040979*^9, 3.707637774587702*^9}, 
+   3.7076389785372753`*^9, {3.7076399055794706`*^9, 3.7076399060266895`*^9}, {
+   3.7076399630786657`*^9, 3.7076399673568993`*^9}, {3.707640015209711*^9, 
+   3.707640018807969*^9}, {3.707640055647686*^9, 
+   3.7076400908104153`*^9}},ExpressionUUID->"91947a81-7cef-4ea2-a4ff-\
+309c18b9428a"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"activism\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"efforts\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"reform\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"stasis\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"desire\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"improvements\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"society\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"forms\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"range\"\>", "\[Rule]", "1"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{{3.707640061969945*^9, 
+  3.7076400912106133`*^9}},ExpressionUUID->"da7c6b48-6efa-47c0-bfb7-\
+5dbb9443ddb0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"freqnouns", "=", 
+  RowBox[{"Sort", "[", 
+   RowBox[{
+    RowBox[{"Counts", "[", "nouns", "]"}], ",", " ", "Greater"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.707595236498971*^9, 3.707595237439972*^9}, {
+   3.7075955129100933`*^9, 3.7075955836955824`*^9}, {3.70763764943286*^9, 
+   3.70763766595226*^9}, {3.707637759040979*^9, 3.707637774587702*^9}, 
+   3.7076389785372753`*^9, {3.7076399055794706`*^9, 3.7076399060266895`*^9}, {
+   3.7076399630786657`*^9, 3.7076399673568993`*^9}, {3.707640015209711*^9, 
+   3.707640018807969*^9}, {3.707640110422044*^9, 3.707640125922899*^9}, {
+   3.7076402488081408`*^9, 3.7076402727748575`*^9}, {3.7076404353243647`*^9, 
+   3.707640440255994*^9}},ExpressionUUID->"9c5c85e1-ea74-499b-a047-\
+3841911ace96"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"activism\"\>", "\[Rule]", "26"}], ",", 
+   RowBox[{"\<\"activists\"\>", "\[Rule]", "13"}], ",", 
+   RowBox[{"\<\"organizations\"\>", "\[Rule]", "9"}], ",", 
+   RowBox[{"\<\"movement\"\>", "\[Rule]", "5"}], ",", 
+   RowBox[{"\<\"government\"\>", "\[Rule]", "5"}], ",", 
+   RowBox[{"\<\"industry\"\>", "\[Rule]", "4"}], ",", 
+   RowBox[{"\<\"design\"\>", "\[Rule]", "4"}], ",", 
+   RowBox[{"\<\"people\"\>", "\[Rule]", "4"}], ",", 
+   RowBox[{"\<\"action\"\>", "\[Rule]", "4"}], ",", 
+   RowBox[{"\<\"protests\"\>", "\[Rule]", "3"}], ",", 
+   RowBox[{"\<\"practice\"\>", "\[Rule]", "3"}], ",", 
+   RowBox[{"\<\"governments\"\>", "\[Rule]", "3"}], ",", 
+   RowBox[{"\<\"term\"\>", "\[Rule]", "3"}], ",", 
+   RowBox[{"\<\"media\"\>", "\[Rule]", "3"}], ",", 
+   RowBox[{"\<\"form\"\>", "\[Rule]", "3"}], ",", 
+   RowBox[{"\<\"forms\"\>", "\[Rule]", "3"}], ",", 
+   RowBox[{"\<\"usage\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"boycott\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"systems\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"network\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"protesters\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"change\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"individuals\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"communication\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"means\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"activities\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"activity\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"road\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"sense\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"activist\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"groups\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"strikes\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"time\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"reading\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"science\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"engineering\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"manipulation\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"rights\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"leader\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"group\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"songs\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"campaigning\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"resistance\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"meat\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"simplicity\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"transformation\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"building\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"disobedience\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"benefits\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"donations\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"relief\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"tax\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"support\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"lobbying\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"purposes\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"staff\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"firms\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"law\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"decisions\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"influencing\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"operations\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"fundraising\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"goods\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"business\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"core\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"imagination\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"definition\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"biopolitics\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"transition\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"initiatives\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"communities\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"conceptualization\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"communications\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"mails\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"tools\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"data\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"encryption\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"location\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"address\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"identity\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"users\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"browser\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"persecution\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"audience\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"front\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"issues\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"networking\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"revolutions\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"countries\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"spring\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"lens\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"power\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"platforms\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"email\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"movements\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"petitions\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"causes\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"mobilization\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"tool\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"planet\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"report\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"year\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"ends\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"application\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"park\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"community\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"protestors\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"align\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"habit\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"vocation\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"neighborhood\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"levels\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"trips\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"trip\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"book\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"principles\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"institutions\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"effort\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"laws\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"behavior\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"citizenry\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"transparency\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"name\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"actions\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"blowers\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"watchdogs\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"article\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"magazine\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"officials\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"roles\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"words\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"engagement\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"ranks\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"basis\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"oppressions\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"privileges\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"view\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"workers\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"company\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"clothing\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"clothes\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"protest\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"acts\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"artivism\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"art\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"hunger\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"sit-ins\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"marches\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"rallies\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"businesses\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"boycotts\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"politicians\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"newspapers\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"letters\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"range\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"society\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"improvements\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"desire\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"stasis\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"reform\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"efforts\"\>", "\[Rule]", "1"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{3.7076401264481907`*^9, 3.707640252622347*^9, 
+  3.7076404413619504`*^9},ExpressionUUID->"5a05ce0a-0875-425d-aae0-\
+55af57127abf"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"N", "[", 
+      RowBox[{"(", 
+       RowBox[{"#", "/", 
+        RowBox[{"Total", "[", "#", "]"}]}], ")"}], "]"}], "&"}], " ", "@", 
+    " ", 
+    RowBox[{"WordCounts", "[", "nous", "]"}]}], ")"}], "[", 
+  RowBox[{"[", 
+   RowBox[{";;", "10"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.707638962606061*^9, 3.707638974637337*^9}, {
+  3.7076394838452063`*^9, 
+  3.7076394845857315`*^9}},ExpressionUUID->"c9b6b74d-cb72-42a5-8072-\
+0207d0fe36a3"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "WordCounts","arg1","\"String expected in position 1.\"",2,120,51,
+   29717263631372312700,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.70763982455412*^9},ExpressionUUID->"c9ce9325-bb42-4f63-82fc-b4e1c785e533"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Part","take",
+   "\"Cannot take positions \\!\\(\\*RowBox[{\\\"1\\\"}]\\) through \
+\\!\\(\\*RowBox[{\\\"10\\\"}]\\) in \
+\\!\\(\\*FractionBox[RowBox[{\\\"WordCounts\\\", \\\"[\\\", \\\"nous\\\", \
+\\\"]\\\"}], \\\"nous\\\"]\\).\"",2,120,52,29717263631372312700,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.707639824654346*^9},ExpressionUUID->"1b694391-2257-47e0-86f8-\
+b34cc602f5c2"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox[
+   RowBox[{"WordCounts", "[", "nous", "]"}], "nous"], "\[LeftDoubleBracket]", 
+  RowBox[{"1", ";;", "10"}], "\[RightDoubleBracket]"}]], "Output",
+ CellChangeTimes->{
+  3.707639824654346*^9},ExpressionUUID->"0aca502b-2256-45c1-9322-\
+8e464fd4ebf0"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"links", "=", 
+   RowBox[{"WikipediaData", "[", 
+    RowBox[{
+     RowBox[{"\"\<Category\>\"", "\[Rule]", "\"\<Activism\>\""}], ",", 
+     "\"\<CategoryLinks\>\"", ",", 
+     RowBox[{"\"\<MaxLevelItems\>\"", "\[Rule]", "10"}], ",", 
+     RowBox[{"\"\<MaxLevel\>\"", "\[Rule]", "2"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", "links"}], "Input",
+ CellChangeTimes->{{3.7075905709397836`*^9, 3.7075906084921627`*^9}, {
+  3.707591014434298*^9, 3.707591020503759*^9}, {3.707591397821811*^9, 
+  3.7075913985616355`*^9}},ExpressionUUID->"1f014418-fcfc-4f78-abe2-\
+5ef456efb94b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\t", "\n", "\t  ", 
+  RowBox[{
+   RowBox[{"URLExecute", "[", "\n", 
+    RowBox[{"\"\<http://en.wikipedia.org/w/api.php\>\"", ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\"\<format\>\"", " ", "->", " ", "\"\<json\>\""}], ",", " ", 
+       "\n", 
+       RowBox[{"\"\<action\>\"", " ", "->", " ", "\"\<query\>\""}], ",", " ", 
+       RowBox[{"\"\<titles\>\"", " ", "->", " ", "\"\<Main Page\>\""}], ",", 
+       " ", "\n", 
+       RowBox[{"\"\<prop\>\"", " ", "->", " ", "\"\<revisions\>\""}], ",", 
+       " ", 
+       RowBox[{"\"\<rvprop\>\"", " ", "->", " ", "\"\<content\>\""}]}], 
+      "}"}]}], "]"}], " ", "//", " ", "Short"}]}]], "Code",
+ CellChangeTimes->{{3.70749480219106*^9, 3.7074948059919386`*^9}, {
+  3.707494863645496*^9, 3.707494878107218*^9}, {3.707494962735756*^9, 
+  3.707494985287402*^9}, {3.7074950893513803`*^9, 3.707495111822838*^9}, {
+  3.7074951793983574`*^9, 3.7074951941658907`*^9}, {3.707495537602375*^9, 
+  3.707495556913386*^9}, {3.707495600939216*^9, 3.7074956279794483`*^9}, {
+  3.7075906902007008`*^9, 
+  3.707590690876295*^9}},ExpressionUUID->"b028e788-e095-4e2e-b7f4-\
+420dc95aeece"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"\<\"batchcomplete\"\>", "\[Rule]", "\<\"\"\>"}], ",", 
+    RowBox[{"\<\"query\"\>", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"\<\"pages\"\>", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"\<\"15580374\"\>", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"\<\"pageid\"\>", "\[Rule]", "15580374"}], ",", 
+           RowBox[{"\[LeftSkeleton]", "2", "\[RightSkeleton]"}], ",", 
+           RowBox[{"\<\"revisions\"\>", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"{", 
+              RowBox[{
+               
+               RowBox[{"\<\"contentformat\"\>", 
+                "\[Rule]", "\<\"text/x-wiki\"\>"}], ",", 
+               RowBox[{"\[LeftSkeleton]", "1", "\[RightSkeleton]"}], ",", 
+               RowBox[{
+                RowBox[{"\<\"co\"\>", "\[Ellipsis]", "\<\"del\"\>"}], 
+                "\[Rule]", 
+                RowBox[{"\<\"\"\>", "\[Ellipsis]", "\<\"\"\>"}]}]}], "}"}], 
+             "}"}]}]}], "}"}]}], "}"}]}], "}"}]}]}], "}"}],
+  Short]], "Output",
+ CellChangeTimes->{3.7075814224748898`*^9, 
+  3.707590739221836*^9},ExpressionUUID->"35c1e1a6-d7de-4522-94d8-\
+3228190c910f"]
+}, Open  ]],
+
+Cell[BoxData["hjgh"], "Input",
+ CellChangeTimes->{{3.7075936165856605`*^9, 
+  3.7075936169223795`*^9}},ExpressionUUID->"f430755f-509d-4395-a191-\
+678f8ec9f7ef"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"c", "=", 
+  RowBox[{"Classify", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"<|", 
+       RowBox[{
+        RowBox[{"\"\<Age\>\"", "\[Rule]", "32"}], ",", 
+        RowBox[{"\"\<Height\>\"", "\[Rule]", "160"}]}], "|>"}], "\[Rule]", 
+      "\"\<Female\>\""}], ",", 
+     RowBox[{
+      RowBox[{"<|", 
+       RowBox[{
+        RowBox[{"\"\<Height\>\"", "\[Rule]", "183"}], ",", 
+        RowBox[{"\"\<Age\>\"", "\[Rule]", "41"}]}], "|>"}], "\[Rule]", 
+      "\"\<Male\>\""}], ",", 
+     RowBox[{
+      RowBox[{"<|", 
+       RowBox[{"\"\<Height\>\"", "\[Rule]", "123"}], "|>"}], "\[Rule]", 
+      "\"\<Female\>\""}], ",", 
+     RowBox[{
+      RowBox[{"<|", 
+       RowBox[{
+        RowBox[{"\"\<Height\>\"", "\[Rule]", "175"}], ",", 
+        RowBox[{"\"\<Age\>\"", "\[Rule]", "21"}]}], "|>"}], "\[Rule]", 
+      "\"\<Male\>\""}], ",", 
+     RowBox[{
+      RowBox[{"<|", 
+       RowBox[{"\"\<Age\>\"", "\[Rule]", "11"}], "|>"}], "\[Rule]", 
+      "\"\<Male\>\""}], ",", 
+     RowBox[{
+      RowBox[{"<|", 
+       RowBox[{
+        RowBox[{"\"\<Age\>\"", "\[Rule]", "52"}], ",", 
+        RowBox[{"\"\<Height\>\"", "\[Rule]", "164"}]}], "|>"}], "\[Rule]", 
+      "\"\<Female\>\""}]}], "}"}], "]"}]}]], "Input",
+ CellChangeTimes->{
+  3.70799571341403*^9},ExpressionUUID->"08585582-e55d-458f-ab50-998d77af5301"],
+
+Cell[BoxData[
+ TagBox[
+  TemplateBox[{RowBox[{
+      StyleBox[
+       TagBox["ClassifierFunction", "SummaryHead"], 
+       "NonInterpretableSummary"], 
+      StyleBox["[", "NonInterpretableSummary"], 
+      DynamicModuleBox[{Typeset`open$$ = True}, 
+       PanelBox[
+        PaneSelectorBox[{False -> GridBox[{{
+              PaneBox[
+               ButtonBox[
+                DynamicBox[
+                 FEPrivate`FrontEndResource[
+                 "FEBitmaps", "SquarePlusIconMedium"], 
+                 ImageSizeCache -> {13., {0., 13.}}], Appearance -> None, 
+                ButtonFunction :> (Typeset`open$$ = True), Evaluator -> 
+                Automatic, Method -> "Preemptive"], 
+               Alignment -> {Center, Center}, ImageSize -> 
+               Dynamic[{
+                 Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                  AbsoluteCurrentValue[Magnification]}]], 
+              GraphicsBox[{{{
+                  GrayLevel[0.45], 
+                  PointSize[0.13], 
+                  
+                  PointBox[{{0.9821769431797024, -0.440194219686987}, {
+                   1.1339776261519132`, 0.8056918676854272}, {
+                   0.5279892326667741, 0.6574306661126254}, {
+                   0.022147046479890797`, 1.4937877187998898`}}], {
+                   GrayLevel[0.7], 
+                   
+                   PointBox[{{-0.9815166384819979, 
+                    0.15045697525228735`}, {-0.5923526886966953, \
+-0.33441771553094035`}, {-0.005656646679640442, -1.462421365651345}, \
+{-1.0734370436522753`, -1.3729645043477454`}}]}}}, {{
+                  GrayLevel[0.55], 
+                  AbsoluteThickness[1.5], 
+                  LineBox[{{-1., 1.5}, {1, -1.6}}]}}}, AspectRatio -> 1, 
+               Axes -> {False, False}, AxesLabel -> {None, None}, 
+               AxesOrigin -> {0, 0}, Background -> GrayLevel[0.94], 
+               BaseStyle -> {FontFamily -> "Arial", 
+                 AbsoluteThickness[1.5]}, DisplayFunction -> Identity, 
+               Frame -> {{True, True}, {True, True}}, 
+               FrameLabel -> {{None, None}, {None, None}}, FrameStyle -> 
+               Directive[
+                 Thickness[Tiny], 
+                 GrayLevel[0.7]], FrameTicks -> {{None, None}, {None, None}}, 
+               GridLines -> {None, None}, ImageSize -> 
+               Dynamic[{
+                 Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                  AbsoluteCurrentValue[Magnification]}], 
+               LabelStyle -> {FontFamily -> "Arial"}, 
+               Method -> {"ScalingFunctions" -> None}, 
+               PlotRange -> {{-1., 1}, {-1.3, 1.1}}, PlotRangeClipping -> 
+               True, PlotRangePadding -> {{0.7, 0.7}, {0.7, 0.7}}, 
+               Ticks -> {None, None}], 
+              GridBox[{{
+                 RowBox[{
+                   TagBox["\"Input type: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox[
+                    RowBox[{"{", 
+                    RowBox[{"\"Numerical\"", ",", "\"Numerical\""}], "}"}], 
+                    "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox["\"Classes: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox[
+                    
+                    TemplateBox[{",", "\",\"", "\"Female\"", "\"Male\""}, 
+                    "RowWithSeparators"], "SummaryItem"]}]}}, AutoDelete -> 
+               False, BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+               GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+               GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+            False, BaselinePosition -> {1, 1}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], True -> 
+          GridBox[{{
+              PaneBox[
+               ButtonBox[
+                DynamicBox[
+                 FEPrivate`FrontEndResource[
+                 "FEBitmaps", "SquareMinusIconMedium"], 
+                 ImageSizeCache -> {13., {0., 13.}}], Appearance -> None, 
+                ButtonFunction :> (Typeset`open$$ = False), Evaluator -> 
+                Automatic, Method -> "Preemptive"], 
+               Alignment -> {Center, Center}, ImageSize -> 
+               Dynamic[{
+                 Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                  AbsoluteCurrentValue[Magnification]}]], 
+              GraphicsBox[{{{
+                  GrayLevel[0.45], 
+                  PointSize[0.13], 
+                  
+                  PointBox[{{0.9821769431797024, -0.440194219686987}, {
+                   1.1339776261519132`, 0.8056918676854272}, {
+                   0.5279892326667741, 0.6574306661126254}, {
+                   0.022147046479890797`, 1.4937877187998898`}}], {
+                   GrayLevel[0.7], 
+                   
+                   PointBox[{{-0.9815166384819979, 
+                    0.15045697525228735`}, {-0.5923526886966953, \
+-0.33441771553094035`}, {-0.005656646679640442, -1.462421365651345}, \
+{-1.0734370436522753`, -1.3729645043477454`}}]}}}, {{
+                  GrayLevel[0.55], 
+                  AbsoluteThickness[1.5], 
+                  LineBox[{{-1., 1.5}, {1, -1.6}}]}}}, AspectRatio -> 1, 
+               Axes -> {False, False}, AxesLabel -> {None, None}, 
+               AxesOrigin -> {0, 0}, Background -> GrayLevel[0.94], 
+               BaseStyle -> {FontFamily -> "Arial", 
+                 AbsoluteThickness[1.5]}, DisplayFunction -> Identity, 
+               Frame -> {{True, True}, {True, True}}, 
+               FrameLabel -> {{None, None}, {None, None}}, FrameStyle -> 
+               Directive[
+                 Thickness[Tiny], 
+                 GrayLevel[0.7]], FrameTicks -> {{None, None}, {None, None}}, 
+               GridLines -> {None, None}, ImageSize -> 
+               Dynamic[{
+                 Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                  AbsoluteCurrentValue[Magnification]}], 
+               LabelStyle -> {FontFamily -> "Arial"}, 
+               Method -> {"ScalingFunctions" -> None}, 
+               PlotRange -> {{-1., 1}, {-1.3, 1.1}}, PlotRangeClipping -> 
+               True, PlotRangePadding -> {{0.7, 0.7}, {0.7, 0.7}}, 
+               Ticks -> {None, None}], 
+              GridBox[{{
+                 RowBox[{
+                   TagBox["\"Input type: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox[
+                    RowBox[{"{", 
+                    RowBox[{"\"Numerical\"", ",", "\"Numerical\""}], "}"}], 
+                    "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox["\"Classes: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox[
+                    
+                    TemplateBox[{",", "\",\"", "\"Female\"", "\"Male\""}, 
+                    "RowWithSeparators"], "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox["\"Method: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["\"LogisticRegression\"", "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox[
+                   "\"Number of training examples: \"", 
+                    "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                   TagBox["6", "SummaryItem"]}]}}, AutoDelete -> False, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+               GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+               GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+            False, BaselinePosition -> {1, 1}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]}, 
+         Dynamic[Typeset`open$$], ImageSize -> Automatic], BaselinePosition -> 
+        Baseline], DynamicModuleValues :> {}], 
+      StyleBox["]", "NonInterpretableSummary"]}]},
+   "CopyTag",
+   DisplayFunction->(#& ),
+   InterpretationFunction->("ClassifierFunction[\[Ellipsis]]"& )],
+  False,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{
+  3.707995724233118*^9},ExpressionUUID->"39be86b2-3f81-43aa-b56b-\
+0b1a1a5a1f96"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"relAccuracy", " ", "=", "  ", 
+  RowBox[{"ClassifierMeasurements", "[", 
+   RowBox[{"c", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"<|", 
+       RowBox[{
+        RowBox[{"\"\<Age\>\"", "\[Rule]", "32"}], ",", 
+        RowBox[{"\"\<Height\>\"", "\[Rule]", "165"}]}], "|>"}], "\[Rule]", 
+      "\"\<Female\>\""}], "}"}], ",", "\"\<Accuracy\>\""}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7079957627951403`*^9, 
+  3.7079958764273205`*^9}},ExpressionUUID->"81bd8fe3-c483-46ce-aeb5-\
+a15f2bde9071"],
+
+Cell[BoxData["1.`"], "Output",
+ CellChangeTimes->{{3.707995860347397*^9, 
+  3.7079958770119505`*^9}},ExpressionUUID->"a67bb758-4e04-46f0-b150-\
+e21b1fd63490"]
+}, Open  ]]
+},
+WindowSize->{1118, 609},
+WindowMargins->{{25, Automatic}, {-5, Automatic}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (March 13, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1243, 29, 141, "Code", "ExpressionUUID" -> \
+"30f58fd7-f991-49ae-ba61-023216863806"],
+Cell[1804, 51, 217, 3, 30, "Text", "ExpressionUUID" -> \
+"a3aad4e3-55df-4701-bdeb-2e6a98bb831f"],
+Cell[2024, 56, 115, 0, 53, "Text", "ExpressionUUID" -> \
+"ecf6fcdb-0d81-463a-ab8a-7b8a7c09786b"],
+Cell[CellGroupData[{
+Cell[2164, 60, 1705, 47, 126, "Input", "ExpressionUUID" -> \
+"b93944cf-13ce-4602-bc03-34f0d7aaa728"],
+Cell[3872, 109, 4117, 64, 316, "Output", "ExpressionUUID" -> \
+"bd3a46ee-70ef-4965-ba7c-5a177bbe943b"],
+Cell[7992, 175, 85, 0, 30, "Output", "ExpressionUUID" -> \
+"4274366d-421e-4548-be94-feb5add6e710"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8114, 180, 231, 4, 30, "Input", "ExpressionUUID" -> \
+"89619c82-e9b4-4914-9165-c0e879682fb0"],
+Cell[8348, 186, 14924, 208, 3983, "Output", "ExpressionUUID" -> \
+"d44b09d9-34b6-4256-8219-376510ed6368"]
+}, Open  ]],
+Cell[23287, 397, 116, 0, 75, "Text", "ExpressionUUID" -> \
+"479c0ba3-5e2d-41ed-a5da-e4ffbfa8ece7"],
+Cell[23406, 399, 853, 16, 53, "Code", "ExpressionUUID" -> \
+"3d9f48e0-370a-4fc2-80ff-b1b5da1a2a5c",
+ InitializationCell->False],
+Cell[24262, 417, 275, 7, 30, "Input", "ExpressionUUID" -> \
+"10daa24b-fae2-43f8-9da7-a65170f645c0"],
+Cell[CellGroupData[{
+Cell[24562, 428, 354, 6, 30, "Input", "ExpressionUUID" -> \
+"8f1eb797-690d-4512-9cca-3a17080745a4"],
+Cell[24919, 436, 11612, 227, 72, "Output", "ExpressionUUID" -> \
+"637520f6-17c1-4d38-bea1-d0cd9123eb3a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36568, 668, 192, 4, 30, "Input", "ExpressionUUID" -> \
+"9b0407ce-c4b7-4f27-a02a-6f920208dbf6"],
+Cell[36763, 674, 164, 2, 30, "Output", "ExpressionUUID" -> \
+"33c59747-e2ac-45ee-81fe-080ee97473c5"]
+}, Open  ]],
+Cell[36942, 679, 792, 15, 34, "Code", "ExpressionUUID" -> \
+"dc12864c-4c5e-48bb-83c9-d3378ef925cc",
+ InitializationCell->False],
+Cell[37737, 696, 161, 3, 30, "Input", "ExpressionUUID" -> \
+"4e508f00-4a9e-4e48-adbd-51fb07d04de0"],
+Cell[37901, 701, 603, 15, 30, "Input", "ExpressionUUID" -> \
+"c5be451a-7fa2-47e8-9048-e05498c95382"],
+Cell[CellGroupData[{
+Cell[38529, 720, 821, 17, 50, "Input", "ExpressionUUID" -> \
+"91947a81-7cef-4ea2-a4ff-309c18b9428a"],
+Cell[39353, 739, 704, 15, 30, "Output", "ExpressionUUID" -> \
+"da7c6b48-6efa-47c0-bfb7-5dbb9443ddb0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[40094, 759, 771, 14, 30, "Input", "ExpressionUUID" -> \
+"9c5c85e1-ea74-499b-a047-3841911ace96"],
+Cell[40868, 775, 9026, 167, 316, "Output", "ExpressionUUID" -> \
+"5a05ce0a-0875-425d-aae0-55af57127abf"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[49931, 947, 525, 16, 30, "Input", "ExpressionUUID" -> \
+"c9b6b74d-cb72-42a5-8072-0207d0fe36a3"],
+Cell[50459, 965, 271, 6, 20, "Message", "ExpressionUUID" -> \
+"c9ce9325-bb42-4f63-82fc-b4e1c785e533"],
+Cell[50733, 973, 446, 10, 39, "Message", "ExpressionUUID" -> \
+"1b694391-2257-47e0-86f8-b34cc602f5c2"],
+Cell[51182, 985, 286, 7, 46, "Output", "ExpressionUUID" -> \
+"0aca502b-2256-45c1-9322-8e464fd4ebf0"]
+}, Open  ]],
+Cell[51483, 995, 609, 13, 51, "Input", "ExpressionUUID" -> \
+"1f014418-fcfc-4f78-abe2-5ef456efb94b"],
+Cell[CellGroupData[{
+Cell[52117, 1012, 1157, 23, 120, "Code", "ExpressionUUID" -> \
+"b028e788-e095-4e2e-b7f4-420dc95aeece"],
+Cell[53277, 1037, 1204, 30, 51, "Output", "ExpressionUUID" -> \
+"35c1e1a6-d7de-4522-94d8-3228190c910f"]
+}, Open  ]],
+Cell[54496, 1070, 160, 3, 30, "Input", "ExpressionUUID" -> \
+"f430755f-509d-4395-a191-678f8ec9f7ef"],
+Cell[CellGroupData[{
+Cell[54681, 1077, 1342, 38, 71, "Input", "ExpressionUUID" -> \
+"08585582-e55d-458f-ab50-998d77af5301"],
+Cell[56026, 1117, 8932, 182, 100, "Output", "ExpressionUUID" -> \
+"39be86b2-3f81-43aa-b56b-0b1a1a5a1f96"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[64995, 1304, 528, 13, 34, "Input", "ExpressionUUID" -> \
+"81bd8fe3-c483-46ce-aeb5-a15f2bde9071"],
+Cell[65526, 1319, 158, 3, 67, "Output", "ExpressionUUID" -> \
+"a67bb758-4e04-46f0-b150-e21b1fd63490"]
+}, Open  ]]
+}
+]
+*)
+

@@ -13,11 +13,11 @@ The core of the solution is a zoomable graph with the main nodes corresponding t
 The main nodes are interlinked and the strength of the link is proportional to the number of cross-references between domains.
 Within main nodes, further zoom is permitted to open topic maps of the node (same structure as the top level).
 
-## Theory behind the solution
+## ICA. Theory behind the solution
 We experiment using simple classification algorithm in an iterative fashion to improve
 classification accuracy by exploiting relational information in the data. The hypothesis underlying this approach
 is that if two objects are related, inferring something about one object can assist inferences about the other
-This forms the basis for our Iterative Classification Algorithm (ICA).
+This forms the basis for Iterative Classification Algorithm (ICA).
 When testing an estimator, one needs a reliable metric to evaluate its performance. Using the same data for
 training and testing is not acceptable because it leads to overly confident model performance, a phenomenon
 also known as overfitting. Crossvalidation
@@ -38,5 +38,8 @@ and allows to choose between different models. This procedure is known as model 
      
 
 ## TODO: (* how to run your code *)
+
 ## TODO: (* examples, code documentation, etc *)
+Process section is the implementation of ICA.
+First a train data is classified using a content classifier. Then it is classified using a relational classifier. If the accuracy is low, the relational classifier is then given content classifier labels to train on.
 
