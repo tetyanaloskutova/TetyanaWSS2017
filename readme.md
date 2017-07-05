@@ -1,45 +1,33 @@
-﻿# WikiMap 
+﻿# WikiClassify: Content- and Link-Based Classification
 
 Project by Tetyana Loskutova
 
-WikiMap project is a Wolfram Language implementation of  a semantic topic map for Wikipedia. 
+WikiClassify project is a Wolfram Language implementation of the Iterative Classification Algorithm (ICA) for semantic topic classification for Wikipedia.
 
 
 ## Statement of the problem
-Wikipedia contains a large amount of knowledge, which can be associated with different domains. Given the amount of data, it is impossible to grasp the scope of the knowledge coverage without some kind of automation. The goal of this project is to group the articles by subject domains and display them on a topic map, which will allow to estimate meaning-based connections between domains.
+Knowledgedomans,suchasWikipedia,containmeaningstructures,whicharebasedbothonthemeaningofthechosenwordsandonthelinkagesbetweensentences,
+paragraphs,articles,andsoon.Thegoalofthisprojectistocreateatopicclassifierthatcantakeintoconsiderationboththecontentofanarticleanditslinkstotheother
+articles.
 
 ## Solution outline
-The core of the solution is a zoomable graph with the main nodes corresponding to the knowledge domains (TODO: what are knowledge domains? Can they be approximated by wikipedia portals or categories? Perhaps, classification by article title and category).
-The main nodes are interlinked and the strength of the link is proportional to the number of cross-references between domains.
-Within main nodes, further zoom is permitted to open topic maps of the node (same structure as the top level).
+The solution is based on the Iterative Classification Algorithm [1] . The ICA works in the following steps:
+1. Assign "guessed" categories to data using Content Classifier.
+2. Compare the categories with the nearest neighbours (linked articles) using Relational Classifier.
+3. Retrain the Relational Classifier based on the Content Classifier categories and record the adjustments in the Conditional map.
+The use of the ICA works as an optimization algorithm for finding the minimum mismatch between linked categories.
+In this particular implementation, the full ICA was not completed. Instead, the outputs of the Content and Relational classifiers were used based on their estimated accuracies. The use of the two classifiers also allowed to account for the dynamically changing content of Wikipedia and the need for creation of new categories labels: the cases of low probability conflicting classifications were treated as an indication for the need of new labels.
 
-## ICA. Theory behind the solution
-We experiment using simple classification algorithm in an iterative fashion to improve
-classification accuracy by exploiting relational information in the data. The hypothesis underlying this approach
-is that if two objects are related, inferring something about one object can assist inferences about the other
-This forms the basis for Iterative Classification Algorithm (ICA).
-When testing an estimator, one needs a reliable metric to evaluate its performance. Using the same data for
-training and testing is not acceptable because it leads to overly confident model performance, a phenomenon
-also known as overfitting. Crossvalidation
-is a technique that allows one to reliably evaluate an estimator
-on a given dataset. It consists in iteratively fitting the estimator on a fraction of the data, called training set,
-and testing it on the leftout
-unseen data, called test set. Several strategies exists to partition the data. For
-example, kfold
-crossvalidation
-consists in dividing (randomly or not) the samples in k subsets: each subset is
-then used once as testing set while the others k − 1 subsets are used to train the estimator. This is one of the
-simplest and most widely used crossvalidation
-strategies. The parameter k is commonly set to 5 or 10.
-For a given model, the scores on the various test sets can be averaged to give a quantitative score to assess
-how good the model is. Maximizing this crossvalidation
-score offers a principled way to set hyperparameters
-and allows to choose between different models. This procedure is known as model selection.
-     
 
-## TODO: (* how to run your code *)
+### References
 
-## TODO: (* examples, code documentation, etc *)
-Process section is the implementation of ICA.
-First a train data is classified using a content classifier. Then it is classified using a relational classifier. If the accuracy is low, the relational classifier is then given content classifier labels to train on.
+[1] Lu, Q., & Getoor, L. (2003). Link-based classification. In Proceedings of the 20th International Conference on Machine Learning (ICML-03) (pp. 496-503). 
+
+## Running the code
+The solution is not yet at the stage to be run automatically. 
+The notebooks should be executed section by section. It is necessary to change the paths in Import/Export functions.
+CollectData.nb is used to create content features and link features from Wikipedia. The amount of test data as well as the starting article may be changed in the code.
+IterativeClassifier.nb runs with the data created by CollectData.nb or using the existing data files: wiki.comtent, wiki.cites, and wikifeature.content
+ClassifierSandbox.nb runs on the test data (cora.cites and cora.content)
+
 
