@@ -1,0 +1,3108 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    138810,       3100]
+NotebookOptionsPosition[    128099,       2850]
+NotebookOutlinePosition[    128472,       2866]
+CellTagsIndexPosition[    128429,       2863]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[StyleBox["Goals", "Title"]], "Text",
+ CellChangeTimes->{{3.708001859947096*^9, 
+  3.708001861037471*^9}},ExpressionUUID->"8f63e430-b72b-49a0-8749-\
+ae1eaa2957cc"],
+
+Cell["\<\
+The main difficulty is that labels need to be created more and more
+New label = the main keyword of the topic that is very dissimilar - this is \
+where iteration may help\
+\>", "Text",
+ CellChangeTimes->{{3.7080018719560223`*^9, 3.7080019407703304`*^9}, {
+  3.7080025417326083`*^9, 
+  3.7080025511861353`*^9}},ExpressionUUID->"863210c1-9edf-411b-b6a8-\
+f7238ca3f53f"],
+
+Cell[BoxData[""], "Input",ExpressionUUID->"5f29e9d5-02d3-4cb2-b245-8219e25e21f9"],
+
+Cell[TextData[StyleBox["Read wiki data", "Subchapter"]], "Text",ExpressionUUID->"ddeb3a59-2bd5-4a7d-93bd-b1e46afad2b1"],
+
+Cell["\<\
+
+Return two items 1. dataGraph object, 2. the list of domain dataLabels (e.g., \
+[' AI', ' IR'])\
+\>", "Text",ExpressionUUID->"3184edd0-ea6b-4f72-9592-ae68ff295c09"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Directory", "[", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dataLinks", "=", " ", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+    "\"\<D:\\\\Stats\\\\WA\\\\Summer \
+School\\\\Project\\\\starthere\\\\WikiMap\\\\Assets\\\\wiki.cites\>\"", ",", 
+     " ", "\"\<Table\>\""}], "]"}]}], "\n", "\t", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"This", " ", "should", " ", 
+     RowBox[{"be", ":", " ", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"PacletManager`PacletResource", "[", 
+          RowBox[{"\"\<WikiMap\>\"", ",", " ", "\"\<Assets\>\""}], "]"}], ",",
+          " ", "\"\<cora.cites\>\""}], "}"}], "]"}]}]}], "]"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "dataLinks", "]"}]}], "Input",
+ InitializationCell->
+  True,ExpressionUUID->"73b92b94-b073-45fa-825e-8f40afbaf2ce"],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\tetya\\\\Documents\"\>"], "Output",ExpressionUUID->"837a609d-c4b3-433c-aa95-a4cadfe49a05"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   FrameBox[GridBox[{
+      {
+       ItemBox[
+        TagBox[
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"\<\"Activism\"\>", ",", "\<\"artivism\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"\<\"Activism\"\>", ",", "\<\"boycott\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\"Activism\"\>", ",", "\<\"civic\"\>", 
+             ",", "\<\"engagement\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\"Activism\"\>", ",", "\<\"Civil\"\>", 
+             ",", "\<\"Rights\"\>", ",", "\<\"Movement\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\"Activism\"\>", ",", "\<\"Demonstration\"\>", 
+             ",", "\<\"(people)\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\"Activism\"\>", ",", "\<\"Demonstration\"\>", 
+             ",", "\<\"(protest)\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\"Activism\"\>", ",", "\<\"economic\"\>", 
+             ",", "\<\"activism\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"\<\"Activism\"\>", ",", "\<\"economics\"\>"}], "}"}], 
+           ",", 
+           TemplateBox[{"6723"},
+            "OutputSizeLimit`Skeleton"], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\"Revolutions\"\>", ",", "\<\"of\"\>", ",", "1989", 
+             ",", "\<\"Velvet\"\>", ",", "\<\"Revolution\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\"Revolutions\"\>", ",", "\<\"of\"\>", ",", "1989", 
+             ",", "\<\"Vietnam\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\"Revolutions\"\>", ",", "\<\"of\"\>", ",", "1989", 
+             ",", "\<\"Warsaw\"\>", ",", "\<\"Pact\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\"Revolutions\"\>", ",", "\<\"of\"\>", ",", "1989", 
+             ",", "\<\"Western\"\>", ",", "\<\"culture\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\"Revolutions\"\>", ",", "\<\"of\"\>", ",", "1989", 
+             ",", "\<\"Yemen\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\"Revolutions\"\>", ",", "\<\"of\"\>", ",", "1989", 
+             ",", "\<\"Yugoslavia\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\"Revolutions\"\>", ",", "\<\"of\"\>", ",", "1989", 
+             ",", "\<\"Yugoslav\"\>", ",", "\<\"Wars\"\>"}], "}"}]}], "}"}],
+         Short[#, 5]& ],
+        BaseStyle->{Deployed -> False},
+        StripOnInput->False]},
+      {GridBox[{
+         {
+          TagBox[
+           TooltipBox[
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource[
+                "FEStrings", "sizeBriefExplanation"], StandardForm],
+               ImageSizeCache->{65., {2., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLText",
+             StripOnInput->False],
+            StyleBox[
+             DynamicBox[
+              ToBoxes[
+               FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"], 
+               StandardForm]], DynamicUpdating -> True, StripOnInput -> 
+             False]],
+           Annotation[#, 
+            Style[
+             Dynamic[
+              FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"]], 
+             DynamicUpdating -> True], "Tooltip"]& ], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm],
+               ImageSizeCache->{50., {1., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 3, 29722303192511156902, 5/2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm],
+               ImageSizeCache->{58., {1., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 3, 29722303192511156902, 5 2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm],
+               ImageSizeCache->{43., {1., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 3, 29722303192511156902, Infinity],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm],
+               ImageSizeCache->{72., {1., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           ButtonFunction:>FrontEndExecute[{
+              FrontEnd`SetOptions[
+              FrontEnd`$FrontEnd, 
+               FrontEnd`PreferencesSettings -> {"Page" -> "Advanced"}], 
+              FrontEnd`FrontEndToken["PreferencesDialog"]}],
+           Evaluator->None,
+           Method->"Preemptive"]}
+        },
+        AutoDelete->False,
+        FrameStyle->GrayLevel[0.85],
+        GridBoxDividers->{"Columns" -> {False, {True}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+        GridBoxSpacings->{"Columns" -> {{2}}}]}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxItemSize->{
+      "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], 
+         Offset[1.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    BaseStyle->"OutputSizeLimit",
+    FrameMargins->{{12, 12}, {0, 15}},
+    FrameStyle->GrayLevel[0.85],
+    RoundingRadius->5,
+    StripOnInput->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  If[29722303192511156902 === $SessionID, 
+   Out[3], Message[
+     MessageName[Syntax, "noinfoker"]]; Missing["NotAvailable"]; 
+   Null]]], "Output",ExpressionUUID->"5226e7ba-f27f-4081-a985-e2fb3add6ddc"],
+
+Cell[BoxData["6738"], "Output",ExpressionUUID->"fff584b9-4159-4e82-b991-a4435f3baebc"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"dataContent", "=", " ", 
+  RowBox[{"Import", "[", 
+   RowBox[{
+   "\"\<D:\\\\Stats\\\\WA\\\\Summer School\\\\Project\\\\starthere\\\\WikiMap\
+\\\\Assets\\\\wiki.content\>\"", ",", " ", "\"\<Table\>\""}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "dataContent", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dataLabels", " ", "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{"Last", ",", "dataContent"}], "]"}]}], ";", " ", 
+  RowBox[{"(*", "domain_dataLabels", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"dataIds", " ", "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{"First", ",", "dataContent"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"uniqueLabels", " ", "=", " ", 
+   RowBox[{"Union", "[", "dataLabels", "]"}]}], ";"}]}], "Input",
+ InitializationCell->
+  True,ExpressionUUID->"dd76deb3-610e-4137-822b-feccad6eb6b3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   FrameBox[GridBox[{
+      {
+       ItemBox[
+        TagBox[
+         RowBox[{"{", 
+          TemplateBox[{"1"},
+           "OutputSizeLimit`Skeleton"], "}"}],
+         Short[#, 5]& ],
+        BaseStyle->{Deployed -> False},
+        StripOnInput->False]},
+      {GridBox[{
+         {
+          TagBox[
+           TooltipBox[
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource[
+                "FEStrings", "sizeBriefExplanation"], StandardForm],
+               ImageSizeCache->{54., {2., 7.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLText",
+             StripOnInput->False],
+            StyleBox[
+             DynamicBox[
+              ToBoxes[
+               FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"], 
+               StandardForm]], DynamicUpdating -> True, StripOnInput -> 
+             False]],
+           Annotation[#, 
+            Style[
+             Dynamic[
+              FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"]], 
+             DynamicUpdating -> True], "Tooltip"]& ], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm],
+               ImageSizeCache->{43., {1., 7.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 5, 29722303192511156902, 5/2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm],
+               ImageSizeCache->{51., {1., 7.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 5, 29722303192511156902, 5 2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm],
+               ImageSizeCache->{38., {1., 7.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm],
+               ImageSizeCache->{43., {1., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 5, 29722303192511156902, Infinity],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm],
+               ImageSizeCache->{67., {1., 7.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm],
+               ImageSizeCache->{72., {1., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           ButtonFunction:>FrontEndExecute[{
+              FrontEnd`SetOptions[
+              FrontEnd`$FrontEnd, 
+               FrontEnd`PreferencesSettings -> {"Page" -> "Advanced"}], 
+              FrontEnd`FrontEndToken["PreferencesDialog"]}],
+           Evaluator->None,
+           Method->"Preemptive"]}
+        },
+        AutoDelete->False,
+        FrameStyle->GrayLevel[0.85],
+        GridBoxDividers->{"Columns" -> {False, {True}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+        GridBoxSpacings->{"Columns" -> {{2}}}]}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxItemSize->{
+      "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], 
+         Offset[1.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    BaseStyle->"OutputSizeLimit",
+    FrameMargins->{{12, 12}, {0, 15}},
+    FrameStyle->GrayLevel[0.85],
+    RoundingRadius->5,
+    StripOnInput->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  If[29722303192511156902 === $SessionID, 
+   Out[5], Message[
+     MessageName[Syntax, "noinfoker"]]; Missing["NotAvailable"]; 
+   Null]]], "Output",ExpressionUUID->"3a552887-25a9-454d-a003-af0f458493fd"],
+
+Cell[BoxData["4606"], "Output",ExpressionUUID->"dde9ab7b-1d02-4853-b919-217cfdbf16bb"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"uniqueLabels", "[", 
+  RowBox[{"[", 
+   RowBox[{"2", ";;", "10"}], "]"}], "]"}]], "Input",ExpressionUUID->\
+"fcb91464-f0c6-48ba-bb84-2e3a3b03a137"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"Books\"\>", ",", "\<\"CareerAndMoney\"\>", 
+   ",", "\<\"FamilyAndFriends\"\>", ",", "\<\"Fashion\"\>", 
+   ",", "\<\"Fitness\"\>", ",", "\<\"FoodAndDrink\"\>", ",", "\<\"Health\"\>",
+    ",", "\<\"Indeterminate\"\>", ",", "\<\"Leisure\"\>"}], "}"}]], "Output",E\
+xpressionUUID->"33a681dd-b04b-446c-8033-1a32e21f0779"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{"middle", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"Part", "[", 
+       RowBox[{"#", ",", 
+        RowBox[{"2", ";;", 
+         RowBox[{"-", "2"}]}]}], "]"}], ")"}], "&"}]}], ";", "\n", 
+   RowBox[{"dataFeatures", " ", "=", " ", 
+    RowBox[{"Map", "[", 
+     RowBox[{"middle", ",", "dataContent"}], "]"}]}], ";"}], "*)"}]], "Input",
+ InitializationCell->
+  True,ExpressionUUID->"d7676b30-eb1c-4341-8576-83b34a4b52fb"],
+
+Cell["\<\
+Some extra processing to restructure the problematic feature list:\
+\>", "Text",ExpressionUUID->"215d43a0-843b-48f4-b9b7-6571434e13a0"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"dataFeatures", "=", " ", 
+  RowBox[{"Import", "[", 
+   RowBox[{
+   "\"\<D:\\\\Stats\\\\WA\\\\Summer School\\\\Project\\\\starthere\\\\WikiMap\
+\\\\Assets\\\\wikifeature.content\>\"", ",", " ", "\"\<Table\>\""}], 
+   "]"}]}]], "Input",
+ InitializationCell->
+  True,ExpressionUUID->"fbe61e3c-6957-43fd-bf2c-7878acfa68d3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   FrameBox[GridBox[{
+      {
+       ItemBox[
+        TagBox[
+         RowBox[{"{", 
+          TemplateBox[{"1"},
+           "OutputSizeLimit`Skeleton"], "}"}],
+         Short[#, 5]& ],
+        BaseStyle->{Deployed -> False},
+        StripOnInput->False]},
+      {GridBox[{
+         {
+          TagBox[
+           TooltipBox[
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource[
+                "FEStrings", "sizeBriefExplanation"], StandardForm],
+               ImageSizeCache->{65., {2., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLText",
+             StripOnInput->False],
+            StyleBox[
+             DynamicBox[
+              ToBoxes[
+               FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"], 
+               StandardForm]], DynamicUpdating -> True, StripOnInput -> 
+             False]],
+           Annotation[#, 
+            Style[
+             Dynamic[
+              FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"]], 
+             DynamicUpdating -> True], "Tooltip"]& ], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm],
+               ImageSizeCache->{50., {1., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 12, 29722303192511156902, 5/2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm],
+               ImageSizeCache->{58., {1., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 12, 29722303192511156902, 5 2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm],
+               ImageSizeCache->{43., {1., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 12, 29722303192511156902, Infinity],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm],
+               ImageSizeCache->{72., {1., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm],
+               ImageSizeCache->{72., {1., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           ButtonFunction:>FrontEndExecute[{
+              FrontEnd`SetOptions[
+              FrontEnd`$FrontEnd, 
+               FrontEnd`PreferencesSettings -> {"Page" -> "Advanced"}], 
+              FrontEnd`FrontEndToken["PreferencesDialog"]}],
+           Evaluator->None,
+           Method->"Preemptive"]}
+        },
+        AutoDelete->False,
+        FrameStyle->GrayLevel[0.85],
+        GridBoxDividers->{"Columns" -> {False, {True}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+        GridBoxSpacings->{"Columns" -> {{2}}}]}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxItemSize->{
+      "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], 
+         Offset[1.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    BaseStyle->"OutputSizeLimit",
+    FrameMargins->{{12, 12}, {0, 15}},
+    FrameStyle->GrayLevel[0.85],
+    RoundingRadius->5,
+    StripOnInput->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  If[29722303192511156902 === $SessionID, 
+   Out[12], Message[
+     MessageName[Syntax, "noinfoker"]]; Missing["NotAvailable"]; 
+   Null]]], "Output",ExpressionUUID->"53af41a1-854c-43e7-974e-ff5a228b2084"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Length", "[", "dataFeatures", "]"}]], "Input",ExpressionUUID->"d4425d33-cc5a-4ff0-8377-e2d5ec23b79c"],
+
+Cell[BoxData["4606"], "Output",ExpressionUUID->"f99134b9-4b92-4897-bd37-dbca02978375"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Length", "[", 
+  RowBox[{"dataFeatures", "[", 
+   RowBox[{"[", "1", "]"}], "]"}], "]"}]], "Input",ExpressionUUID->"0ce51941-\
+2c86-42c7-ae79-130154f48edf"],
+
+Cell[BoxData["729"], "Output",ExpressionUUID->"30ef9e7f-f444-4aed-a860-53a06d697f47"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"nodes", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"a1", " ", "=", " ", 
+       RowBox[{"First", "[", "#", "]"}]}], ";", 
+      RowBox[{"a2", " ", "=", " ", 
+       RowBox[{"#", "[", 
+        RowBox[{"[", 
+         RowBox[{"2", ";;", 
+          RowBox[{"-", "2"}]}], "]"}], "]"}]}], ";", 
+      RowBox[{"a3", " ", "=", " ", 
+       RowBox[{"Last", "[", "#", "]"}]}], ";", 
+      RowBox[{"{", 
+       RowBox[{"a1", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"a2", " ", "->", " ", "a3"}], "}"}]}], "}"}]}], ")"}], 
+    "&"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dataGraph", " ", "=", " ", 
+   RowBox[{"Map", "[", 
+    RowBox[{"nodes", ",", " ", "dataContent"}], "]"}]}], ";"}]}], "Input",
+ InitializationCell->
+  True,ExpressionUUID->"0d7924ac-2b08-4279-8838-a04891caf48f"],
+
+Cell[TextData[StyleBox["Cluster classify does not do a good job", \
+"Section"]], "Text",
+ CellChangeTimes->{{3.708006735459981*^9, 
+  3.7080067478967776`*^9}},ExpressionUUID->"02d11fe4-d6f1-4414-b3d1-\
+cba825c21ff0"],
+
+Cell["\<\
+This is just a demonstration of ClusterClassify. It takes very long time and \
+does not give a good accuracy\
+\>", "Text",ExpressionUUID->"f595b495-e58c-489c-a0db-94a114a43c24"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Length", "[", "uniqueLabels", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"clusterClassifier", " ", "=", " ", 
+   RowBox[{"ClusterClassify", "[", 
+    RowBox[{"dataFeatures", ",", " ", 
+     RowBox[{"Length", "[", "uniqueLabels", "]"}]}], "]"}]}], ";"}]}], "Input",\
+ExpressionUUID->"09357e35-4661-4f0c-bdb0-d1bd02e6f2bc"],
+
+Cell[BoxData["27"], "Output",ExpressionUUID->"9b4eafdf-d136-4032-a932-3fd234ba2e1f"]
+}, Open  ]],
+
+Cell[BoxData[
+ TagBox[
+  TemplateBox[{RowBox[{
+      StyleBox[
+       TagBox["ClassifierFunction", "SummaryHead"], 
+       "NonInterpretableSummary"], 
+      StyleBox["[", "NonInterpretableSummary"], 
+      DynamicModuleBox[{Typeset`open$$ = True}, 
+       PanelBox[
+        PaneSelectorBox[{False -> GridBox[{{
+              PaneBox[
+               ButtonBox[
+                DynamicBox[
+                 FEPrivate`FrontEndResource[
+                 "FEBitmaps", "SquarePlusIconMedium"], 
+                 ImageSizeCache -> {11., {0., 11.}}], Appearance -> None, 
+                ButtonFunction :> (Typeset`open$$ = True), Evaluator -> 
+                Automatic, Method -> "Preemptive"], 
+               Alignment -> {Center, Center}, ImageSize -> 
+               Dynamic[{
+                 Automatic, 
+                  3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                   Magnification])}]], 
+              GraphicsBox[{{{
+                  GrayLevel[0.45], 
+                  PointSize[0.13], 
+                  
+                  PointBox[{{0.9821769431797024, -0.440194219686987}, {
+                   1.1339776261519132`, 0.8056918676854272}, {
+                   0.5279892326667741, 0.6574306661126254}, {
+                   0.022147046479890797`, 1.4937877187998898`}}], {
+                   GrayLevel[0.7], 
+                   
+                   PointBox[{{-0.9815166384819979, 
+                    0.15045697525228735`}, {-0.5923526886966953, \
+-0.33441771553094035`}, {-0.005656646679640442, -1.462421365651345}, \
+{-1.0734370436522753`, -1.3729645043477454`}}]}}}, {{
+                  GrayLevel[0.55], 
+                  AbsoluteThickness[1.5], 
+                  LineBox[{{-1., 1.5}, {1, -1.6}}]}}}, AspectRatio -> 1, 
+               Axes -> {False, False}, AxesLabel -> {None, None}, 
+               AxesOrigin -> {0, 0}, Background -> GrayLevel[0.94], 
+               BaseStyle -> {FontFamily -> "Arial", 
+                 AbsoluteThickness[1.5]}, DisplayFunction -> Identity, 
+               Frame -> {{True, True}, {True, True}}, 
+               FrameLabel -> {{None, None}, {None, None}}, FrameStyle -> 
+               Directive[
+                 Thickness[Tiny], 
+                 GrayLevel[0.7]], FrameTicks -> {{None, None}, {None, None}}, 
+               GridLines -> {None, None}, ImageSize -> 
+               Dynamic[{
+                 Automatic, 
+                  3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                   Magnification])}], LabelStyle -> {FontFamily -> "Arial"}, 
+               Method -> {"ScalingFunctions" -> None}, 
+               PlotRange -> {{-1., 1}, {-1.3, 1.1}}, PlotRangeClipping -> 
+               True, PlotRangePadding -> {{0.7, 0.7}, {0.7, 0.7}}, 
+               Ticks -> {None, None}], 
+              GridBox[{{
+                 RowBox[{
+                   TagBox["\"Input type: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox[
+                    TemplateBox[{"\"BooleanVector\"", 
+                    StyleBox[
+                    
+                    TemplateBox[{"\" (length: \"", "1433", "\")\""}, 
+                    "RowDefault"], 
+                    GrayLevel[0.5], StripOnInput -> False]}, "RowDefault"], 
+                    "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox["\"Number of classes: \"", "SummaryItemAnnotation"],
+                    "\[InvisibleSpace]", 
+                   TagBox[
+                    TagBox[
+                    TooltipBox["7", 
+                    TagBox[
+                    
+                    TemplateBox[{
+                    ",", "\",\"", "1", "2", "3", "4", "5", "6", "7"}, 
+                    "RowWithSeparators"], Short[#, 20]& ]], Annotation[#, 
+                    Short[
+                    Row[{1, 2, 3, 4, 5, 6, 7}, ","], 20], "Tooltip"]& ], 
+                    "SummaryItem"]}]}}, AutoDelete -> False, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+               GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+               GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+            False, BaselinePosition -> {1, 1}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], True -> 
+          GridBox[{{
+              PaneBox[
+               ButtonBox[
+                DynamicBox[
+                 FEPrivate`FrontEndResource[
+                 "FEBitmaps", "SquareMinusIconMedium"]], Appearance -> None, 
+                ButtonFunction :> (Typeset`open$$ = False), Evaluator -> 
+                Automatic, Method -> "Preemptive"], 
+               Alignment -> {Center, Center}, ImageSize -> 
+               Dynamic[{
+                 Automatic, 
+                  3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                   Magnification])}]], 
+              GraphicsBox[{{{
+                  GrayLevel[0.45], 
+                  PointSize[0.13], 
+                  
+                  PointBox[{{0.9821769431797024, -0.440194219686987}, {
+                   1.1339776261519132`, 0.8056918676854272}, {
+                   0.5279892326667741, 0.6574306661126254}, {
+                   0.022147046479890797`, 1.4937877187998898`}}], {
+                   GrayLevel[0.7], 
+                   
+                   PointBox[{{-0.9815166384819979, 
+                    0.15045697525228735`}, {-0.5923526886966953, \
+-0.33441771553094035`}, {-0.005656646679640442, -1.462421365651345}, \
+{-1.0734370436522753`, -1.3729645043477454`}}]}}}, {{
+                  GrayLevel[0.55], 
+                  AbsoluteThickness[1.5], 
+                  LineBox[{{-1., 1.5}, {1, -1.6}}]}}}, AspectRatio -> 1, 
+               Axes -> {False, False}, AxesLabel -> {None, None}, 
+               AxesOrigin -> {0, 0}, Background -> GrayLevel[0.94], 
+               BaseStyle -> {FontFamily -> "Arial", 
+                 AbsoluteThickness[1.5]}, DisplayFunction -> Identity, 
+               Frame -> {{True, True}, {True, True}}, 
+               FrameLabel -> {{None, None}, {None, None}}, FrameStyle -> 
+               Directive[
+                 Thickness[Tiny], 
+                 GrayLevel[0.7]], FrameTicks -> {{None, None}, {None, None}}, 
+               GridLines -> {None, None}, ImageSize -> 
+               Dynamic[{
+                 Automatic, 
+                  3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                   Magnification])}], LabelStyle -> {FontFamily -> "Arial"}, 
+               Method -> {"ScalingFunctions" -> None}, 
+               PlotRange -> {{-1., 1}, {-1.3, 1.1}}, PlotRangeClipping -> 
+               True, PlotRangePadding -> {{0.7, 0.7}, {0.7, 0.7}}, 
+               Ticks -> {None, None}], 
+              GridBox[{{
+                 RowBox[{
+                   TagBox["\"Input type: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox[
+                    TemplateBox[{"\"BooleanVector\"", 
+                    StyleBox[
+                    
+                    TemplateBox[{"\" (length: \"", "1433", "\")\""}, 
+                    "RowDefault"], 
+                    GrayLevel[0.5], StripOnInput -> False]}, "RowDefault"], 
+                    "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox["\"Number of classes: \"", "SummaryItemAnnotation"],
+                    "\[InvisibleSpace]", 
+                   TagBox[
+                    TagBox[
+                    TooltipBox["7", 
+                    TagBox[
+                    
+                    TemplateBox[{
+                    ",", "\",\"", "1", "2", "3", "4", "5", "6", "7"}, 
+                    "RowWithSeparators"], Short[#, 20]& ]], Annotation[#, 
+                    Short[
+                    Row[{1, 2, 3, 4, 5, 6, 7}, ","], 20], "Tooltip"]& ], 
+                    "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox["\"Method: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["\"Agglomerate\"", "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox[
+                   "\"Number of training examples: \"", 
+                    "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                   TagBox["2708", "SummaryItem"]}]}}, AutoDelete -> False, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+               GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+               GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+            False, BaselinePosition -> {1, 1}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]}, 
+         Dynamic[Typeset`open$$], ImageSize -> Automatic], BaselinePosition -> 
+        Baseline], DynamicModuleValues :> {}], 
+      StyleBox["]", "NonInterpretableSummary"]}]},
+   "CopyTag",
+   DisplayFunction->(#& ),
+   InterpretationFunction->("ClassifierFunction[\[Ellipsis]]"& )],
+  False,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Input",
+ CellChangeTimes->{
+  3.708005027729596*^9},ExpressionUUID->"3b728cb9-e7c4-495d-9ae4-\
+8c6abd97757e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"kk", " ", "=", " ", "100"}], "\[IndentingNewLine]", 
+ RowBox[{"clusterClassifier", "[", 
+  RowBox[{"dataFeatures", "[", 
+   RowBox[{"[", 
+    RowBox[{";;", "100"}], "]"}], "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"dataLabels", "[", 
+  RowBox[{"[", "kk", "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.70800532110813*^9, 3.708005460854509*^9}, {
+  3.708005698804981*^9, 
+  3.708005713889691*^9}},ExpressionUUID->"64bed108-a8e4-453d-8c34-\
+1bf7c0835fc7"],
+
+Cell[BoxData["100"], "Output",
+ CellChangeTimes->{{3.7080053489889174`*^9, 3.708005390352435*^9}, {
+   3.7080054413552027`*^9, 3.7080054616781545`*^9}, 
+   3.7080057144318905`*^9},ExpressionUUID->"07327036-1761-4532-88ad-\
+bb34e5863648"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", 
+   ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", 
+   "1", ",", "4", ",", "1", ",", "4", ",", "1", ",", "1", ",", "1", ",", "1", 
+   ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", 
+   "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", 
+   ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", 
+   "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "5", ",", "1", 
+   ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", 
+   "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", 
+   ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", 
+   "1", ",", "1", ",", "6", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", 
+   ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", 
+   "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", 
+   ",", "1", ",", "4"}], "}"}]], "Output",
+ CellChangeTimes->{{3.7080053489889174`*^9, 3.708005390352435*^9}, {
+   3.7080054413552027`*^9, 3.7080054616781545`*^9}, 
+   3.7080057151194563`*^9},ExpressionUUID->"9886bb50-7a85-455f-b237-\
+42994383eba8"],
+
+Cell[BoxData["\<\"Probabilistic_Methods\"\>"], "Output",
+ CellChangeTimes->{{3.7080053489889174`*^9, 3.708005390352435*^9}, {
+   3.7080054413552027`*^9, 3.7080054616781545`*^9}, 
+   3.7080057151234503`*^9},ExpressionUUID->"091e2bc0-bbd6-48ee-a100-\
+28c21b3274fe"]
+}, Open  ]],
+
+Cell[TextData[StyleBox["Local classifier", "Title"]], "Text",
+ CellChangeTimes->{{3.707836793672414*^9, 
+  3.70783679923236*^9}},ExpressionUUID->"a0ec083b-e1ca-4db5-93a1-\
+d0ac29401cd5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"localClasFit", "[", 
+     RowBox[{
+     "dataFeatures_", ",", " ", "dataLabels_", ",", " ", "randomIds_"}], 
+     "]"}], " ", ":=", " ", 
+    RowBox[{"(", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"selectedFeatures", " ", "=", 
+       RowBox[{"Part", "[", 
+        RowBox[{"dataFeatures", ",", " ", "randomIds"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"selectedLabels", " ", "=", " ", 
+       RowBox[{"Part", "[", 
+        RowBox[{"dataLabels", ",", " ", "randomIds"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Classify", "[", 
+       RowBox[{
+        RowBox[{"selectedFeatures", " ", "\[Rule]", " ", "selectedLabels"}], 
+        ",", " ", 
+        RowBox[{"Method", "\[Rule]", "\"\<LogisticRegression\>\""}]}], 
+       "]"}]}], ")"}]}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"pass", " ", "regression", " ", 
+    RowBox[{"method", "?"}]}], "*)"}], "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.707840622353611*^9, 3.7078406329696636`*^9}, {
+   3.707840742552352*^9, 3.707840783825798*^9}, {3.7078411335589876`*^9, 
+   3.707841162899002*^9}, {3.7078420449062552`*^9, 3.707842047721078*^9}, {
+   3.707842103575349*^9, 3.707842171675619*^9}, {3.7078422149904337`*^9, 
+   3.707842219083689*^9}, 3.7078425253584814`*^9, {3.7078439458044033`*^9, 
+   3.70784395606697*^9}, {3.7078552771215067`*^9, 3.7078553317904596`*^9}, {
+   3.7079205871701126`*^9, 3.707920590199148*^9}, {3.7079919068359222`*^9, 
+   3.7079919419989614`*^9}, {3.7079994837021055`*^9, 
+   3.7079994837021055`*^9}, {3.7079995300604534`*^9, 
+   3.7079995300604534`*^9}},ExpressionUUID->"47743ad0-e1dd-4121-ab06-\
+d21872844d5a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"localClasPredict", " ", ":=", " ", 
+    RowBox[{
+     RowBox[{"(", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"selectedFeatures", " ", "=", 
+        RowBox[{"Part", "[", 
+         RowBox[{"dataFeatures", ",", " ", "randomIds"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"#", "[", "selectedFeatures", "]"}]}], ")"}], "&"}]}], ";"}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.707842299117173*^9, 3.707842326245694*^9}, {
+   3.707842483097187*^9, 3.7078425211301336`*^9}, 3.707920609165102*^9, 
+   3.7079995300604534`*^9},ExpressionUUID->"157aa3e9-c322-4e7b-a498-\
+c6696a944b0f"],
+
+Cell[TextData[StyleBox["Relational classifier", "Section"]], "Text",
+ CellChangeTimes->{{3.7079108880143757`*^9, 
+  3.7079108985084205`*^9}},ExpressionUUID->"a3a07045-0f16-47ac-b112-\
+586bea09ed0e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"relClasFit", "[", 
+     RowBox[{"data_", ",", "indices_"}], "]"}], " ", ":=", " ", 
+    RowBox[{"(", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"selectedFeatures", " ", "=", 
+       RowBox[{"Part", "[", 
+        RowBox[{"dataFeatures", ",", " ", "indices"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"selectedNodes", " ", "=", " ", 
+       RowBox[{"Part", "[", 
+        RowBox[{"dataIds", ",", " ", "indices"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"selectedLabels", " ", "=", " ", 
+       RowBox[{"Part", "[", 
+        RowBox[{"dataLabels", ",", " ", "indices"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"conditionalMap", " ", "=", " ", 
+       RowBox[{"Transpose", "[", 
+        RowBox[{"{", 
+         RowBox[{"selectedNodes", ",", " ", "selectedLabels"}], "}"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"For", " ", "[", 
+       RowBox[{
+        RowBox[{"i", " ", "=", " ", "1"}], ",", " ", 
+        RowBox[{"i", " ", "<=", 
+         RowBox[{"Length", "[", "indices", "]"}]}], ",", " ", 
+        RowBox[{"i", "++"}], ",", 
+        RowBox[{"(", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"selectedFeatures", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], " ", "=", " ", 
+           RowBox[{"Table", "[", 
+            RowBox[{"0", ",", 
+             RowBox[{"Length", "[", "uniqueLabels", "]"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"selectedFeatures", "[", "i", "]"}], " ", "=", " ", 
+           RowBox[{"aggregate", "[", 
+            RowBox[{"dataLinks", ",", " ", 
+             RowBox[{"selectedNodes", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], ",", 
+             RowBox[{"selectedLabels", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], ",", " ", 
+             RowBox[{"selectedFeatures", "[", 
+              RowBox[{"[", "i", "]"}], "]"}]}], "]"}]}], ";"}], 
+         "\[IndentingNewLine]", ")"}]}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Classify", "[", 
+       RowBox[{
+        RowBox[{"selectedFeatures", " ", "\[Rule]", " ", "selectedLabels"}], 
+        ",", " ", 
+        RowBox[{"Method", "\[Rule]", "\"\<LogisticRegression\>\""}]}], 
+       "]"}]}], "\[IndentingNewLine]", ")"}]}], ";"}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.7079109062919116`*^9, 3.7079109250552855`*^9}, {
+   3.707911356455531*^9, 3.7079114229696364`*^9}, {3.707912423949353*^9, 
+   3.7079124253200865`*^9}, {3.707915507260125*^9, 3.7079155412045774`*^9}, {
+   3.7079182776559367`*^9, 3.70791828523273*^9}, {3.707920301917892*^9, 
+   3.707920316164131*^9}, {3.707920641695405*^9, 3.707920678076332*^9}, {
+   3.7079221297168837`*^9, 3.707922147750065*^9}, {3.707922318288107*^9, 
+   3.707922351401554*^9}, {3.707922386002488*^9, 3.7079224482270837`*^9}, {
+   3.707922517767579*^9, 3.707922569289756*^9}, {3.7079307516314077`*^9, 
+   3.7079307703804607`*^9}, {3.7079355670809517`*^9, 3.7079355959974375`*^9}, 
+   3.7079356585912*^9, 3.7079357070611343`*^9, {3.7079357386892705`*^9, 
+   3.7079357475798645`*^9}, {3.707935794866175*^9, 3.707935795983467*^9}, 
+   3.7079993389361925`*^9, {3.7079994837177544`*^9, 
+   3.707999530076082*^9}},ExpressionUUID->"aac60b08-64b0-4871-a440-\
+e4c8c62f31c2"],
+
+Cell[BoxData[""], "Input",ExpressionUUID->"b6bf0a4a-0ab9-4d39-9868-dce9c883f73f"],
+
+Cell[TextData[StyleBox["Process", "Section"]], "Text",
+ CellChangeTimes->{{3.7078191630059104`*^9, 
+  3.7078191659627495`*^9}},ExpressionUUID->"251c23d7-165a-4a15-afd2-\
+4c3c340cf813"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"budget", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.1", ",", "0.2", ",", "0.3", ",", "0.4", ",", "0.6", ",", "0.7", ",", 
+     "0.8", ",", "0.9"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"n", "=", 
+   RowBox[{"Range", "[", 
+    RowBox[{"Length", "[", "dataGraph", "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"numTrials", " ", "=", " ", "1"}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.7078482163905573`*^9, 3.707848290172883*^9}, {
+   3.707851602654173*^9, 3.707851608158809*^9}, 3.7079996806723957`*^9, 
+   3.708007159549432*^9},ExpressionUUID->"6edc0f78-271d-4b36-88f5-\
+20c02ebbd997"],
+
+Cell[BoxData["1"], "Output",ExpressionUUID->"f315e7e1-60af-4326-9340-ed6260f9e5de"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"icaAccuracies", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"b", " ", "=", " ", "0.1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"sz", " ", "=", " ", 
+  RowBox[{"Round", "[", 
+   RowBox[{
+    RowBox[{"Length", "[", "dataContent", "]"}], " ", "*", "b"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dataIds", " ", "=", " ", 
+   RowBox[{"Range", "@", 
+    RowBox[{"Length", "[", "dataContent", "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"testIds", "=", 
+  RowBox[{
+  "dataIds", "~", "RandomSample", "~", "sz"}]}], "\[IndentingNewLine]", 
+ RowBox[{"trainIds", "=", 
+  RowBox[{"dataIds", "~", "Complement", "~", "testIds"}]}]}], "Input",
+ CellChangeTimes->{{3.7078482163905573`*^9, 3.7078482722283764`*^9}, {
+  3.707851585330843*^9, 3.707851585446695*^9}, {3.7078525393606105`*^9, 
+  3.7078525562719536`*^9}, {3.7078528859858665`*^9, 3.707852899611486*^9}, {
+  3.70800849843279*^9, 3.708008522084196*^9}, {3.70800905618908*^9, 
+  3.708009099834264*^9}, {3.708009188817999*^9, 3.7080092087833595`*^9}, {
+  3.708009656385902*^9, 3.7080096649847527`*^9}, {3.708010344524485*^9, 
+  3.70801034713559*^9}, {3.708011037667985*^9, 3.708011057948967*^9}, {
+  3.7080114737041607`*^9, 3.708011478410039*^9}, {3.708011987052166*^9, 
+  3.7080120262051105`*^9}},ExpressionUUID->"4394a5b0-f97f-4df5-9ede-\
+8ea3fa4539ee"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"selectedFeatures", " ", ":=", 
+   RowBox[{"Part", "[", 
+    RowBox[{"dataFeatures", ",", " ", "trainIds"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"selectedLabels", " ", ":=", " ", 
+    RowBox[{"Part", "[", 
+     RowBox[{"dataLabels", ",", " ", "trainIds"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"clusterClf", " ", ":=", " ", 
+     RowBox[{"ClusterClassify", "[", 
+      RowBox[{"selectedFeatures", ",", " ", 
+       RowBox[{"Length", "[", "uniqueLabels", "]"}]}], "]"}]}], ";"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"localClf", " ", ":=", " ", 
+  RowBox[{"Classify", "[", 
+   RowBox[{
+    RowBox[{"selectedFeatures", " ", "\[Rule]", " ", "selectedLabels"}], ",", 
+    " ", 
+    RowBox[{"Method", "\[Rule]", "\"\<LogisticRegression\>\""}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"testFeatures", " ", ":=", 
+   RowBox[{"Part", "[", 
+    RowBox[{"dataFeatures", ",", " ", "testIds"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.7078482163905573`*^9, 3.7078482722283764`*^9}, {
+  3.707851585330843*^9, 3.707851585446695*^9}, {3.7078525393606105`*^9, 
+  3.7078525562719536`*^9}, {3.7078528859858665`*^9, 3.707852899611486*^9}, {
+  3.70800849843279*^9, 3.708008522084196*^9}, {3.70800905618908*^9, 
+  3.708009099834264*^9}, {3.708009188817999*^9, 3.7080092087833595`*^9}, {
+  3.708009656385902*^9, 3.7080096649847527`*^9}, {3.708010344524485*^9, 
+  3.70801034713559*^9}, {3.708011037667985*^9, 
+  3.7080110684772587`*^9}},ExpressionUUID->"5596a6bb-e0e5-4ec7-900c-\
+42e1f6078159"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"testLabels", " ", "=", " ", 
+    RowBox[{"Map", "[", 
+     RowBox[{"localClf", ",", " ", "testFeatures"}], "]"}]}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"True", " ", "dataLabels"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"yTrue", "=", 
+    RowBox[{"Part", "[", 
+     RowBox[{"dataLabels", ",", "  ", "testIds"}], "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.7078482163905573`*^9, 3.7078482722283764`*^9}, {
+  3.707851585330843*^9, 3.707851585446695*^9}, {3.7078525393606105`*^9, 
+  3.7078525562719536`*^9}, {3.7078528859858665`*^9, 3.707852899611486*^9}, {
+  3.70800849843279*^9, 3.708008522084196*^9}, {3.70800905618908*^9, 
+  3.708009099834264*^9}, {3.708009188817999*^9, 3.7080092087833595`*^9}, {
+  3.708009656385902*^9, 3.7080096649847527`*^9}, {3.708010344524485*^9, 
+  3.7080103786712003`*^9}, {3.708010410211692*^9, 3.708010415656695*^9}, {
+  3.7080104493801847`*^9, 3.7080104515445557`*^9}, {3.7080106293217525`*^9, 
+  3.708010759262315*^9}, {3.7080110911632705`*^9, 3.7080111403354197`*^9}, {
+  3.708011177422537*^9, 3.708011214226742*^9}, {3.708011461227036*^9, 
+  3.7080114620007668`*^9}, {3.708011956308861*^9, 3.7080119569376717`*^9}, {
+  3.7080121295049696`*^9, 3.7080121378007455`*^9}, {3.7080123257422843`*^9, 
+  3.708012436627406*^9}},ExpressionUUID->"31b15472-d400-486b-b28a-\
+d7f3730202e3"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"FoodAndDrink\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Sports\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"FoodAndDrink\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Health\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"SchoolAndUniversity\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Transport\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"0}\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Books\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Books\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"0}\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Books\"\>", ",", "\<\"Sports\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"VideoGames\"\>", 
+   ",", "\<\"SchoolAndUniversity\"\>", ",", "\<\"Music\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"0}\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Books\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"FoodAndDrink\"\>", 
+   ",", "\<\"FoodAndDrink\"\>", ",", "\<\"SchoolAndUniversity\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"VideoGames\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Television\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Weather\"\>", ",", "\<\"VideoGames\"\>",
+    ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Health\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"QuotesAndLifePhilosophy\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"CareerAndMoney\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"FoodAndDrink\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Health\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Books\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"SchoolAndUniversity\"\>", 
+   ",", "\<\"Transport\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>",
+    ",", "\<\"Indeterminate\"\>", ",", "\<\"SchoolAndUniversity\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"PetsAndAnimals\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"QuotesAndLifePhilosophy\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Music\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Technology\"\>", ",", "\<\"Weather\"\>",
+    ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>",
+    ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Fitness\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"0}\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Health\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"FoodAndDrink\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Books\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"QuotesAndLifePhilosophy\"\>", 
+   ",", "\<\"Books\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"SocialMedia\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Books\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Sports\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Health\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"CareerAndMoney\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"SchoolAndUniversity\"\>", 
+   ",", "\<\"VideoGames\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Sports\"\>", ",", "\<\"Health\"\>", ",", "\<\"Indeterminate\"\>",
+    ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"SchoolAndUniversity\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"PetsAndAnimals\"\>", ",", "\<\"Travel\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"SchoolAndUniversity\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"SchoolAndUniversity\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"QuotesAndLifePhilosophy\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"FoodAndDrink\"\>", ",", "\<\"Television\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Health\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"QuotesAndLifePhilosophy\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Health\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Fashion\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Travel\"\>", 
+   ",", "\<\"QuotesAndLifePhilosophy\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"SchoolAndUniversity\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"CareerAndMoney\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Technology\"\>", ",", "\<\"Health\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>"}], "}"}]], "Output",ExpressionUUID->"2616200d-\
+8fd3-4bd7-a338-17b4eb3ccac5"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"FoodAndDrink\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"PetsAndAnimals\"\>", ",", "\<\"CareerAndMoney\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Music\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Books\"\>", ",", "\<\"CareerAndMoney\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"PetsAndAnimals\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Weather\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"SchoolAndUniversity\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"FoodAndDrink\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Health\"\>", ",", "\<\"Weather\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"FoodAndDrink\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Sports\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"SchoolAndUniversity\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Fitness\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", ",", "\<\"0}\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Books\"\>", 
+   ",", "\<\"PetsAndAnimals\"\>", ",", "\<\"CareerAndMoney\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"QuotesAndLifePhilosophy\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"0}\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Sports\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Health\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"FoodAndDrink\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"VideoGames\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"VideoGames\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Health\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"0}\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Transport\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"SchoolAndUniversity\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Weather\"\>", ",", "\<\"CareerAndMoney\"\>", 
+   ",", "\<\"Movies\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"0}\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Health\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"SchoolAndUniversity\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Health\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"FoodAndDrink\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Books\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Books\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"SchoolAndUniversity\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Relationships\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"0}\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Travel\"\>", 
+   ",", "\<\"FoodAndDrink\"\>", ",", "\<\"PetsAndAnimals\"\>", 
+   ",", "\<\"Books\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"QuotesAndLifePhilosophy\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"CareerAndMoney\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Movies\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"PetsAndAnimals\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"FoodAndDrink\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Transport\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"CareerAndMoney\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Health\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Travel\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Books\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Books\"\>", 
+   ",", "\<\"QuotesAndLifePhilosophy\"\>", ",", "\<\"Fitness\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Travel\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Music\"\>", ",", "\<\"Politics\"\>", ",", "\<\"VideoGames\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"VideoGames\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"VideoGames\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"PetsAndAnimals\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"QuotesAndLifePhilosophy\"\>", 
+   ",", "\<\"QuotesAndLifePhilosophy\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"CareerAndMoney\"\>", 
+   ",", "\<\"SchoolAndUniversity\"\>", ",", "\<\"Transport\"\>", 
+   ",", "\<\"Relationships\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Transport\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Fashion\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Sports\"\>", ",", "\<\"Music\"\>", 
+   ",", "\<\"0}\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"VideoGames\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"QuotesAndLifePhilosophy\"\>", 
+   ",", "\<\"PetsAndAnimals\"\>", ",", "\<\"Travel\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Health\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"FoodAndDrink\"\>", 
+   ",", "\<\"FoodAndDrink\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Movies\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Books\"\>", ",", "\<\"Sports\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Travel\"\>", 
+   ",", "\<\"Transport\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>",
+    ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>",
+    ",", "\<\"Indeterminate\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Travel\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"QuotesAndLifePhilosophy\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Books\"\>", ",", "\<\"0}\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"SchoolAndUniversity\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Books\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Sports\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"CareerAndMoney\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Movies\"\>", ",", "\<\"Travel\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"QuotesAndLifePhilosophy\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"0}\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Sports\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"SchoolAndUniversity\"\>", ",", "\<\"Books\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Movies\"\>", 
+   ",", "\<\"Sports\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Transport\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"SchoolAndUniversity\"\>", ",", "\<\"SchoolAndUniversity\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"SocialMedia\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"CareerAndMoney\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Books\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Travel\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Books\"\>", 
+   ",", "\<\"Travel\"\>", ",", "\<\"Health\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"SchoolAndUniversity\"\>", ",", "\<\"Sports\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"SchoolAndUniversity\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"QuotesAndLifePhilosophy\"\>", 
+   ",", "\<\"Health\"\>", ",", "\<\"Travel\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"QuotesAndLifePhilosophy\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Health\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Music\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"0}\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Books\"\>", ",", "\<\"Indeterminate\"\>", ",", "\<\"Books\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"QuotesAndLifePhilosophy\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Transport\"\>", 
+   ",", "\<\"SchoolAndUniversity\"\>", ",", "\<\"VideoGames\"\>", 
+   ",", "\<\"CareerAndMoney\"\>", ",", "\<\"VideoGames\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"QuotesAndLifePhilosophy\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"SchoolAndUniversity\"\>", ",", "\<\"Leisure\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"SocialMedia\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Technology\"\>", 
+   ",", "\<\"SchoolAndUniversity\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"CareerAndMoney\"\>", 
+   ",", "\<\"SchoolAndUniversity\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Indeterminate\"\>", ",", "\<\"Books\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Fitness\"\>", ",", "\<\"CareerAndMoney\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"CareerAndMoney\"\>", 
+   ",", "\<\"Transport\"\>", ",", "\<\"Politics\"\>", 
+   ",", "\<\"Technology\"\>", ",", "\<\"Indeterminate\"\>", 
+   ",", "\<\"Politics\"\>", ",", "\<\"Politics\"\>"}], "}"}]], "Output",Expres\
+sionUUID->"98e731ee-8b21-4217-811f-402240b6b8e2"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"localAccuracy", " ", ":=", 
+   RowBox[{"ClassifierMeasurements", "[", 
+    RowBox[{"localClf", ",", 
+     RowBox[{"testFeatures", " ", "\[Rule]", " ", "yTrue"}], ",", 
+     "\"\<Accuracy\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", "localAccuracy", "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.7078482163905573`*^9, 3.7078482722283764`*^9}, {
+   3.707851585330843*^9, 3.707851585446695*^9}, {3.7078525393606105`*^9, 
+   3.7078525562719536`*^9}, {3.7078528859858665`*^9, 3.707852899611486*^9}, {
+   3.70800849843279*^9, 3.708008522084196*^9}, {3.70800905618908*^9, 
+   3.708009099834264*^9}, {3.708009188817999*^9, 3.7080092087833595`*^9}, {
+   3.708009656385902*^9, 3.7080096649847527`*^9}, {3.708010344524485*^9, 
+   3.7080103506102257`*^9}, {3.7080122807127047`*^9, 
+   3.7080123047416534`*^9}, {3.7080129303877773`*^9, 3.708012983903067*^9}, {
+   3.708013063430513*^9, 3.7080130678337283`*^9}, 3.7080133807808647`*^9, {
+   3.7080136122841854`*^9, 3.7080136486706357`*^9}, {3.708013993544565*^9, 
+   3.708013994607973*^9}},ExpressionUUID->"514b709d-2720-4a52-aaec-\
+cba9efb3ab05"],
+
+Cell[BoxData["0.4403470715835141`"], "Print",ExpressionUUID->"f1bcd49a-00e7-4f35-a012-73744df83edd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"localClf", "[", 
+  RowBox[{
+   RowBox[{"testFeatures", "[", 
+    RowBox[{"[", "2", "]"}], "]"}], ",", "\"\<TopProbabilities\>\""}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.7080144753114166`*^9, 
+  3.7080145048936253`*^9}},ExpressionUUID->"a2dfa0d7-83bf-4624-be83-\
+a9db8f62c5ca"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"Politics\"\>", "\[Rule]", "0.9858685672257728`"}], 
+  "}"}]], "Output",ExpressionUUID->"edbb7a19-6fae-4b61-9a09-43b045270ba6"]
+}, Open  ]],
+
+Cell[TextData[StyleBox["Test the same in a relational classifier", \
+"Section"]], "Text",
+ CellChangeTimes->{{3.708014382387124*^9, 3.708014390796815*^9}, {
+  3.7080184315318365`*^9, 
+  3.7080184318525977`*^9}},ExpressionUUID->"d9effe96-916f-4c65-8455-\
+7b29c9c239a8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"selectedNodes", " ", "=", " ", 
+   RowBox[{"Part", "[", 
+    RowBox[{"dataIds", ",", " ", "trainIds"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.708012991699292*^9, 3.7080129992388964`*^9}, {
+   3.7080140006134586`*^9, 3.708014009887382*^9}, 3.708018447171028*^9, {
+   3.7080186030304155`*^9, 3.7080186098879952`*^9}, {3.7080186576360493`*^9, 
+   3.7080186665520773`*^9}, {3.708018704194168*^9, 3.708018737655816*^9}, {
+   3.7080187817484074`*^9, 3.708018786023158*^9}, 
+   3.7080206942593336`*^9},ExpressionUUID->"495da59b-93fe-4a08-9f8d-\
+094ea314ecaf"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"conditionalMap", " ", "=", " ", 
+    RowBox[{"Transpose", "[", 
+     RowBox[{"{", 
+      RowBox[{"selectedNodes", ",", " ", "selectedLabels"}], "}"}], "]"}]}], 
+   ";"}], "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.708012991699292*^9, 3.7080129992388964`*^9}, {
+   3.7080140006134586`*^9, 3.708014009887382*^9}, 3.708018447171028*^9, {
+   3.7080186030304155`*^9, 3.7080186098879952`*^9}, {3.7080186576360493`*^9, 
+   3.7080186665520773`*^9}, {3.708018704194168*^9, 3.708018737655816*^9}, {
+   3.7080187817484074`*^9, 3.708018786023158*^9}, {3.7080206942593336`*^9, 
+   3.7080206964348*^9}, {3.708020831900608*^9, 
+   3.7080208466889677`*^9}},ExpressionUUID->"13ff76f8-0381-428a-b469-\
+fa9cdda3af2a"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.7080208984809713`*^9, 3.7080209031817527`*^9}, {
+   3.708020974141577*^9, 3.7080210021406207`*^9}, 
+   3.7080216037876673`*^9},ExpressionUUID->"94945a70-dea1-454e-b629-\
+0e36dec43b28"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"selectedFeatures", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{"0", ",", 
+     RowBox[{"Length", "[", "trainIds", "]"}], ",", 
+     RowBox[{"Length", "[", "uniqueLabels", "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.708021629843174*^9, 
+  3.7080216315878*^9}},ExpressionUUID->"a116bc28-fe87-4a87-974e-abc8ccc32b2c"],
+
+Cell[TextData[StyleBox["Aggregator", "Title"]], "Text",
+ CellChangeTimes->{{3.707845072719038*^9, 
+  3.707845076001398*^9}},ExpressionUUID->"2b0d12c7-f4c8-46f4-872e-\
+5b2d1bad43c2"],
+
+Cell["\<\
+Aggregator creates a list of dataFeatures from the neighbour, that is by \
+assigning weights to the dataLabels that were present in the neighbours\
+\>", "Text",
+ CellChangeTimes->{{3.707933721871681*^9, 3.7079337570289106`*^9}, {
+   3.707933801354662*^9, 3.7079338246275396`*^9}, 3.7079994837333527`*^9, 
+   3.7079995300917053`*^9},ExpressionUUID->"1abbca0d-08d7-430e-b011-\
+e1de4fc121a9"],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", "aggregate", "]"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.708029863530896*^9, 
+  3.708029867816682*^9}},ExpressionUUID->"b4178c73-26a7-4acb-96a5-\
+6b44128971e5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"aggregate", "[", 
+   RowBox[{"conditionalMap_", ",", "vertice_", ",", "features1_"}], "]"}], 
+  " ", ":=", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"returns", " ", "a", " ", 
+     RowBox[{"matrix", ":", " ", 
+      RowBox[{
+      "rows", " ", "equal", " ", "to", " ", "training", " ", "sample"}]}]}], 
+    ",", " ", 
+    RowBox[{
+    "columns", " ", "equal", " ", "to", " ", "dataLabels", " ", "equal", " ", 
+     "to", " ", "the", " ", "amount", " ", "of", " ", "dataLabels", " ", "in",
+      " ", "the", " ", "find", " ", "all", " ", "connected", " ", 
+     "indices"}]}], "*)"}], 
+  RowBox[{"(", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tempFeatures", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"List", "[", "features1", "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"neighboursR", " ", "=", " ", 
+     RowBox[{"Select", "[", 
+      RowBox[{"dataLinks", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Part", "[", 
+          RowBox[{"#", ",", " ", "1"}], "]"}], " ", "\[Equal]", " ", 
+         "vertice"}], "&"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"neighboursR", " ", "=", " ", 
+     RowBox[{"neighboursR", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "2"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"neighboursL", " ", "=", " ", 
+     RowBox[{"Select", "[", 
+      RowBox[{"dataLinks", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Part", "[", 
+          RowBox[{"#", ",", " ", "2"}], "]"}], " ", "\[Equal]", " ", 
+         "vertice"}], "&"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"neighboursL", " ", "=", " ", 
+     RowBox[{"neighboursL", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"neighbours", " ", "=", " ", 
+     RowBox[{"Join", "[", 
+      RowBox[{"neighboursL", ",", "neighboursR"}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"j", " ", "=", " ", "1"}], ",", " ", 
+      RowBox[{"j", " ", "\[LessEqual]", " ", 
+       RowBox[{"Length", "[", "neighbours", "]"}]}], ",", " ", 
+      RowBox[{"j", "++"}], ",", " ", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"node", " ", "=", " ", 
+        RowBox[{"neighbours", "[", 
+         RowBox[{"[", "j", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"labelToReinforce", " ", "=", " ", 
+        RowBox[{"Select", "[", 
+         RowBox[{"conditionalMap", ",", " ", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Part", "[", 
+             RowBox[{"#", ",", "1"}], "]"}], " ", "\[Equal]", " ", "node"}], 
+           "&"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"labelToReinforce", "!=", " ", 
+          RowBox[{"{", "}"}]}], ",", " ", 
+         RowBox[{
+          RowBox[{"k", "=", " ", 
+           RowBox[{
+            RowBox[{"Flatten", "[", 
+             RowBox[{"Position", "[", 
+              RowBox[{"uniqueLabels", ",", " ", 
+               RowBox[{
+                RowBox[{"labelToReinforce", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"All", ",", "2"}], "]"}], "]"}], "[", 
+                RowBox[{"[", "1", "]"}], "]"}]}], "]"}], "]"}], "[", 
+            RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"features1", "[", 
+              RowBox[{"[", "k", "]"}], "]"}], " ", ">=", " ", "0"}], ",", " ", 
+            RowBox[{
+             RowBox[{"tempFeatures", "[", 
+              RowBox[{"[", "k", "]"}], "]"}], " ", "++"}]}], "]"}], ";"}]}], 
+        "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], 
+    ";", "\[IndentingNewLine]", "tempFeatures"}], "\n", ")"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.7078450386302423`*^9, 3.707845062912404*^9}, {
+   3.707845113280403*^9, 3.7078451559695234`*^9}, {3.70784656948857*^9, 
+   3.7078466013806286`*^9}, {3.7079147685233154`*^9, 3.707914807068034*^9}, {
+   3.707922149979742*^9, 3.707922150948139*^9}, {3.7079231688737288`*^9, 
+   3.7079232048946657`*^9}, {3.707925216400012*^9, 3.7079252173276095`*^9}, {
+   3.707925263950756*^9, 3.707925267906528*^9}, 3.7079270416297483`*^9, {
+   3.707928686568981*^9, 3.7079287410812387`*^9}, {3.7079287754200926`*^9, 
+   3.707928814768653*^9}, {3.7079291200021963`*^9, 3.707929147081373*^9}, {
+   3.7079291860249004`*^9, 3.707929236674857*^9}, 3.707929336890816*^9, 
+   3.707929440316353*^9, {3.7079302965856495`*^9, 3.7079303013279805`*^9}, {
+   3.7079308184069276`*^9, 3.7079308232917004`*^9}, {3.707930996931254*^9, 
+   3.7079310008579903`*^9}, {3.7079322745150623`*^9, 3.707932275635051*^9}, {
+   3.707932807447448*^9, 3.707932827522405*^9}, {3.7079328822340736`*^9, 
+   3.70793288753741*^9}, {3.707934849225694*^9, 3.707934878843566*^9}, {
+   3.7079350271125712`*^9, 3.70793520169821*^9}, {3.707935446648796*^9, 
+   3.707935502292835*^9}, {3.7079993389518213`*^9, 3.70799933896745*^9}, {
+   3.707999483755506*^9, 3.707999483755506*^9}, {3.7080188765767593`*^9, 
+   3.708018879997739*^9}, 3.7080189120949583`*^9, {3.7080191845021963`*^9, 
+   3.708019211356178*^9}, {3.7080193608272915`*^9, 3.7080193734162397`*^9}, {
+   3.708019406600156*^9, 3.708019439301216*^9}, {3.708025255469185*^9, 
+   3.7080252646538844`*^9}, {3.7080259906177197`*^9, 
+   3.7080259922427616`*^9}, {3.7080279078926306`*^9, 3.708028025204586*^9}, {
+   3.7080282623252363`*^9, 3.7080282646059823`*^9}, {3.7080282955640564`*^9, 
+   3.7080283163397837`*^9}, {3.7080283644376802`*^9, 
+   3.7080283664220743`*^9}, {3.7080298436681175`*^9, 
+   3.7080298438989697`*^9}, {3.708029902835885*^9, 3.708029904570208*^9}, {
+   3.7080299379433146`*^9, 3.7080299569718027`*^9}, {3.7080300470644245`*^9, 
+   3.7080300484836802`*^9}, {3.708030279947194*^9, 3.7080302818835754`*^9}, {
+   3.708030571251004*^9, 3.708030581304041*^9}, {3.7080306608857307`*^9, 
+   3.7080306698494077`*^9}, {3.7080307459529667`*^9, 
+   3.7080307576113014`*^9}, {3.7080310813900995`*^9, 
+   3.7080310840459685`*^9}, {3.708031247408692*^9, 
+   3.70803124862904*^9}},ExpressionUUID->"7bb9a7fd-05ab-45ae-bd7d-\
+1bfb1de9eaf8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"For", " ", "[", 
+   RowBox[{
+    RowBox[{"i", " ", "=", " ", "1"}], ",", " ", 
+    RowBox[{"i", " ", "<=", 
+     RowBox[{"Length", "[", "trainIds", "]"}]}], ",", " ", 
+    RowBox[{"i", "++"}], ",", 
+    RowBox[{"(", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"selectedFeatures1", " ", "=", " ", 
+       RowBox[{"aggregate", "[", 
+        RowBox[{"conditionalMap", ",", " ", 
+         RowBox[{"selectedNodes", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", 
+         RowBox[{"selectedFeatures", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"selectedFeatures", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], " ", "=", " ", "selectedFeatures1"}], 
+      ";"}], "\[IndentingNewLine]", ")"}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.708012991699292*^9, 3.7080129992388964`*^9}, {
+   3.7080140006134586`*^9, 3.708014009887382*^9}, 3.708018447171028*^9, {
+   3.7080186030304155`*^9, 3.7080186098879952`*^9}, {3.7080186576360493`*^9, 
+   3.7080186665520773`*^9}, {3.708018704194168*^9, 3.708018737655816*^9}, {
+   3.7080187817484074`*^9, 3.708018786023158*^9}, {3.7080206942593336`*^9, 
+   3.7080206964348*^9}, {3.708020745408784*^9, 3.7080207525958195`*^9}, {
+   3.708020791346281*^9, 3.7080208171179104`*^9}, {3.7080215755329313`*^9, 
+   3.708021587040419*^9}, {3.7080250198713217`*^9, 3.708025025822256*^9}, {
+   3.708025100105509*^9, 3.708025116077752*^9}, {3.708025151209361*^9, 
+   3.708025151402033*^9}, 3.7080283519967933`*^9, {3.708028401152383*^9, 
+   3.7080284557790513`*^9}, {3.7080285725997357`*^9, 
+   3.7080285775283427`*^9}, {3.708028875075255*^9, 3.7080288797648582`*^9}, {
+   3.7080289296326365`*^9, 3.7080289355172663`*^9}, {3.708028974507676*^9, 
+   3.7080290045089607`*^9}, {3.708029176163813*^9, 3.7080292559445324`*^9}, {
+   3.708030019086909*^9, 3.7080300291626177`*^9}, {3.7080301959032145`*^9, 
+   3.7080302034238415`*^9}, 3.7080302505610104`*^9, {3.708030819588524*^9, 
+   3.7080308909723663`*^9}},ExpressionUUID->"000dbd97-fbdd-4ad2-86ea-\
+3f7f1b9a0d9c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"relClf", " ", "=", " ", 
+   RowBox[{"Classify", "[", 
+    RowBox[{
+     RowBox[{"selectedFeatures", " ", "\[Rule]", " ", "selectedLabels"}], ",",
+      " ", 
+     RowBox[{"Method", "\[Rule]", "\"\<LogisticRegression\>\""}]}], "]"}]}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.708012991699292*^9, 3.7080129992388964`*^9}, {
+   3.7080140006134586`*^9, 3.708014009887382*^9}, 3.708018447171028*^9, {
+   3.7080186030304155`*^9, 3.7080186098879952`*^9}, {3.7080186576360493`*^9, 
+   3.7080186665520773`*^9}, {3.708018704194168*^9, 3.708018737655816*^9}, {
+   3.7080187817484074`*^9, 3.708018786023158*^9}, {3.7080206942593336`*^9, 
+   3.7080206964348*^9}, {3.708020745408784*^9, 3.7080207525958195`*^9}, 
+   3.708020791346281*^9},ExpressionUUID->"e8224491-24f7-4087-b892-\
+cd5ac7dcd1ff"],
+
+Cell[BoxData[
+ TagBox[
+  TemplateBox[{RowBox[{
+      StyleBox[
+       TagBox["ClassifierFunction", "SummaryHead"], 
+       "NonInterpretableSummary"], 
+      StyleBox["[", "NonInterpretableSummary"], 
+      DynamicModuleBox[{Typeset`open$$ = False}, 
+       PanelBox[
+        PaneSelectorBox[{False -> GridBox[{{
+              PaneBox[
+               ButtonBox[
+                DynamicBox[
+                 FEPrivate`FrontEndResource[
+                 "FEBitmaps", "SquarePlusIconMedium"]], 
+                ButtonFunction :> (Typeset`open$$ = True), Appearance -> None,
+                 Evaluator -> Automatic, Method -> "Preemptive"], 
+               Alignment -> {Center, Center}, ImageSize -> 
+               Dynamic[{
+                 Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                  AbsoluteCurrentValue[Magnification]}]], 
+              GraphicsBox[{{
+                 PointSize[0.13], 
+                 GrayLevel[0.45], 
+                 
+                 PointBox[{{0.9821769431797024, -0.440194219686987}, {
+                  1.1339776261519132`, 0.8056918676854272}, {
+                  0.5279892326667741, 0.6574306661126254}, {
+                  0.022147046479890797`, 1.4937877187998898`}}], 
+                 GrayLevel[0.7], 
+                 
+                 PointBox[{{-0.9815166384819979, 
+                  0.15045697525228735`}, {-0.5923526886966953, \
+-0.33441771553094035`}, {-0.005656646679640442, -1.462421365651345}, \
+{-1.0734370436522753`, -1.3729645043477454`}}]}, {
+                 GrayLevel[0.55], 
+                 AbsoluteThickness[1.5], 
+                 LineBox[{{-1., 1.5}, {1, -1.6}}]}}, {
+               Axes -> {False, False}, AxesLabel -> {None, None}, 
+                AxesOrigin -> {0, 0}, BaseStyle -> {FontFamily -> "Arial", 
+                  AbsoluteThickness[1.5]}, DisplayFunction -> Identity, 
+                Frame -> {{True, True}, {True, True}}, 
+                FrameLabel -> {{None, None}, {None, None}}, FrameStyle -> 
+                Directive[
+                  Thickness[Tiny], 
+                  GrayLevel[0.7]], FrameTicks -> {{None, None}, {None, None}},
+                 GridLines -> {None, None}, 
+                LabelStyle -> {FontFamily -> "Arial"}, 
+                Method -> {"ScalingFunctions" -> None}, 
+                PlotRange -> {{-1., 1}, {-1.3, 1.1}}, PlotRangeClipping -> 
+                True, PlotRangePadding -> {{0.7, 0.7}, {0.7, 0.7}}, 
+                Ticks -> {None, None}}, Axes -> False, AspectRatio -> 1, 
+               ImageSize -> 
+               Dynamic[{
+                 Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                  AbsoluteCurrentValue[Magnification]}], Frame -> True, 
+               FrameTicks -> None, FrameStyle -> Directive[
+                 Opacity[0.5], 
+                 Thickness[Tiny], 
+                 RGBColor[0.368417, 0.506779, 0.709798]], Background -> 
+               GrayLevel[0.94]], 
+              GridBox[{{
+                 RowBox[{
+                   TagBox["\"Input type: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox[
+                    TemplateBox[{"\"NumericalVector\"", 
+                    StyleBox[
+                    
+                    TemplateBox[{"\" (length: \"", "27", "\")\""}, 
+                    "RowDefault"], 
+                    GrayLevel[0.5], StripOnInput -> False]}, "RowDefault"], 
+                    "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox["\"Number of classes: \"", "SummaryItemAnnotation"],
+                    "\[InvisibleSpace]", 
+                   TagBox[
+                    TagBox[
+                    TooltipBox["27", 
+                    TagBox[
+                    
+                    TemplateBox[{
+                    ",", "\",\"", "\"0}\"", "\"Books\"", "\"CareerAndMoney\"",
+                     "\"FamilyAndFriends\"", "\"Fashion\"", "\"Fitness\"", 
+                    "\"FoodAndDrink\"", "\"Health\"", "\"Indeterminate\"", 
+                    "\"Leisure\"", "\"Movies\"", "\"Music\"", 
+                    "\"PersonalMood\"", "\"PetsAndAnimals\"", "\"Politics\"", 
+                    "\"QuotesAndLifePhilosophy\"", "\"Relationships\"", 
+                    "\"SchoolAndUniversity\"", "\"SocialMedia\"", 
+                    "\"SpecialOccasions\"", "\"Sports\"", "\"Technology\"", 
+                    "\"Television\"", "\"Transport\"", "\"Travel\"", 
+                    "\"VideoGames\"", "\"Weather\""}, "RowWithSeparators"], 
+                    Short[#, 20]& ]], Annotation[#, 
+                    Short[
+                    Row[{
+                    "0}", "Books", "CareerAndMoney", "FamilyAndFriends", 
+                    "Fashion", "Fitness", "FoodAndDrink", "Health", 
+                    "Indeterminate", "Leisure", "Movies", "Music", 
+                    "PersonalMood", "PetsAndAnimals", "Politics", 
+                    "QuotesAndLifePhilosophy", "Relationships", 
+                    "SchoolAndUniversity", "SocialMedia", "SpecialOccasions", 
+                    "Sports", "Technology", "Television", "Transport", 
+                    "Travel", "VideoGames", "Weather"}, ","], 20], 
+                    "Tooltip"]& ], "SummaryItem"]}]}}, 
+               GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+               False, GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+            BaselinePosition -> {1, 1}], True -> GridBox[{{
+              PaneBox[
+               ButtonBox[
+                DynamicBox[
+                 FEPrivate`FrontEndResource[
+                 "FEBitmaps", "SquareMinusIconMedium"]], 
+                ButtonFunction :> (Typeset`open$$ = False), Appearance -> 
+                None, Evaluator -> Automatic, Method -> "Preemptive"], 
+               Alignment -> {Center, Center}, ImageSize -> 
+               Dynamic[{
+                 Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                  AbsoluteCurrentValue[Magnification]}]], 
+              GraphicsBox[{{
+                 PointSize[0.13], 
+                 GrayLevel[0.45], 
+                 
+                 PointBox[{{0.9821769431797024, -0.440194219686987}, {
+                  1.1339776261519132`, 0.8056918676854272}, {
+                  0.5279892326667741, 0.6574306661126254}, {
+                  0.022147046479890797`, 1.4937877187998898`}}], 
+                 GrayLevel[0.7], 
+                 
+                 PointBox[{{-0.9815166384819979, 
+                  0.15045697525228735`}, {-0.5923526886966953, \
+-0.33441771553094035`}, {-0.005656646679640442, -1.462421365651345}, \
+{-1.0734370436522753`, -1.3729645043477454`}}]}, {
+                 GrayLevel[0.55], 
+                 AbsoluteThickness[1.5], 
+                 LineBox[{{-1., 1.5}, {1, -1.6}}]}}, {
+               Axes -> {False, False}, AxesLabel -> {None, None}, 
+                AxesOrigin -> {0, 0}, BaseStyle -> {FontFamily -> "Arial", 
+                  AbsoluteThickness[1.5]}, DisplayFunction -> Identity, 
+                Frame -> {{True, True}, {True, True}}, 
+                FrameLabel -> {{None, None}, {None, None}}, FrameStyle -> 
+                Directive[
+                  Thickness[Tiny], 
+                  GrayLevel[0.7]], FrameTicks -> {{None, None}, {None, None}},
+                 GridLines -> {None, None}, 
+                LabelStyle -> {FontFamily -> "Arial"}, 
+                Method -> {"ScalingFunctions" -> None}, 
+                PlotRange -> {{-1., 1}, {-1.3, 1.1}}, PlotRangeClipping -> 
+                True, PlotRangePadding -> {{0.7, 0.7}, {0.7, 0.7}}, 
+                Ticks -> {None, None}}, Axes -> False, AspectRatio -> 1, 
+               ImageSize -> 
+               Dynamic[{
+                 Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                  AbsoluteCurrentValue[Magnification]}], Frame -> True, 
+               FrameTicks -> None, FrameStyle -> Directive[
+                 Opacity[0.5], 
+                 Thickness[Tiny], 
+                 RGBColor[0.368417, 0.506779, 0.709798]], Background -> 
+               GrayLevel[0.94]], 
+              GridBox[{{
+                 RowBox[{
+                   TagBox["\"Input type: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox[
+                    TemplateBox[{"\"NumericalVector\"", 
+                    StyleBox[
+                    
+                    TemplateBox[{"\" (length: \"", "27", "\")\""}, 
+                    "RowDefault"], 
+                    GrayLevel[0.5], StripOnInput -> False]}, "RowDefault"], 
+                    "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox["\"Number of classes: \"", "SummaryItemAnnotation"],
+                    "\[InvisibleSpace]", 
+                   TagBox[
+                    TagBox[
+                    TooltipBox["27", 
+                    TagBox[
+                    
+                    TemplateBox[{
+                    ",", "\",\"", "\"0}\"", "\"Books\"", "\"CareerAndMoney\"",
+                     "\"FamilyAndFriends\"", "\"Fashion\"", "\"Fitness\"", 
+                    "\"FoodAndDrink\"", "\"Health\"", "\"Indeterminate\"", 
+                    "\"Leisure\"", "\"Movies\"", "\"Music\"", 
+                    "\"PersonalMood\"", "\"PetsAndAnimals\"", "\"Politics\"", 
+                    "\"QuotesAndLifePhilosophy\"", "\"Relationships\"", 
+                    "\"SchoolAndUniversity\"", "\"SocialMedia\"", 
+                    "\"SpecialOccasions\"", "\"Sports\"", "\"Technology\"", 
+                    "\"Television\"", "\"Transport\"", "\"Travel\"", 
+                    "\"VideoGames\"", "\"Weather\""}, "RowWithSeparators"], 
+                    Short[#, 20]& ]], Annotation[#, 
+                    Short[
+                    
+                    Row[{"0}", "Books", "CareerAndMoney", "FamilyAndFriends", 
+                    "Fashion", "Fitness", "FoodAndDrink", "Health", 
+                    "Indeterminate", "Leisure", "Movies", "Music", 
+                    "PersonalMood", "PetsAndAnimals", "Politics", 
+                    "QuotesAndLifePhilosophy", "Relationships", 
+                    "SchoolAndUniversity", "SocialMedia", "SpecialOccasions", 
+                    "Sports", "Technology", "Television", "Transport", 
+                    "Travel", "VideoGames", "Weather"}, ","], 20], 
+                    "Tooltip"]& ], "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox["\"Method: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["\"LogisticRegression\"", "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox[
+                   "\"Number of training examples: \"", 
+                    "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                   TagBox["4145", "SummaryItem"]}]}}, 
+               GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+               False, GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+            BaselinePosition -> {1, 1}]}, 
+         Dynamic[Typeset`open$$], ImageSize -> Automatic], BaselinePosition -> 
+        Baseline], DynamicModuleValues :> {}], 
+      StyleBox["]", "NonInterpretableSummary"]}]},
+   "CopyTag",
+   DisplayFunction->(#& ),
+   InterpretationFunction->("ClassifierFunction[\[Ellipsis]]"& )],
+  False,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",ExpressionUUID->"b07e7d95-51e9-452c-9d8d-\
+a072d4f87ddd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"relAccuracy", " ", "=", "  ", 
+   RowBox[{"ClassifierMeasurements", "[", 
+    RowBox[{"relClf", ",", 
+     RowBox[{"selectedFeatures", " ", "\[Rule]", " ", "selectedLabels"}], 
+     ",", "\"\<Accuracy\>\""}], "]"}]}], "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.708012991699292*^9, 3.7080129992388964`*^9}, {
+   3.7080140006134586`*^9, 3.708014009887382*^9}, 3.708018447171028*^9, {
+   3.708031000554451*^9, 
+   3.7080310296308556`*^9}},ExpressionUUID->"0f0441c8-a56a-48e5-91f5-\
+883264cdfbf7"],
+
+Cell[BoxData["0.37949336550060314`"], "Output",ExpressionUUID->"2a8ee521-abd1-4342-9318-a25be8392541"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"(*", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"True", " ", "dataLabels", "\[IndentingNewLine]", "yTrue"}], "=", 
+    RowBox[{"Part", "[", 
+     RowBox[{"dataLabels", ",", " ", "testIds"}], "]"}]}], ";", 
+   "\[IndentingNewLine]", 
+   RowBox[{"icaAccuracies", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"Sqrt", "[", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"testLabels", " ", "-", " ", "yTrue"}], ")"}], "^", "2"}], 
+      "]"}], "/", 
+     RowBox[{"Length", "[", "testLabels", "]"}]}]}], ";", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", "icaAccuracies", "]"}], ";"}], "*)"}]], "Input",
+ CellChangeTimes->{
+  3.708082567480517*^9},ExpressionUUID->"ef6e1bf8-dfd5-48ec-bb3b-\
+a4291c2f50f1"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\n", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"i", " ", "=", " ", "0"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"previousAccuracy", " ", "=", " ", "0"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"numTrials", " ", "=", " ", "1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"For", "[", 
+    RowBox[{
+     RowBox[{"t", " ", "=", " ", "1"}], ",", 
+     RowBox[{"t", " ", "\[LessEqual]", " ", "numTrials"}], ",", " ", 
+     RowBox[{"t", "++"}], ",", " ", 
+     RowBox[{"(", "\[IndentingNewLine]", 
+      RowBox[{"For", "[", " ", 
+       RowBox[{
+        RowBox[{"i", " ", "=", " ", "8"}], ",", " ", 
+        RowBox[{"i", "\[LessEqual]", "8"}], ",", " ", 
+        RowBox[{"i", "++"}], ",", " ", "\[IndentingNewLine]", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"b", " ", "=", " ", 
+           RowBox[{"budget", "[", 
+            RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", "b", "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{"load", " ", "data", " ", "above"}], "*)"}], 
+          "\[IndentingNewLine]", 
+          RowBox[{"sz", " ", "=", " ", 
+           RowBox[{"Round", "[", 
+            RowBox[{
+             RowBox[{"Length", "[", "dataContent", "]"}], " ", "*", "b"}], 
+            "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"dataIds", " ", "=", " ", 
+           RowBox[{"Range", "@", 
+            RowBox[{"Length", "[", "dataContent", "]"}]}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"testIds", "=", 
+           RowBox[{"dataIds", "~", "RandomSample", "~", "sz"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"trainIds", "=", 
+           RowBox[{"dataIds", "~", "Complement", "~", "testIds"}]}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"selectedFeatures", " ", "=", 
+           RowBox[{"Part", "[", 
+            RowBox[{"dataFeatures", ",", " ", "trainIds"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"selectedLabels", " ", "=", " ", 
+           RowBox[{"Part", "[", 
+            RowBox[{"dataLabels", ",", " ", "trainIds"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{"clusterClf", " ", ":=", " ", 
+             RowBox[{"ClusterClassify", "[", 
+              RowBox[{"selectedFeatures", ",", " ", 
+               RowBox[{"Length", "[", "uniqueLabels", "]"}]}], "]"}]}], ";"}],
+            "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"localClf", " ", "=", " ", 
+           RowBox[{"Classify", "[", 
+            RowBox[{
+             RowBox[{
+             "selectedFeatures", " ", "\[Rule]", " ", "selectedLabels"}], ",",
+              " ", 
+             RowBox[{"Method", "\[Rule]", "\"\<LogisticRegression\>\""}]}], 
+            "]"}]}], ";", " ", "\[IndentingNewLine]", 
+          RowBox[{"testFeatures", " ", "=", 
+           RowBox[{"Part", "[", 
+            RowBox[{"dataFeatures", ",", " ", "testIds"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"testLabelsTrue", " ", "=", " ", 
+           RowBox[{"Part", "[", 
+            RowBox[{"dataLabels", ",", " ", "testIds"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{"testLabels", " ", "=", " ", 
+             RowBox[{"Map", "[", 
+              RowBox[{"localClf", ",", " ", "testFeatures"}], "]"}]}], ";"}], 
+           "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"localAccuracy", " ", "=", " ", 
+           RowBox[{"ClassifierMeasurements", "[", 
+            RowBox[{"localClf", ",", 
+             RowBox[{"testFeatures", " ", "\[Rule]", " ", "testLabelsTrue"}], 
+             ",", "\"\<Accuracy\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{
+           "\"\<Local accuracy:\>\"", " ", "~~", " ", "localAccuracy"}], 
+           "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{"Do", " ", "the", " ", "relational", " ", "classifier"}], 
+           "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"selectedNodes", " ", "=", " ", 
+           RowBox[{"Part", "[", 
+            RowBox[{"dataIds", ",", " ", "trainIds"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"selectedLinkFeatures", " ", "=", " ", 
+           RowBox[{"Table", "[", 
+            RowBox[{"0", ",", 
+             RowBox[{"Length", "[", "trainIds", "]"}], ",", 
+             RowBox[{"Length", "[", "uniqueLabels", "]"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"conditionalMap", " ", "=", " ", 
+           RowBox[{"Transpose", "[", 
+            RowBox[{"{", 
+             RowBox[{"selectedNodes", ",", " ", "selectedLabels"}], "}"}], 
+            "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<TrainIds:\>\"", " ", "~~", 
+            RowBox[{"Length", "[", "trainIds", "]"}]}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"For", " ", "[", 
+           RowBox[{
+            RowBox[{"jj", " ", "=", " ", "1"}], ",", " ", 
+            RowBox[{"jj", " ", "<=", 
+             RowBox[{"Length", "[", "trainIds", "]"}]}], ",", " ", 
+            RowBox[{"jj", "++"}], ",", 
+            RowBox[{"(", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"selectedFeatures1", " ", "=", " ", 
+               RowBox[{"aggregate", "[", 
+                RowBox[{"conditionalMap", ",", " ", 
+                 RowBox[{"selectedNodes", "[", 
+                  RowBox[{"[", "jj", "]"}], "]"}], ",", 
+                 RowBox[{"selectedLinkFeatures", "[", 
+                  RowBox[{"[", "jj", "]"}], "]"}]}], "]"}]}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"selectedLinkFeatures", "[", 
+                RowBox[{"[", "jj", "]"}], "]"}], " ", "=", " ", 
+               "selectedFeatures1"}], ";"}], "\[IndentingNewLine]", ")"}]}], 
+           "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<Before rel classifier:\>\"", " ", "~~", " ", 
+            RowBox[{"selectedLinkFeatures", "[", 
+             RowBox[{"[", "j", "]"}], "]"}]}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"relClf", " ", "=", " ", 
+           RowBox[{"Classify", "[", 
+            RowBox[{
+             RowBox[{
+             "selectedLinkFeatures", " ", "\[Rule]", " ", "selectedLabels"}], 
+             ",", " ", 
+             RowBox[{"Method", "\[Rule]", "\"\<LogisticRegression\>\""}]}], 
+            "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{"testRelLabels", " ", "=", " ", 
+             RowBox[{"Map", "[", 
+              RowBox[{"relClf", ",", "testFeatures"}], "]"}]}], ";"}], "*)"}],
+           "\[IndentingNewLine]", 
+          RowBox[{"testLinkFeatures", " ", "=", " ", 
+           RowBox[{"Table", "[", 
+            RowBox[{"0", ",", 
+             RowBox[{"Length", "[", "testIds", "]"}], ",", 
+             RowBox[{"Length", "[", "uniqueLabels", "]"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"For", " ", "[", 
+           RowBox[{
+            RowBox[{"kj", " ", "=", " ", "1"}], ",", " ", 
+            RowBox[{"kj", " ", "<=", 
+             RowBox[{"Length", "[", "trainIds", "]"}]}], ",", " ", 
+            RowBox[{"kj", "++"}], ",", 
+            RowBox[{"(", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"selectedTestFeatures1", " ", "=", " ", 
+               RowBox[{"aggregate", "[", 
+                RowBox[{"conditionalMap", ",", " ", 
+                 RowBox[{"selectedNodes", "[", 
+                  RowBox[{"[", "kj", "]"}], "]"}], ",", 
+                 RowBox[{"testLinkFeatures", "[", 
+                  RowBox[{"[", "kj", "]"}], "]"}]}], "]"}]}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"testLinkFeatures", "[", 
+                RowBox[{"[", "kj", "]"}], "]"}], " ", "=", " ", 
+               "selectedTestFeatures1"}], ";"}], "\[IndentingNewLine]", 
+             ")"}]}], "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"relAccuracy", " ", ":=", "  ", 
+           RowBox[{"ClassifierMeasurements", "[", 
+            RowBox[{"relClf", ",", 
+             RowBox[{
+             "testLinkFeatures", " ", "\[Rule]", " ", "testLabelsTrue"}], 
+             ",", "\"\<Accuracy\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<Relational accuracy:\>\"", " ", "~~", "relAccuracy"}],
+            "]"}]}], "\[IndentingNewLine]", ")"}]}], "]"}], 
+      "\[IndentingNewLine]", ")"}]}], "]"}]}]}]], "Input",ExpressionUUID->\
+"fa334e0b-2bfb-48d5-909f-4ede0af0517e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["0.9`"], "Print",ExpressionUUID->"db1adda8-087e-4bc3-96fe-37b519ef000a"],
+
+Cell[BoxData[
+ RowBox[{"\<\"Local accuracy:\"\>", "~~", "0.35416164053075994`"}]], "Print",E\
+xpressionUUID->"d89d6e4e-ef82-4c9d-8c20-6d3cb8b3121f"],
+
+Cell[BoxData[
+ RowBox[{"\<\"TrainIds:\"\>", "~~", "461"}]], "Print",ExpressionUUID->"2efc10e2-040a-43d4-92df-3d03a194ad67"],
+
+Cell[BoxData[
+ RowBox[{"\<\"Before rel classifier:\"\>", "~~", 
+  RowBox[{"{", 
+   RowBox[{
+   "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+    ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",",
+     "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", 
+    "0", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}]}]], "Print",Expressio\
+nUUID->"13001379-ff5d-4b30-b3c6-fc6a7048ce85"],
+
+Cell[BoxData[
+ RowBox[{"\<\"Relational accuracy:\"\>", "~~", 
+  "0.38528347406513874`"}]], "Print",ExpressionUUID->"bac323fc-3515-4cc4-b1ed-\
+9f10ded08abf"]
+}, Open  ]]
+}, Open  ]],
+
+Cell["\<\
+Step 2 is to \[OpenCurlyDoubleQuote]distribute\[CloseCurlyDoubleQuote] label \
+allocation so that the relational accuracy increases\
+\>", "Text",ExpressionUUID->"1afcd9e1-de4a-47ad-93a6-b0ff94f9acaf"],
+
+Cell["\<\
+The algorithm is basically to update conditionalMap by substituting the \
+initial labels with the localClf predicted labels and re-run relational \
+classifier until local and relational classifiers do not start to converge\
+\>", "Item",ExpressionUUID->"45b9f882-164b-4688-a049-e8cc7f4f4355"],
+
+Cell[BoxData[""], "Input",ExpressionUUID->"812ecd27-b646-4718-bf0b-c7d06f518f60"],
+
+Cell["Step 3: select accuracy based on probability:", "Text",ExpressionUUID->"5df6edc4-e9de-4ca5-b683-eef9e3346cc3"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"localLabel", " ", "=", " ", 
+  RowBox[{"localClf", "[", 
+   RowBox[{"dataFeatures", "[", 
+    RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"localLabelProb", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"localClf", "[", 
+    RowBox[{
+     RowBox[{"dataFeatures", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], ",", " ", "\"\<TopProbabilities\>\""}], 
+    "]"}], "[", 
+   RowBox[{"[", 
+    RowBox[{"1", ",", "2"}], "]"}], "]"}]}]}], "Input",ExpressionUUID->\
+"47378c89-88d5-4884-94b5-2c7c741e9324"],
+
+Cell[BoxData["\<\"Politics\"\>"], "Output",ExpressionUUID->"f85c062c-4b7e-4724-9d25-ca3a4329c5eb"],
+
+Cell[BoxData["0.1924445281321679`"], "Output",ExpressionUUID->"d99320b3-2d2e-4d30-b618-3ea3454f5709"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"getText", " ", ":=", " ", 
+   RowBox[{"Function", "[", 
+    RowBox[{"topicName", ",", " ", 
+     RowBox[{"WikipediaData", "[", 
+      RowBox[{"topicName", ",", "\"\<ArticlePlaintext\>\""}], "]"}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"topicCheck", " ", "=", " ", 
+   RowBox[{"Classify", "[", "\"\<FacebookTopic\>\"", "]"}]}], ";"}]}], "Input",
+ InitializationCell->
+  True,ExpressionUUID->"589ad046-1586-4207-a853-1287a87dd71d"],
+
+Cell[TextData[StyleBox["Test classifier on a random article:", \
+"Subsubsection"]], "Text",ExpressionUUID->"b170dfc8-e253-49e4-a53b-\
+09bb988cd5ef"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"dataIds", "[", 
+  RowBox[{"[", "58", "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dataContent", "[", 
+   RowBox[{"[", 
+    RowBox[{"dataIds", "[", 
+     RowBox[{"[", "58", "]"}], "]"}], "]"}], "]"}], "[", 
+  RowBox[{"[", "1", "]"}], "]"}]}], "Input",ExpressionUUID->"e95f5c35-8379-\
+4988-8265-9c33a220c4b2"],
+
+Cell[BoxData["58"], "Output",ExpressionUUID->"b45a42ef-8ba4-4b30-a874-90d9f64ed7ff"],
+
+Cell[BoxData["\<\"Adaptation\"\>"], "Output",ExpressionUUID->"e0626dac-79f9-4b42-a779-9ed18f16726a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"testFeature", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{"0", ",", "1", ",", 
+     RowBox[{"Length", "[", "uniqueLabels", "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"temp", " ", "=", " ", 
+   RowBox[{"aggregate", "[", 
+    RowBox[{"conditionalMap", ",", " ", 
+     RowBox[{"dataIds", "[", 
+      RowBox[{"[", "58", "]"}], "]"}], ",", " ", 
+     RowBox[{"testFeature", " ", "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"testFeature", "[", 
+    RowBox[{"[", "1", "]"}], "]"}], " ", "=", " ", "temp"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"relLabel", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"relClf", "[", "testFeature", "]"}], "[", 
+   RowBox[{"[", "1", "]"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"relClf", "[", 
+  RowBox[{"testFeature", ",", " ", "\"\<TopProbabilities\>\""}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"relLabelProbaility", " ", "=", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"relClf", "[", 
+     RowBox[{"testFeature", ",", " ", "\"\<TopProbabilities\>\""}], "]"}], 
+    "[", 
+    RowBox[{"[", "1", "]"}], "]"}], "[", 
+   RowBox[{"[", 
+    RowBox[{"1", ",", "2"}], "]"}], "]"}]}]}], "Input",ExpressionUUID->\
+"4df3c2c1-abdb-4ac0-85b9-29f2052f12db"],
+
+Cell[BoxData["\<\"Politics\"\>"], "Output",ExpressionUUID->"11ce914c-eb45-4664-8b52-19f4b76979a5"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"\<\"Politics\"\>", "\[Rule]", "0.3369435250996356`"}], ",", 
+    RowBox[{"\<\"Indeterminate\"\>", "\[Rule]", "0.21428110984676899`"}], ",", 
+    RowBox[{"\<\"Technology\"\>", "\[Rule]", "0.08610692104150723`"}], ",", 
+    RowBox[{"\<\"Books\"\>", "\[Rule]", "0.04210563723085517`"}], ",", 
+    RowBox[{"\<\"FoodAndDrink\"\>", "\[Rule]", "0.03594141055609585`"}], ",", 
+    RowBox[{"\<\"Travel\"\>", "\[Rule]", "0.033899113924651815`"}], ",", 
+    RowBox[{"\<\"SchoolAndUniversity\"\>", "\[Rule]", 
+     "0.033899113924651635`"}]}], "}"}], "}"}]], "Output",ExpressionUUID->\
+"8e0a9142-4bdc-4a23-a842-537f00ae6413"],
+
+Cell[BoxData["0.3369435250996356`"], "Output",ExpressionUUID->"9df1f10d-0fba-4ab0-9aac-c074451652b5"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"localLabel", " ", "=", " ", "\"\<Fitness\>\""}]], "Input",Expression\
+UUID->"1f8c7842-a262-4ff8-baa3-208d63006727"],
+
+Cell[BoxData["\<\"Fitness\"\>"], "Output",ExpressionUUID->"a2918723-2a39-4cca-88a3-a29813414638"]
+}, Open  ]],
+
+Cell["\<\
+if the classifiers do not agree but the probability is high, select the high \
+probability. If both probabilities are low, create a new label:\
+\>", "Text",ExpressionUUID->"97f9f17e-14c5-40f4-adbe-0e741e8ec3bc"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"finalLabel", " ", "=", " ", "relLabel"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"localLabel", " ", "\[NotEqual]", " ", "relLabel"}], " ", ",", 
+    " ", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"localLabelProb", " ", ">", " ", "relLabelProbaility"}], ",", 
+      " ", 
+      RowBox[{"finalLabel", " ", "=", " ", "localLabel"}], ",", " ", 
+      RowBox[{"finalLabel", " ", "=", " ", "relLabel"}]}], "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"If", "[", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"localLabel", " ", "\[NotEqual]", " ", "relLabel"}], " ", "&&", 
+     " ", 
+     RowBox[{"localLabelProb", " ", "<", " ", "0.5"}], " ", "&&", " ", 
+     RowBox[{"relLabelProbaility", " ", "<", " ", "0.5"}]}], ")"}], ",", " ", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"newLabel", " ", "=", " ", 
+     RowBox[{"topicCheck", "[", 
+      RowBox[{"ToString", "[", 
+       RowBox[{"getText", "[", 
+        RowBox[{
+         RowBox[{"dataContent", "[", 
+          RowBox[{"[", 
+           RowBox[{"dataIds", "[", 
+            RowBox[{"[", "58", "]"}], "]"}], "]"}], "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "]"}], "]"}], " ", "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"newId", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"Max", "[", "dataIds", "]"}], "+", "1"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"AppendTo", "[", 
+     RowBox[{"conditionalMap", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"newId", ",", " ", "newLabel"}], "}"}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"newFeatures", " ", "=", " ", 
+     RowBox[{"{", "}"}]}]}]}], "]"}], "\[IndentingNewLine]"}], "Input",Express\
+ionUUID->"51c5a3b4-b850-468c-84e9-bcda785d7ebd"],
+
+Cell[BoxData[
+ RowBox[{"{", "}"}]], "Output",ExpressionUUID->"ca943395-d6a6-4b6d-adb0-2f94717ea16d"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",ExpressionUUID->"cc7c1c9f-459b-4701-9d5a-b9fd4121d1b9"]
+},
+WindowSize->{1112, 609},
+WindowMargins->{{50, Automatic}, {0, Automatic}},
+Magnification:>0.9 Inherited,
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (March 13, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 176, 3, 67, "Text", "ExpressionUUID" -> \
+"76245eb6-e8ce-47bc-9f69-2f7de4ec3dd2"],
+Cell[737, 25, 377, 8, 47, "Text", "ExpressionUUID" -> \
+"7a0d5b1f-38f2-4e59-b301-037f24a51eae"],
+Cell[1117, 35, 81, 0, 28, "Input", "ExpressionUUID" -> \
+"d0d80636-0ae2-48c2-b522-e43177817150"],
+Cell[1201, 37, 119, 0, 46, "Text", "ExpressionUUID" -> \
+"ddeb3a59-2bd5-4a7d-93bd-b1e46afad2b1"],
+Cell[1323, 39, 175, 4, 47, "Text", "ExpressionUUID" -> \
+"3184edd0-ea6b-4f72-9592-ae68ff295c09"],
+Cell[CellGroupData[{
+Cell[1523, 47, 874, 22, 97, "Input", "ExpressionUUID" -> \
+"73b92b94-b073-45fa-825e-8f40afbaf2ce",
+ InitializationCell->True],
+Cell[2400, 71, 123, 0, 28, "Output", "ExpressionUUID" -> \
+"837a609d-c4b3-433c-aa95-a4cadfe49a05"],
+Cell[2526, 73, 9809, 253, 155, "Output", "ExpressionUUID" -> \
+"5226e7ba-f27f-4081-a985-e2fb3add6ddc"],
+Cell[12338, 328, 86, 0, 28, "Output", "ExpressionUUID" -> \
+"fff584b9-4159-4e82-b991-a4435f3baebc"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12461, 333, 880, 21, 115, "Input", "ExpressionUUID" -> \
+"dd76deb3-610e-4137-822b-feccad6eb6b3",
+ InitializationCell->True],
+Cell[13344, 356, 7482, 199, 84, "Output", "ExpressionUUID" -> \
+"3a552887-25a9-454d-a003-af0f458493fd"],
+Cell[20829, 557, 86, 0, 28, "Output", "ExpressionUUID" -> \
+"dde9ab7b-1d02-4853-b919-217cfdbf16bb"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20952, 562, 171, 4, 28, "Input", "ExpressionUUID" -> \
+"fcb91464-f0c6-48ba-bb84-2e3a3b03a137"],
+Cell[21126, 568, 362, 6, 28, "Output", "ExpressionUUID" -> \
+"33a681dd-b04b-446c-8033-1a32e21f0779"]
+}, Open  ]],
+Cell[21503, 577, 491, 14, 61, "Input", "ExpressionUUID" -> \
+"d7676b30-eb1c-4341-8576-83b34a4b52fb",
+ InitializationCell->True],
+Cell[21997, 593, 145, 2, 28, "Text", "ExpressionUUID" -> \
+"215d43a0-843b-48f4-b9b7-6571434e13a0"],
+Cell[CellGroupData[{
+Cell[22167, 599, 343, 8, 42, "Input", "ExpressionUUID" -> \
+"fbe61e3c-6957-43fd-bf2c-7878acfa68d3",
+ InitializationCell->True],
+Cell[22513, 609, 7438, 198, 83, "Output", "ExpressionUUID" -> \
+"53af41a1-854c-43e7-974e-ff5a228b2084"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29988, 812, 125, 1, 28, "Input", "ExpressionUUID" -> \
+"d4425d33-cc5a-4ff0-8377-e2d5ec23b79c"],
+Cell[30116, 815, 86, 0, 28, "Output", "ExpressionUUID" -> \
+"f99134b9-4b92-4897-bd37-dbca02978375"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30239, 820, 179, 4, 28, "Input", "ExpressionUUID" -> \
+"0ce51941-2c86-42c7-ae79-130154f48edf"],
+Cell[30421, 826, 85, 0, 28, "Output", "ExpressionUUID" -> \
+"30ef9e7f-f444-4aed-a860-53a06d697f47"]
+}, Open  ]],
+Cell[30521, 829, 864, 25, 61, "Input", "ExpressionUUID" -> \
+"0d7924ac-2b08-4279-8838-a04891caf48f",
+ InitializationCell->True],
+Cell[31388, 856, 216, 4, 46, "Text", "ExpressionUUID" -> \
+"fc295a21-9a08-40e8-a0be-4240a891efd6"],
+Cell[31607, 862, 187, 3, 28, "Text", "ExpressionUUID" -> \
+"f595b495-e58c-489c-a0db-94a114a43c24"],
+Cell[CellGroupData[{
+Cell[31819, 869, 354, 7, 47, "Input", "ExpressionUUID" -> \
+"09357e35-4661-4f0c-bdb0-d1bd02e6f2bc"],
+Cell[32176, 878, 84, 0, 28, "Output", "ExpressionUUID" -> \
+"9b4eafdf-d136-4032-a932-3fd234ba2e1f"]
+}, Open  ]],
+Cell[32275, 881, 9859, 205, 90, "Input", "ExpressionUUID" -> \
+"4d1506ca-fc73-4d94-94e4-77a39dc364d6"],
+Cell[CellGroupData[{
+Cell[42159, 1090, 483, 11, 65, "Input", "ExpressionUUID" -> \
+"64bed108-a8e4-453d-8c34-1bf7c0835fc7"],
+Cell[42645, 1103, 237, 4, 28, "Output", "ExpressionUUID" -> \
+"561f28ea-7826-42e4-8112-b89ed7c9e9a7"],
+Cell[42885, 1109, 1315, 20, 47, "Output", "ExpressionUUID" -> \
+"5a4ce728-aeeb-4dea-b20e-5034c2e9b8b0"],
+Cell[44203, 1131, 263, 4, 28, "Output", "ExpressionUUID" -> \
+"d8ba01dd-eff3-460c-82a6-b48187c9c275"]
+}, Open  ]],
+Cell[44481, 1138, 186, 3, 67, "Text", "ExpressionUUID" -> \
+"c7ff2070-1788-4020-9ba6-e8f675b69739"],
+Cell[44670, 1143, 1711, 37, 101, "Input", "ExpressionUUID" -> \
+"47743ad0-e1dd-4121-ab06-d21872844d5a"],
+Cell[46384, 1182, 672, 16, 83, "Input", "ExpressionUUID" -> \
+"157aa3e9-c322-4e7b-a498-c6696a944b0f"],
+Cell[47059, 1200, 198, 3, 46, "Text", "ExpressionUUID" -> \
+"c12b5c66-79c3-4728-a19d-d3ae01e024ca"],
+Cell[47260, 1205, 3363, 71, 227, "Input", "ExpressionUUID" -> \
+"aac60b08-64b0-4871-a440-e4c8c62f31c2"],
+Cell[50626, 1278, 81, 0, 28, "Input", "ExpressionUUID" -> \
+"5e601208-f3c8-4021-b50e-dcea7b64abda"],
+Cell[50710, 1280, 184, 3, 46, "Text", "ExpressionUUID" -> \
+"ee7f9771-71f4-4a2a-990b-b256ae260a3c"],
+Cell[CellGroupData[{
+Cell[50919, 1287, 677, 17, 79, "Input", "ExpressionUUID" -> \
+"6edc0f78-271d-4b36-88f5-20c02ebbd997",
+ InitializationCell->True],
+Cell[51599, 1306, 83, 0, 28, "Output", "ExpressionUUID" -> \
+"f315e7e1-60af-4326-9340-ed6260f9e5de"]
+}, Open  ]],
+Cell[51697, 1309, 1400, 30, 119, "Input", "ExpressionUUID" -> \
+"4394a5b0-f97f-4df5-9ede-8ea3fa4539ee"],
+Cell[53100, 1341, 1630, 38, 101, "Input", "ExpressionUUID" -> \
+"5596a6bb-e0e5-4ec7-900c-42e1f6078159"],
+Cell[CellGroupData[{
+Cell[54755, 1383, 1410, 25, 83, "Input", "ExpressionUUID" -> \
+"31b15472-d400-486b-b28a-d7f3730202e3"],
+Cell[56168, 1410, 13005, 200, 483, "Output", "ExpressionUUID" -> \
+"2616200d-8fd3-4bd7-a338-17b4eb3ccac5"],
+Cell[69176, 1612, 13407, 211, 517, "Output", "ExpressionUUID" -> \
+"98e731ee-8b21-4217-811f-402240b6b8e2"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[82620, 1828, 1157, 20, 45, "Input", "ExpressionUUID" -> \
+"514b709d-2720-4a52-aaec-cba9efb3ab05"],
+Cell[83780, 1850, 100, 0, 20, "Print", "ExpressionUUID" -> \
+"f1bcd49a-00e7-4f35-a012-73744df83edd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[83917, 1855, 305, 8, 27, "Input", "ExpressionUUID" -> \
+"a2dfa0d7-83bf-4624-be83-a9db8f62c5ca"],
+Cell[84225, 1865, 170, 3, 27, "Output", "ExpressionUUID" -> \
+"edbb7a19-6fae-4b61-9a09-43b045270ba6"]
+}, Open  ]],
+Cell[84410, 1871, 268, 5, 48, "Text", "ExpressionUUID" -> \
+"cda2e985-5b42-4b26-ac3b-baa3fefa6eee"],
+Cell[84681, 1878, 597, 11, 27, "Input", "ExpressionUUID" -> \
+"495da59b-93fe-4a08-9f8d-094ea314ecaf"],
+Cell[85281, 1891, 759, 15, 45, "Input", "ExpressionUUID" -> \
+"13ff76f8-0381-428a-b469-fa9cdda3af2a"],
+Cell[86043, 1908, 233, 4, 27, "Input", "ExpressionUUID" -> \
+"93a5d8db-14d9-4e2e-8ac9-5fddc7751647"],
+Cell[86279, 1914, 372, 8, 27, "Input", "ExpressionUUID" -> \
+"a116bc28-fe87-4a87-974e-abc8ccc32b2c"],
+Cell[86654, 1924, 181, 3, 67, "Text", "ExpressionUUID" -> \
+"f3e99c74-be25-4a3b-9135-42fbf734cf7e"],
+Cell[86838, 1929, 399, 7, 29, "Text", "ExpressionUUID" -> \
+"0d3241a9-161d-42e2-97f8-144d80a7228c"],
+Cell[87240, 1938, 219, 5, 40, "Input", "ExpressionUUID" -> \
+"b4178c73-26a7-4acb-96a5-6b44128971e5",
+ InitializationCell->True],
+Cell[87462, 1945, 6268, 129, 311, "Input", "ExpressionUUID" -> \
+"7bb9a7fd-05ab-45ae-bd7d-1bfb1de9eaf8",
+ InitializationCell->True],
+Cell[93733, 2076, 2111, 39, 78, "Input", "ExpressionUUID" -> \
+"000dbd97-fbdd-4ad2-86ea-3f7f1b9a0d9c"],
+Cell[CellGroupData[{
+Cell[95869, 2119, 836, 16, 45, "Input", "ExpressionUUID" -> \
+"e8224491-24f7-4087-b892-cd5ac7dcd1ff"],
+Cell[96708, 2137, 12496, 243, 66, "Output", "ExpressionUUID" -> \
+"b07e7d95-51e9-452c-9d8d-a072d4f87ddd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[109241, 2385, 542, 11, 45, "Input", "ExpressionUUID" -> \
+"0f0441c8-a56a-48e5-91f5-883264cdfbf7"],
+Cell[109786, 2398, 102, 0, 27, "Output", "ExpressionUUID" -> \
+"2a8ee521-abd1-4342-9318-a25be8392541"]
+}, Open  ]],
+Cell[109903, 2401, 731, 20, 83, "Input", "ExpressionUUID" -> \
+"01d34bb5-1a9c-4b71-b327-f282a6685ba7"],
+Cell[CellGroupData[{
+Cell[110659, 2425, 8898, 190, 839, "Input", "ExpressionUUID" -> \
+"fa334e0b-2bfb-48d5-909f-4ede0af0517e"],
+Cell[CellGroupData[{
+Cell[119582, 2619, 85, 0, 21, "Print", "ExpressionUUID" -> \
+"db1adda8-087e-4bc3-96fe-37b519ef000a"],
+Cell[119670, 2621, 148, 2, 21, "Print", "ExpressionUUID" -> \
+"d89d6e4e-ef82-4c9d-8c20-6d3cb8b3121f"],
+Cell[119821, 2625, 123, 1, 21, "Print", "ExpressionUUID" -> \
+"2efc10e2-040a-43d4-92df-3d03a194ad67"],
+Cell[119947, 2628, 452, 8, 21, "Print", "ExpressionUUID" -> \
+"13001379-ff5d-4b30-b3c6-fc6a7048ce85"],
+Cell[120402, 2638, 156, 3, 21, "Print", "ExpressionUUID" -> \
+"bac323fc-3515-4cc4-b1ed-9f10ded08abf"]
+}, Open  ]]
+}, Open  ]],
+Cell[120585, 2645, 210, 3, 28, "Text", "ExpressionUUID" -> \
+"1f9996a6-f085-4f8a-8b51-f062e0757a41"],
+Cell[120798, 2650, 301, 4, 44, "Item", "ExpressionUUID" -> \
+"74dc7595-ee00-4432-b7cb-7acc9a686f14"],
+Cell[121102, 2656, 81, 0, 28, "Input", "ExpressionUUID" -> \
+"d085e438-08cc-44ce-a975-8a8f11e3d578"],
+Cell[121186, 2658, 116, 0, 28, "Text", "ExpressionUUID" -> \
+"f6d1a358-2198-474f-9477-1722d5f6f05e"],
+Cell[CellGroupData[{
+Cell[121327, 2662, 540, 14, 47, "Input", "ExpressionUUID" -> \
+"47378c89-88d5-4884-94b5-2c7c741e9324"],
+Cell[121870, 2678, 98, 0, 28, "Output", "ExpressionUUID" -> \
+"f85c062c-4b7e-4724-9d25-ca3a4329c5eb"],
+Cell[121971, 2680, 101, 0, 28, "Output", "ExpressionUUID" -> \
+"d99320b3-2d2e-4d30-b618-3ea3454f5709"]
+}, Open  ]],
+Cell[122087, 2683, 494, 12, 61, "Input", "ExpressionUUID" -> \
+"589ad046-1586-4207-a853-1287a87dd71d",
+ InitializationCell->True],
+Cell[122584, 2697, 148, 2, 37, "Text", "ExpressionUUID" -> \
+"b170dfc8-e253-49e4-a53b-09bb988cd5ef"],
+Cell[CellGroupData[{
+Cell[122757, 2703, 346, 9, 47, "Input", "ExpressionUUID" -> \
+"e95f5c35-8379-4988-8265-9c33a220c4b2"],
+Cell[123106, 2714, 84, 0, 28, "Output", "ExpressionUUID" -> \
+"b45a42ef-8ba4-4b30-a874-90d9f64ed7ff"],
+Cell[123193, 2716, 100, 0, 28, "Output", "ExpressionUUID" -> \
+"e0626dac-79f9-4b42-a779-9ed18f16726a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[123330, 2721, 1325, 36, 119, "Input", "ExpressionUUID" -> \
+"4df3c2c1-abdb-4ac0-85b9-29f2052f12db"],
+Cell[124658, 2759, 98, 0, 28, "Output", "ExpressionUUID" -> \
+"11ce914c-eb45-4664-8b52-19f4b76979a5"],
+Cell[124759, 2761, 683, 12, 47, "Output", "ExpressionUUID" -> \
+"8e0a9142-4bdc-4a23-a842-537f00ae6413"],
+Cell[125445, 2775, 101, 0, 28, "Output", "ExpressionUUID" -> \
+"9df1f10d-0fba-4ab0-9aac-c074451652b5"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[125583, 2780, 139, 2, 28, "Input", "ExpressionUUID" -> \
+"1f8c7842-a262-4ff8-baa3-208d63006727"],
+Cell[125725, 2784, 97, 0, 28, "Output", "ExpressionUUID" -> \
+"a2918723-2a39-4cca-88a3-a29813414638"]
+}, Open  ]],
+Cell[125837, 2787, 221, 3, 28, "Text", "ExpressionUUID" -> \
+"95945371-3bde-4277-a2aa-e3bc7da9b5d1"],
+Cell[CellGroupData[{
+Cell[126083, 2794, 1813, 48, 155, "Input", "ExpressionUUID" -> \
+"51c5a3b4-b850-468c-84e9-bcda785d7ebd"],
+Cell[127899, 2844, 100, 1, 28, "Output", "ExpressionUUID" -> \
+"ca943395-d6a6-4b6d-adb0-2f94717ea16d"]
+}, Open  ]],
+Cell[128014, 2848, 81, 0, 28, "Input", "ExpressionUUID" -> \
+"3c1fa5a4-aa82-4db2-82af-d1da9613eda1"]
+}
+]
+*)
+

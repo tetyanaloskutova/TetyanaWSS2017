@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     23330,        535]
-NotebookOptionsPosition[     18205,        400]
-NotebookOutlinePosition[     19764,        449]
-CellTagsIndexPosition[     19686,        444]
+NotebookDataLength[     22607,        513]
+NotebookOptionsPosition[     17719,        384]
+NotebookOutlinePosition[     19277,        433]
+CellTagsIndexPosition[     19199,        428]
 WindowTitle->WikiMap
 WindowFrame->Normal*)
 
@@ -303,11 +303,9 @@ future ones\
 
 Cell[CellGroupData[{
 
-Cell["Simple classification: Classify[text, \
-\[OpenCurlyDoubleQuote]FacebookTopic\[CloseCurlyDoubleQuote]] ", "Subitem",
- CellChangeTimes->{{3.7080843453984756`*^9, 
-  3.708084426084658*^9}},ExpressionUUID->"d750143b-21a1-4b4c-ae27-\
-3f352d236bd2"],
+Cell["Simple classification: Classify[\[OpenCurlyDoubleQuote]FacebookTopic\
+\[CloseCurlyDoubleQuote]] ", "Subitem",ExpressionUUID->"d750143b-21a1-4b4c-\
+ae27-3f352d236bd2"],
 
 Cell["\<\
 Simple graph: NestGraph[Import[#,\[CloseCurlyDoubleQuote]Hyperlinks\
@@ -328,20 +326,6 @@ Cell["Dynamic development of the classifier is required.", "Item",ExpressionUUID
 Cell["", "Item",ExpressionUUID->"51efa9e9-7dd5-411b-b992-a850a13938e4"],
 
 Cell["", "Item",ExpressionUUID->"bb6b6130-4599-4bb1-849c-825fc891b720"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"AbsoluteOptions", "[", 
-  RowBox[{
-   RowBox[{"EvaluationNotebook", "[", "]"}], ",", "WindowTitle"}], 
-  "]"}]], "Input",ExpressionUUID->"c9a21ee4-4cfc-496a-b57b-137b71f08820"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"WindowTitle", "\[Rule]", "\<\"Structured Data\"\>"}], 
-  "}"}]], "Output",ExpressionUUID->"1912becb-c88f-40de-97b0-08f17c770a3c"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -400,8 +384,8 @@ Cell["", "SlideShowNavigationBar",
 },
 Saveable->True,
 WindowToolbars->{},
-WindowSize->{1264, 637},
-WindowMargins->{{-7, Automatic}, {Automatic, 5}},
+WindowSize->{1264, 626},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
 WindowTitle->"WikiMap",
 ShowSelection->True,
 Magnification:>1.25 Inherited,
@@ -420,7 +404,7 @@ PrivateNotebookOptions -> {"NotebookAuthor" -> ""}
 CellTagsIndex->{
  "SlideShowHeader"->{
   Cell[601, 23, 122, 2, 
-  82, "SlideShowNavigationBar", "ExpressionUUID" -> "
+  76, "SlideShowNavigationBar", "ExpressionUUID" -> "
    eb354772-68dc-4b0e-80b9-3b69be71fd2b",
    CellTags->"SlideShowHeader"],
   Cell[13291, 251, 122, 2, 
@@ -431,11 +415,11 @@ CellTagsIndex->{
   76, "SlideShowNavigationBar", "ExpressionUUID" -> "3b10d17f-730c-4a82-
    a678-06ac26c2f7ff",
    CellTags->"SlideShowHeader"],
-  Cell[16558, 350, 122, 2, 
+  Cell[16072, 334, 122, 2, 
   76, "SlideShowNavigationBar", "ExpressionUUID" -> "
    13357267-230c-4594-8c31-33c87491c439",
    CellTags->"SlideShowHeader"],
-  Cell[18079, 396, 122, 2, 
+  Cell[17593, 380, 122, 2, 
   76, "SlideShowNavigationBar", "ExpressionUUID" -> "
    ebf8f7cf-7e4c-4e71-8a7e-587fcaad7a21",
    CellTags->"SlideShowHeader"]}
@@ -443,18 +427,18 @@ CellTagsIndex->{
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"SlideShowHeader", 18880, 420}
+ {"SlideShowHeader", 18393, 404}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[601, 23, 122, 2, 82, "SlideShowNavigationBar", "ExpressionUUID" -> \
+Cell[601, 23, 122, 2, 76, "SlideShowNavigationBar", "ExpressionUUID" -> \
 "eb354772-68dc-4b0e-80b9-3b69be71fd2b",
  CellTags->"SlideShowHeader"],
 Cell[726, 27, 222, 4, 127, "Title", "ExpressionUUID" -> \
 "9d198d03-3c98-428d-bea9-71cfae276df2"],
-Cell[951, 33, 335, 8, 139, "Subsubtitle", "ExpressionUUID" -> \
+Cell[951, 33, 335, 8, 140, "Subsubtitle", "ExpressionUUID" -> \
 "9a9dfed8-7dc6-4c32-8faa-30e30601d6c7"],
 Cell[1289, 43, 11833, 199, 188, "Input", "ExpressionUUID" -> \
 "91e4d727-2209-46c0-b51a-d3fc3282de2a"],
@@ -489,52 +473,46 @@ Cell[CellGroupData[{
 Cell[14694, 295, 238, 6, 37, "Item", "ExpressionUUID" -> \
 "c868fb8c-6038-48cd-9ba0-6ea69e930a90"],
 Cell[CellGroupData[{
-Cell[14957, 305, 249, 4, 29, "Subitem", "ExpressionUUID" -> \
+Cell[14957, 305, 172, 2, 29, "Subitem", "ExpressionUUID" -> \
 "d750143b-21a1-4b4c-ae27-3f352d236bd2"],
-Cell[15209, 311, 595, 11, 50, "Subitem", "ExpressionUUID" -> \
+Cell[15132, 309, 595, 11, 50, "Subitem", "ExpressionUUID" -> \
 "032b7523-7056-444a-bb68-eaaf940ac5ff"]
 }, Open  ]],
-Cell[15819, 325, 121, 0, 37, "Item", "ExpressionUUID" -> \
+Cell[15742, 323, 121, 0, 37, "Item", "ExpressionUUID" -> \
 "a6cf08ec-10d3-44da-9eb9-5ec8179025e0"],
-Cell[15943, 327, 71, 0, 37, "Item", "ExpressionUUID" -> \
+Cell[15866, 325, 71, 0, 37, "Item", "ExpressionUUID" -> \
 "51efa9e9-7dd5-411b-b992-a850a13938e4"],
-Cell[16017, 329, 71, 0, 37, "Item", "ExpressionUUID" -> \
+Cell[15940, 327, 71, 0, 37, "Item", "ExpressionUUID" -> \
 "bb6b6130-4599-4bb1-849c-825fc891b720"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[16125, 334, 200, 4, 38, "Input", "ExpressionUUID" -> \
-"c9a21ee4-4cfc-496a-b57b-137b71f08820"],
-Cell[16328, 340, 169, 3, 38, "Output", "ExpressionUUID" -> \
-"1912becb-c88f-40de-97b0-08f17c770a3c"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[16558, 350, 122, 2, 76, "SlideShowNavigationBar", "ExpressionUUID" -> \
+Cell[16072, 334, 122, 2, 76, "SlideShowNavigationBar", "ExpressionUUID" -> \
 "13357267-230c-4594-8c31-33c87491c439",
  CellTags->"SlideShowHeader"],
 Cell[CellGroupData[{
-Cell[16705, 356, 77, 0, 87, "Section", "ExpressionUUID" -> \
+Cell[16219, 340, 77, 0, 87, "Section", "ExpressionUUID" -> \
 "f824a8e6-dcfe-42d5-9170-16d90d548510"],
 Cell[CellGroupData[{
-Cell[16807, 360, 214, 3, 37, "Item", "ExpressionUUID" -> \
+Cell[16321, 344, 214, 3, 37, "Item", "ExpressionUUID" -> \
 "dd9d9565-916b-4be8-a558-a84d1a4b2162"],
-Cell[17024, 365, 190, 3, 37, "Item", "ExpressionUUID" -> \
+Cell[16538, 349, 190, 3, 37, "Item", "ExpressionUUID" -> \
 "f304cf16-c76d-4304-b4e9-1f8c61a61322"],
-Cell[17217, 370, 166, 2, 37, "Item", "ExpressionUUID" -> \
+Cell[16731, 354, 166, 2, 37, "Item", "ExpressionUUID" -> \
 "bc80308e-13b7-4314-b5a4-c93b511fe3f0"],
 Cell[CellGroupData[{
-Cell[17408, 376, 165, 2, 29, "Subitem", "ExpressionUUID" -> \
+Cell[16922, 360, 165, 2, 29, "Subitem", "ExpressionUUID" -> \
 "677fea92-16ed-4fc3-b0d6-c3db61845233"],
-Cell[17576, 380, 177, 3, 29, "Subitem", "ExpressionUUID" -> \
+Cell[17090, 364, 177, 3, 29, "Subitem", "ExpressionUUID" -> \
 "1564f669-fcc4-4f28-b99b-2a139f9a294d"],
-Cell[17756, 385, 272, 5, 29, "Subsubitem", "ExpressionUUID" -> \
+Cell[17270, 369, 272, 5, 29, "Subsubitem", "ExpressionUUID" -> \
 "f1937f1c-060e-405b-b783-42138b271f11"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
-Cell[18079, 396, 122, 2, 76, "SlideShowNavigationBar", "ExpressionUUID" -> \
+Cell[17593, 380, 122, 2, 76, "SlideShowNavigationBar", "ExpressionUUID" -> \
 "ebf8f7cf-7e4c-4e71-8a7e-587fcaad7a21",
  CellTags->"SlideShowHeader"]
 }
