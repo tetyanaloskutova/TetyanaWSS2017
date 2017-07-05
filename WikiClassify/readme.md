@@ -29,14 +29,14 @@ topicCheck = Classify["FacebookTopic"]
 
 ### Relational Classifier feature extraction
 
-> getWikiLinks:=Function[{articleName},""
-> linkText=WikipediaData[articleName,"SummaryWikicode"];""
+> getWikiLinks:=Function[{articleName},
+> linkText=WikipediaData[articleName,"SummaryWikicode"];
 > list=StringCases[linkText,Shortest["[["~~"
-> x__"~~"]]"]⧴ToString[x]];""
-> list1=DeleteCases[list,_?((StringTake[#,Min[StringLength[#],4]]=="File"||StringTake[#,Min[StringLength[#],4]]=="Imag")&)];""
-> Clear[strListClear];""
-> strListClear:=(If[StringPosition[#,"|"]≠{},pos=StringPosition[#,"|"][[1,1]];StringTake[#,pos-1],#])&;""
-> listOfLinks=Map[strListClear,list1];""
+> x__"~~"]]"]⧴ToString[x]];
+> list1=DeleteCases[list,_?((StringTake[#,Min[StringLength[#],4]]=="File"||StringTake[#,Min[StringLength[#],4]]=="Imag")&)];
+> Clear[strListClear];
+> strListClear:=(If[StringPosition[#,"|"]≠{},pos=StringPosition[#,"|"][[1,1]];StringTake[#,pos-1],#])&;
+> listOfLinks=Map[strListClear,list1];
 > listOfLinks=Union[listOfLinks]]
 
 Loop through the links:
@@ -47,11 +47,11 @@ Loop through the links:
 
 the results of the function were saved into a file, e.g.:
 
-> *Activism	artivism 
-Activism	boycott 
-Activism	civic engagement 
-Activism	Civil Rights Movement
- ….. and so on.*
+> Activism	artivism 
+> Activism	boycott 
+> Activism	civic engagement 
+> Activism	Civil Rights Movement
+> ….. and so on.
 
 This file was further used in the relational classifier.
 
@@ -59,96 +59,95 @@ This file was further used in the relational classifier.
 
 For the content classifier, the same articles as in the relational classifier were extracted, however instead of Wikicode, plain text summary was used. The articles were classified using topicCheck classifier created above. Further, a list of most frequent nouns was extracted from each article, combined from all articles into the list of keywords and used to create a feature vector. 
 
-CreateContentFile:= Function[{uniqueArticle}, 
-	text = ToString[WikipediaData[uniqueArticle, "SummaryPlaintext"]];
-	label = topicCheck[text]; 
-	nouns = TextCases[text, "Noun"];
-	(*nouns = Pluralize/@ nouns;*)
-	nouns = DeleteStopwords[ToLowerCase[nouns]];
-	freqnouns=Sort[Counts[nouns], Greater];
-	features =If[Length[freqnouns]>=1,Keys[freqnouns][[1]],""];
-	{features, label}
-	]
+> CreateContentFile:= Function[{uniqueArticle}, 
+> 	text = ToString[WikipediaData[uniqueArticle, "SummaryPlaintext"]];
+> 	label = topicCheck[text]; 
+> 	nouns = TextCases[text, "Noun"];
+> 	(*nouns = Pluralize/@ nouns;*)
+> 	nouns = DeleteStopwords[ToLowerCase[nouns]];
+> 	freqnouns=Sort[Counts[nouns], Greater];
+> 	features =If[Length[freqnouns]>=1,Keys[freqnouns][[1]],""];
+> 	{features, label}
+> 	]
 
 Article names, keywords, and labels were saved into wiki.content file. This file was then used to create feature vectors:
-finalAllTRead = 
- Import["wiki.content", "Table"]
+> finalAllTRead = Import["wiki.content", "Table"]
 The features in the feature vector were assigned based on the occurrence of the keyword’s stem in the article’s summary:
-For[k1 = 1, k1 <= Length[finalAllTRead], k1++,
- featureVector = Table[0, Length[keywords]];
- kw = ToString[finalAllTRead[[k1, 2]]];
- For[k2 = 1, k2 <= Length[keywords], k2++,
-  If[ StringPosition[kw, keywords[[k2]]] != {}, 
-   featureVector[[k2]] = 1]];
- finalAllTRead[[k1, 2]] = featureVector]
+
+> For[k1 = 1, k1 <= Length[finalAllTRead], k1++,
+>  featureVector = Table[0, Length[keywords]];
+>  kw = ToString[finalAllTRead[[k1, 2]]];
+>  For[k2 = 1, k2 <= Length[keywords], k2++,
+>   If[ StringPosition[kw, keywords[[k2]]] != {}, 
+>    featureVector[[k2]] = 1]];
+>  finalAllTRead[[k1, 2]] = featureVector]
 The feature vector was saved into a separate file:
 
-Export["wikifeature.content", finalAllTRead[[All, 2]], "Table"]
+> Export["wikifeature.content", finalAllTRead[[All, 2]], "Table"]
 
 ### Content Classifier
 
 Content classifier was trained using wiki.content and wikifeature.content data and logistic regression:
-localClf=Classify[selectedFeatures→selectedLabels,Method→"LogisticRegression"];
+> localClf=Classify[selectedFeatures→selectedLabels,Method→"LogisticRegression"];
 
 ### Relational Classifier
 
 The relational classifier was also based on logistic regression and the data stored in wiki.cites file. However, before the data in the file could be used for regression purposes, it had to be transformed into suitable feature arrays and labels. The feature array had the length equal to the number of unique labels and was constructed based on the occurrence of a particular label in the article’s neighbours (the articles linked to the current):
 
-aggregate[conditionalMap_, vertice_, 
-  features1_] :=(*returns a matrix: rows equal to training sample, \
-columns equal to dataLabels equal to the amount of dataLabels in the \
-find all connected indices*)(
-  tempFeatures = List[features1][[1]];
-  neighboursR = Select[dataLinks, Part[#, 1] == vertice &];
-  neighboursR = neighboursR[[All, 2]];
-  neighboursL = Select[dataLinks, Part[#, 2] == vertice &];
-  neighboursL = neighboursL[[All, 1]];
-  neighbours = Join[neighboursL, neighboursR];
-  For[j = 1, j <= Length[neighbours], j++, 
-   node = neighbours[[j]];
-   labelToReinforce = Select[conditionalMap, Part[#, 1] == node &];
-   If[labelToReinforce != {}, 
-    k = Flatten[
-       Position[uniqueLabels, labelToReinforce[[All, 2]][[1]]]][[1]];
-    If[features1[[k]] >= 0, tempFeatures[[k]] ++];
-    ];
-   ];
-  tempFeatures
-  )
+> aggregate[conditionalMap_, vertice_, 
+>   features1_] :=(*returns a matrix: rows equal to training sample, \
+> columns equal to dataLabels equal to the amount of dataLabels in the \
+> find all connected indices*)(
+>   tempFeatures = List[features1][[1]];
+>   neighboursR = Select[dataLinks, Part[#, 1] == vertice &];
+>   neighboursR = neighboursR[[All, 2]];
+>   neighboursL = Select[dataLinks, Part[#, 2] == vertice &];
+>   neighboursL = neighboursL[[All, 1]];
+>   neighbours = Join[neighboursL, neighboursR];
+>   For[j = 1, j <= Length[neighbours], j++, 
+>    node = neighbours[[j]];
+>    labelToReinforce = Select[conditionalMap, Part[#, 1] == node &];
+>    If[labelToReinforce != {}, 
+>     k = Flatten[
+>        Position[uniqueLabels, labelToReinforce[[All, 2]][[1]]]][[1]];
+>     If[features1[[k]] >= 0, tempFeatures[[k]] ++];
+>     ];
+>    ];
+>   tempFeatures
+>   )
 
-For [i = 1, i <= Length[trainIds], i++, (
-   selectedFeatures1 = 
-    aggregate[conditionalMap, selectedNodes[[i]], 
-     selectedFeatures[[i]]];
-   selectedFeatures[[i]] = selectedFeatures1;
-   )];
+> For [i = 1, i <= Length[trainIds], i++, (
+>    selectedFeatures1 = 
+>     aggregate[conditionalMap, selectedNodes[[i]], 
+>      selectedFeatures[[i]]];
+>    selectedFeatures[[i]] = selectedFeatures1;
+>    )];
 Further, the labels and the feature arrays were used in the logistic regression:
 
-relClf = Classify[selectedFeatures -> selectedLabels, 
-  Method -> "LogisticRegression"]
+> relClf = Classify[selectedFeatures -> selectedLabels, Method -> "LogisticRegression"]
 
 ### Combining the Classifiers
 
 In the ICA, combining classifiers is used to find the optimum labels by adjusting the labels in the relational classifier in an iterated fashion until the least label diversity in the directly linked articles is reached. This was not fully implemented in the project, however, the availability of two different classifiers allowed to select the classifier with higher accuracy and choose the answer with higher probability:
 
-relLabel = relClf[testFeature][[1]]
-relClf[testFeature, "TopProbabilities"]
-relLabelProbaility = 
- relClf[testFeature, "TopProbabilities"][[1]][[1, 2]]
+> relLabel = relClf[testFeature][[1]]
+> relClf[testFeature, "TopProbabilities"]
+> relLabelProbaility = 
+>  relClf[testFeature, "TopProbabilities"][[1]][[1, 2]]
 
-localLabel = localClf[dataFeatures[[1]]]
-localLabelProb = 
- localClf[dataFeatures[[1]], "TopProbabilities"][[1, 2]]
+> localLabel = localClf[dataFeatures[[1]]]
+> localLabelProb = 
+>  localClf[dataFeatures[[1]], "TopProbabilities"][[1, 2]]
 
 The cases where the prediction of the Content Classifier differed from the Relational classifier, and both classifiers were not confident of the answer were treated as an indication for the need of a new label:
 
-If[(localLabel != relLabel && localLabelProb < 0.5 && 
-   relLabelProbaility < 0.5), 
- newLabel = 
-  topicCheck[ToString[getText[dataContent[[dataIds[[58]]]][[1]]]] ];
- newId = Max[dataIds] + 1;
- AppendTo[conditionalMap, {newId, newLabel}];
- newFeatures = {(*recreates the feature vectors*)}]
+> If[(localLabel != relLabel && localLabelProb < 0.5 && 
+>    relLabelProbaility < 0.5), 
+>  newLabel = 
+>   topicCheck[ToString[getText[dataContent[[dataIds[[58]]]][[1]]]] ];
+>  newId = Max[dataIds] + 1;
+>  AppendTo[conditionalMap, {newId, newLabel}];
+>  newFeatures = {(*recreates the feature vectors*)}]
 
 ## Future development
 
@@ -159,3 +158,4 @@ The code for this analysis is available on GitHub: [WikiClassify][1]
 
 
   [1]: https://github.com/tetyanaloskutova/TetyanaWSS2017/tree/master/WikiClassify
+  [2]: Lu, Q., & Getoor, L. (2003). Link-based classification. In Proceedings of the 20th International Conference on Machine Learning (ICML-03) (pp. 496-503).
